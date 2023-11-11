@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{f1365d96-a7a0-488e-9bbb-3f19725d0c54}</ProjectGuid>
-    <RootNamespace>doloremipsumcpp</RootNamespace>
+    <ProjectGuid>{2995c003-80ec-486c-8635-fb13e9063176}</ProjectGuid>
+    <RootNamespace>LAB6</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,8 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="EventLocation.h" />
-    <ClCompile Include="Source1.cpp" />
+    <ClCompile Include="LAB6.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
