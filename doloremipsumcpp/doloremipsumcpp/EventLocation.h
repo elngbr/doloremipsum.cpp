@@ -3,8 +3,9 @@
 #include <iostream>
 #include <string>
 using namespace std;
-enum typeOfTicket { VIP, LAWN, TRIBUNE, BOXES, STAND }; ///also type of zone
-enum typeOfEvent { CONCERT, FOOTBALL, THEATRE, FILM, CHARITY, FAIR };
+enum typeOfTicket { VIP, LAWN, TRIBUNE, BOXES, STAND }; ///also type of zone OR NOT?
+enum typeOfEvent { CONCERT, FOOTBALL, THEATRE, FILM, CHARITY, FAIR, OTHER };
+enum typeOfPlace {STADIUM, CONCERT_HALL, OPERA_HOUSE, EVENTS_HALL, SPORT_HALL, CINEMA_HALL};
 
 class Util {
 public:
@@ -233,22 +234,19 @@ public:
 	}
 
 
+	//////////DEFAULT CONSTRUCTOR
 
 
-
-	Event() :eventId(NO_OF_EVENTS)
+	Event() :eventId(++NO_OF_EVENTS)
 	{
-		Event::NO_OF_EVENTS++;
-		//eventId = NO_OF_EVENTS;
 
 	}
-
-	Event() :eventId(NO_OF_EVENTS)
+///CONSTRUCTOR WITH PARAMETERS
+	Event(char* auxNameOfEvent) : eventId(++NO_OF_EVENTS)
 	{
-		Event::NO_OF_EVENTS++;
-		//eventId = NO_OF_EVENTS;
-	}
+		this->setNameOfEvent(auxNameOfEvent);
 
+	}
 	~Event()
 	{
 		delete[] this->nameOfEvent;
@@ -256,7 +254,7 @@ public:
 		Event::NO_OF_EVENTS--;
 	}
 
-	Event(Event& newEvent) 
+	Event(Event& newEvent) : eventId(++NO_OF_EVENTS)
 	{
 		strcpy_s(dateOfEvent, sizeof(dateOfEvent), newEvent.getDate());
 		strcpy_s(this->timeOfEvent, strlen(timeOfEvent) + 1, newEvent.getTime());

@@ -1,6 +1,7 @@
 
 
 
+#include "EventLocation.h"
 #include<iostream>
 using namespace std;
 
@@ -27,9 +28,14 @@ Phase 1 is considered completed if at least 75% of the requirements are implemen
 
 
 
-/*
+
 int main()
 {
-	cout << "Hello world!";
+	int** locuri;
+	int locuri1[2][3] = {
+		{0, 1, 1},
+		{0, 0, 0}
+	};
+
+	EventPlace event(2, 3, reinterpret_cast<int**>(locuri1));
 }
-*/
