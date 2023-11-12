@@ -3,9 +3,9 @@
 #include <iostream>
 #include <string>
 using namespace std;
-enum typeOfTicket { VIP, LAWN, TRIBUNE, BOXES, STAND }; ///also type of zone OR NOT?
-enum typeOfEvent { CONCERT, FOOTBALL, THEATRE, FILM, CHARITY, FAIR, OTHER };
 enum typeOfPlace {STADIUM, CONCERT_HALL, OPERA_HOUSE, EVENTS_HALL, SPORT_HALL, CINEMA_HALL};
+enum typeOfEvent { CONCERT, FOOTBALL, THEATRE, FILM, CHARITY, FAIR, OTHER };
+enum typeOfTicket { VIP, LAWN, TRIBUNE, BOXES, STAND }; ///also type of zone OR NOT?
 
 class Util {
 public:
@@ -200,7 +200,7 @@ public:
 
 	}
 
-	void setDate(const char* auxDate)
+	void setDate(const char* auxDate)///all events will occur in 2024
 	{
 		if (auxDate == nullptr || auxDate[2] != '/' || auxDate[5] != '/' || (auxDate[0] == '3' && (auxDate[1] > '1' || auxDate[1] < '0')) || auxDate[0] != '0' || auxDate[0] != '1' || auxDate[0] != '2' || auxDate[0] != '3' || auxDate[3] != '1' || auxDate[3] != '0' || (auxDate[3] == '0' && (auxDate[4] > '9' || auxDate[4] < '0')) || (auxDate[3] == '1' && (auxDate[4] > '2' || auxDate[4] < '0')) || auxDate[6] != '2' || auxDate[7] != '4')
 		{
@@ -226,7 +226,7 @@ public:
 	{
 		if (auxTime[2] != ':' || auxTime[0] != '0' || auxTime[0] != '1' || auxTime[1] < '0' || auxTime[1]>'9' || auxTime[3] < '0' || auxTime[3]>'5' || auxTime[4] < '0' || auxTime[4]>'9' || auxTime == nullptr)
 		{
-			throw exception("Wrong input!");
+			throw exception("Wrong input! All events will occur in 2024 ");
 
 		}
 
@@ -271,6 +271,77 @@ private:  //could be by default
 	int static NO_OF_TICKETS;
 	int ticketId = 0;
 	typeOfTicket type = typeOfTicket::BOXES;
+	char* dateOfIssue = nullptr;
 
+public:
+
+	int getId()
+	{
+		return this->ticketId;
+	}
+
+	typeOfTicket getType()
+	{
+		return this->type;
+	}
+
+	void setTypeOfTicket(typeOfTicket auxType)
+	{
+		this->type = auxType;
+	}
+
+	char* getDateOfIssue()
+	{
+		char* copy = new char[strlen(this->dateOfIssue) + 1];
+		strcpy_s(copy, strlen(this->dateOfIssue) + 1, this->dateOfIssue);
+
+		return copy;
+	}
+
+
+	void setDateOfIssue(const char*auxDate)   ///all tickets can be issued in 2024
+	{
+		if (auxDate == nullptr || auxDate[2] != '/' || auxDate[5] != '/' || (auxDate[0] == '3' && (auxDate[1] > '1' || auxDate[1] < '0')) || auxDate[0] != '0' || auxDate[0] != '1' || auxDate[0] != '2' || auxDate[0] != '3' || auxDate[3] != '1' || auxDate[3] != '0' || (auxDate[3] == '0' && (auxDate[4] > '9' || auxDate[4] < '0')) || (auxDate[3] == '1' && (auxDate[4] > '2' || auxDate[4] < '0')) || auxDate[6] != '2' || auxDate[7] != '4')
+		{
+			throw exception("Wrong input! All tickets can be issued in 2024!");
+		}
+
+
+		strcpy_s(this->dateOfIssue, strlen(auxDate) + 1, const_cast<char*>(auxDate));
+
+	}
+
+	//Default Constructor
+
+	Ticket(): ticketId(++NO_OF_TICKETS)
+	{
+
+
+	}
+
+
+	///CTOR WITH AT LEAST ONE PARAMETER
+	Ticket(typeOfTicket auxType, char*auxDateOfIssue):ticketId(++NO_OF_TICKETS)
+	{
+		this->setTypeOfTicket(auxType);
+		this->setDateOfIssue(auxDateOfIssue);
+	}
+
+	///DESTRUCTOR
+	~Ticket()
+	{
+		delete[]this->dateOfIssue;
+		NO_OF_TICKETS--;
+	}
+
+	//CPY-CONSTRUCTOR
+
+	Ticket(Ticket& ticket) :ticketId(++NO_OF_TICKETS)
+	{
+		this->setDateOfIssue(ticket.getDateOfIssue());
+		this->setTypeOfTicket(ticket.getType());
+	}
 
 };
+
+int Ticket::NO_OF_TICKETS = 0;
