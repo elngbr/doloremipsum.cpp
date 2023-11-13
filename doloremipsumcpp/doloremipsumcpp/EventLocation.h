@@ -4,7 +4,7 @@
 #include <string>
 using namespace std;
 enum typeOfPlace {STADIUM, CONCERT_HALL, OPERA_HOUSE, EVENTS_HALL, SPORT_HALL, CINEMA_HALL};
-enum typeOfEvent { CONCERT, FOOTBALL, THEATRE, FILM, CHARITY, FAIR, OTHER };
+enum typeOfEvent { CONCERT, FOOTBALL, THEATRE, FILM, CHARITY, FAIR };
 enum typeOfTicket { VIP, LAWN, TRIBUNE, BOXES, STAND }; ///also type of zone OR NOT?
 
 class Util {
@@ -25,6 +25,7 @@ public:
 
 class EventPlace {
 private:
+	typeOfPlace name = typeOfPlace::CONCERT_HALL;
 	int noRows = 0;
 	int noZones = 0;
 	//typeOfTicket;
@@ -36,6 +37,21 @@ public:
 	int static const MIN_ZONES = 1;
 	int static const MIN_ROWS_PER_ZONE = 5;
 	int static const MIN_SEATS_PER_ROW = 10;
+
+	typeOfPlace getName()
+	{
+		return this->name;
+	}
+
+	void setName(typeOfPlace auxName)
+	{
+		if (auxName < typeOfPlace::STADIUM || auxName>typeOfPlace::CINEMA_HALL)
+		{
+			throw exception("Wrong input!");
+		}
+
+		this->name = auxName;
+	}
 
 
 	int getNumberOfRows()   ///if I create a setter for this one I risk to have someone modifying it and adding a number of rows which is less than my actual number
@@ -60,6 +76,8 @@ public:
 		{
 			throw exception("You can't have no zone!");
 		}
+
+		this->noZones = auxNumber;
 	}
 
 	int** getStateOfSeats()
@@ -110,9 +128,11 @@ public:
 
 	}
 
-	EventPlace(int auxNoRows, int auxNoSeatsPerRow, int** auxMatrix)
+	EventPlace(int auxNoRows, int auxNoSeatsPerRow, int** auxMatrix, int auxNoZones, typeOfPlace auxName)
 	{
 		this->setStateOfSeats(auxMatrix, auxNoRows, auxNoSeatsPerRow);
+		this->setNumberofZones(auxNoZones);
+		this->setName(auxName);
 	}
 
 	~EventPlace()
@@ -144,11 +164,84 @@ public:
 		}
 	}
 
+	/*
+	bool areThereStillPlaces(int auxStateOfSeats, int auxNoRows, int auxSeatsPerRow)
+	{
+		int i, j;
 
+		for(i=0; i<auxNoRows; i++)
+			for(j=0; j<auxSeatsPerRow; j++)
+				if (auxStateOfSeats[i][j])
+				{
 
+				}
+	}
+	*/
 
+	friend void operator<<(ostream& console, const EventPlace& place);
 };
 
+/**/void operator<<(ostream& console, const EventPlace& place)
+{
+	console << endl << "No of rows:" << place.noRows;
+	console << endl << "No of seats per row" << place.noSeatsPerRow;
+	console << endl << "No of zones" << place.noZones;
+	int noOfOccupiedSeats = 0;
+	int noOfFreeSeats = 0;
+	for (int i = 0; i < place.noRows; i++)
+	{
+		for (int j = 0; j < place.noSeatsPerRow; j++)
+			if (place.stateOfSeats[i][j] == 0)
+			{
+				noOfFreeSeats++;
+			}
+			else
+			{
+				noOfOccupiedSeats++;
+			}
+
+	}
+
+	console << endl << "In this" << " ";
+	//console << std::endl << "Type of Place: ";
+	switch (place.name) {
+	case STADIUM:
+		console << "Stadium";
+		break;
+	case CONCERT_HALL:
+		console << "Concert Hall";
+		break;
+	case OPERA_HOUSE:
+		console << "Opera House";
+		break;
+	case EVENTS_HALL:
+		console << "Events Hall";
+		break;
+	case SPORT_HALL:
+		console << "Sport Hall";
+		break;
+	case CINEMA_HALL:
+		console << "Cinema Hall";
+		break;
+	default:
+		console << "Unknown type of place";
+		break;
+	}
+
+	console << " " << "there are" << " " << noOfFreeSeats << " " << "free seats and" << " " << noOfOccupiedSeats << " " << "occupied seats." << endl;
+
+	for (int i = 0; i < place.noRows; i++)
+	{
+		for (int j = 0; j < place.noSeatsPerRow; j++)
+			if (place.stateOfSeats[i][j] == 0)
+				console << endl << "The seat" << " " << j << " " << "on row" << " " << i << " " << "is not occupied yet. Feel free to buy a ticket here.";
+
+	}
+
+
+
+
+}
 
 
 class Event {

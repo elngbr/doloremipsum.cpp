@@ -31,11 +31,29 @@ Phase 1 is considered completed if at least 75% of the requirements are implemen
 
 int main()
 {
-	int** locuri;
-	int locuri1[2][3] = {
-		{0, 1, 1},
-		{0, 0, 0}
-	};
+    int const rows = 4;
+    int const seatsPerRow = 3;
+    int const auxNoZones = 2;
 
-	EventPlace event(2, 3, reinterpret_cast<int**>(locuri1));
+    int** locuri1 = new int* [rows];
+    for (int i = 0; i < rows; ++i) {
+        locuri1[i] = new int[seatsPerRow];
+    }
+
+   
+    EventPlace event1(rows, seatsPerRow, locuri1, auxNoZones, typeOfPlace::STADIUM);
+
+    
+    for (int i = 0; i < rows; ++i) {
+        delete[] locuri1[i];
+    }
+    delete[] locuri1;
+    
+
+      
+
+
 }
+
+
+
