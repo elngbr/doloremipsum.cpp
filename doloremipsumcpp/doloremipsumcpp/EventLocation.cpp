@@ -29,30 +29,34 @@ Phase 1 is considered completed if at least 75% of the requirements are implemen
 
 
 
-int main()
-{
-    int const rows = 4;
-    int const seatsPerRow = 3;
+int main() {
+    int const rows = 6;
+    int const seatsPerRow = 10;
     int const auxNoZones = 2;
 
-    int** locuri1 = new int* [rows];
-    for (int i = 0; i < rows; ++i) {
-        locuri1[i] = new int[seatsPerRow];
-    }
+    int locuri1[rows][seatsPerRow] =
+    {
+        {0, 0, 1},
+        {1, 1, 1},
+        {0, 1, 0},
+        {1, 0, 1}
+    };
 
-   
-    EventPlace event1(rows, seatsPerRow, locuri1, auxNoZones, typeOfPlace::STADIUM);
-
-    
-    for (int i = 0; i < rows; ++i) {
-        delete[] locuri1[i];
-    }
-    delete[] locuri1;
-    
-
-      
+    EventPlace event1(rows, seatsPerRow, auxNoZones, typeOfPlace::STADIUM);
 
 
+    cout << event1;
+
+
+    Event event2("Cupa Romaniei", "15/04/24", "15:00");
+
+    cout << event2;
+
+    Ticket event3(STAND1, "01/01/24");
+
+    cout << event3;
+
+    //return 0;
 }
 
 
