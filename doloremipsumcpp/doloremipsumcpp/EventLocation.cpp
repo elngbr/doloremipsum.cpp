@@ -172,8 +172,16 @@ int main() {
 
     cout << endl << endl << endl << endl;
     cout << endl << "**TESTING THE OUTPUT OPERATOR for event**";
-    Event event2("Cupa Romaniei", "15/04/24", "15:00");
+    Event event2("Cupa Romaniei", "15/04/24", "15:00", 8);
     cout << event2;
+
+    cout<<endl << "***********Testing the - operator fo the previous ranking of the 1st defined event. The grade was 8. now it shall be 7";
+    Event eventA = event2 - 1; ///aparent trebuia sa fac constructorul const :)
+
+    cout << endl << eventA;
+
+    cout << endl << "****************Now, we shall ckeck is the operator + really modified my first defined event";
+    cout << endl << event2;
 
 
 

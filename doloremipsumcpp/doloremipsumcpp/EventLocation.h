@@ -313,6 +313,7 @@ public:
 class Event {
 private:
 	int  static NO_OF_EVENTS; ///if you have such things, you can only decrement it in the destructor
+	int static const MAX_PREVIOUS_RANKING=9;    ////SO THAT I CAN INCREMENT IT MANY MANY TIMES                   THE PREVIOUS RANKING IS ALWAYS IS OUT OF 10
 	int static ID_COUNTER;
 	//so also define at least one dynamic attribute, so that the destructor will be called
 	int const eventId = 0;//no setter for this one
@@ -320,15 +321,31 @@ private:
 	char dateOfEvent[9] = "dd/mm/yy"; ///it will follow the standard dd/mm/yyyy. the previous sequence has 8ch +1 =9
 	char timeOfEvent[6] = "hh:mm"; //will follow the satndard hh:mm. the previous sequence has 5 ch + 1=6
 	typeOfEvent type = typeOfEvent::FOOTBALL;
+	int eventPreviousRanking = 0;   
 public:
 
-	int getEventId()
+	int getRanking() const
+	{
+		return this->eventPreviousRanking;
+	}
+
+	void setEventPreviousRanking(int auxRanking)
+	{
+		if (auxRanking < MAX_PREVIOUS_RANKING ||  auxRanking==NULL)
+		{
+			throw exception("If this kind of event existed before, it shall have a grade which is at least 1. However, these days, 10 is the Lord's grade :)");
+		}
+
+		this->eventPreviousRanking = auxRanking;
+	}
+
+	int getEventId() const
 	{
 		return this->eventId;
 
 	}
 
-	char* getNameOfEvent()
+	char* getNameOfEvent() const
 	{
 		char* copy = new char[strlen(this->nameOfEvent) + 1];
 		strcpy_s(copy, strlen(this->nameOfEvent) + 1, this->nameOfEvent);
@@ -349,7 +366,7 @@ public:
 
 	}
 
-	char* getDate()
+	char* getDate() const
 	{
 		char* copy = new char[strlen(this->dateOfEvent) + 1];
 		strcpy_s(copy, strlen(this->dateOfEvent) + 1, this->dateOfEvent);
@@ -380,7 +397,7 @@ public:
 
 	}
 
-	char* getTime()
+	char* getTime() const
 	{
 		char* copy = new char[strlen(this->timeOfEvent) + 1];
 		strcpy_s(copy, strlen(this->timeOfEvent) + 1, this->timeOfEvent);
@@ -404,6 +421,16 @@ public:
 		strcpy_s(this->timeOfEvent, strlen(auxTime) + 1, auxTime);
 	}
 
+	//enum typeOfEvent { CONCERT, FOOTBALL, THEATRE, FILM, CHARITY, FAIR, PROTEST };
+
+	typeOfEvent getType() const
+	{
+		
+		return this->type;
+	}
+
+
+	
 
 	//////////DEFAULT CONSTRUCTOR
 
@@ -414,11 +441,12 @@ public:
 
 	}
 	///CONSTRUCTOR WITH PARAMETERS
-	Event(const char* auxNameOfEvent, const char* auxDate, const char* auxTime) : eventId(++ID_COUNTER)
+	Event(const char* auxNameOfEvent, const char* auxDate, const char* auxTime, int auxRanking) : eventId(++ID_COUNTER)
 	{
 		this->setNameOfEvent(const_cast<char*>(auxNameOfEvent));
 		this->setDate(auxDate);
 		this->setTime(auxTime);
+		this->setEventPreviousRanking(auxRanking);
 		NO_OF_EVENTS++;
 	}
 	~Event()
@@ -428,28 +456,84 @@ public:
 		Event::NO_OF_EVENTS--;
 	}
 
-	Event(Event& newEvent) : eventId(++ID_COUNTER)
+	Event(const Event& newEvent) : eventId(++ID_COUNTER)
 	{
-		strcpy_s(dateOfEvent, sizeof(dateOfEvent), newEvent.getDate());
-		strcpy_s(this->timeOfEvent, strlen(timeOfEvent) + 1, newEvent.getTime());
-		this->nameOfEvent = newEvent.getNameOfEvent();
+		//strcpy_s(dateOfEvent, sizeof(dateOfEvent), newEvent.getDate());
+		//strcpy_s(this->timeOfEvent, strlen(timeOfEvent) + 1, newEvent.getTime());
+		this->setDate(newEvent.getDate());
+		this->setTime(newEvent.getTime());
+
+		this->setEventPreviousRanking(newEvent.getRanking());
+		this->setNameOfEvent ( newEvent.getNameOfEvent());
+		this->type = newEvent.type;
 		NO_OF_EVENTS++;
 	}
-	friend void operator<<(ostream& console, const Event& auxEvent);
+	//friend void operator<<(ostream& console, const Event& auxEvent);
 
+
+	Event operator-(int value)
+	{
+		Event copy = *this;
+		copy.eventPreviousRanking -= value;
+		return copy;;
+
+	}
 };
 
 int Event::NO_OF_EVENTS = 0;
 int Event::ID_COUNTER = 0;
-
-void operator<<(ostream& console, const Event& auxEvent)
+ostream operator<<(ostream& console, const Event& auxEvent)
 {
-	console << endl << "This event is called" << " " << auxEvent.nameOfEvent;
-	console << endl << "This event has an unique ID, this being" << "" << auxEvent.eventId;
-	console << endl << "The event starts at " << " " << auxEvent.timeOfEvent;
-	console << endl << "The events is occuring on" << " " << auxEvent.dateOfEvent;
+	console << endl << "This event is called:" << " " << auxEvent.getNameOfEvent();
+	console << endl << "This event has an unique ID, this being: " << " " << auxEvent.getEventId();
+	console << endl << "The event starts at:" << " " << auxEvent.getTime();
+	console << endl << "The events is occuring on:" << " " << auxEvent.getDate();
+	console << endl << "The previous ranking of an event of such kind was" << " " << auxEvent.getRanking();
 
-	console << endl << "The type of event is" << " ";
+	console << endl << "The type of event is:" << " ";
+
+	switch (auxEvent.getType())
+	{
+	case FOOTBALL:
+		console << "Footbal";
+		break;
+	case CONCERT:
+		console << "Concert";
+		break;
+	case THEATRE:
+		console << "Theatre";
+		break;
+	case FILM:
+		console << "Film";
+		break;
+	case CHARITY:
+		console << "Charity";
+		break;
+	case FAIR:
+		console << "Fair";
+		break;
+	case PROTEST:
+		console << "Protest";
+		break;
+	default:
+		console << "Unknown type of event";
+		break;
+	}
+	console << endl;
+	console << endl;
+	console << endl;
+
+	//return console;
+}
+
+/*void operator<<(ostream& console, const Event& auxEvent)
+{
+	console << endl << "This event is called:" << " " << auxEvent.nameOfEvent;
+	console << endl << "This event has an unique ID, this being:" << "" << auxEvent.eventId;
+	console << endl << "The event starts at: " << " " << auxEvent.timeOfEvent;
+	console << endl << "The events is occuring on:" << " " << auxEvent.dateOfEvent;
+
+	console << endl << "The type of event is:" << " ";
 
 	switch (auxEvent.type)
 	{
@@ -483,6 +567,7 @@ void operator<<(ostream& console, const Event& auxEvent)
 	console << endl;
 
 }
+*/
 
 
 class Ticket {
