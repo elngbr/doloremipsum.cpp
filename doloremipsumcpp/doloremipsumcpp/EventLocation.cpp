@@ -174,17 +174,18 @@ int main() {
     cout << endl << "**TESTING THE OUTPUT OPERATOR for event**";
     Event event2("Cupa Romaniei", "15/04/24", "15:00", 8);
     cout << event2;
-
     cout<<endl << "***********Testing the - operator fo the previous ranking of the 1st defined event. The grade was 8. now it shall be 7";
     Event eventA = event2 - 1; ///aparent trebuia sa fac constructorul const :)
 
     cout << endl << eventA;
 
-    cout << endl << "****************Now, we shall ckeck is the operator + really modified my first defined event";
+    cout << endl << "****************Now, we shall ckeck is the operator + really modified my first defined event. I SHOULDN'T, SINCE it's neither postfix, nor pre:) . TAKE CARE IN HERE";
     cout << endl << event2;
 
 
+    char* testCastToDate = static_cast<char*>(event2);              ///actualy thats why strcpy was created!!!!!!!!!!!!!!!!!
 
+    cout << testCastToDate;
 
 }
 

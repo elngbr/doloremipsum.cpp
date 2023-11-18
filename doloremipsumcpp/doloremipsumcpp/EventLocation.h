@@ -90,7 +90,7 @@ public:
 		return this->noRows;
 	}
 
-	int setNumberOfRows(int auxNoRows)
+	void setNumberOfRows(int auxNoRows)
 	{
 		if (auxNoRows < EventPlace::MIN_ROWS_PER_ZONE * MIN_ZONES)
 		{
@@ -106,7 +106,7 @@ public:
 	}
 
 
-	int setNoOfSeatsPerRows(int auxNoSeats)
+	void setNoOfSeatsPerRows(int auxNoSeats)
 	{
 		if (auxNoSeats < EventPlace::MIN_SEATS_PER_ROW)
 		{
@@ -331,7 +331,7 @@ public:
 
 	void setEventPreviousRanking(int auxRanking)
 	{
-		if (auxRanking < MAX_PREVIOUS_RANKING ||  auxRanking==NULL)
+		if (auxRanking > MAX_PREVIOUS_RANKING ||  auxRanking==NULL)
 		{
 			throw exception("If this kind of event existed before, it shall have a grade which is at least 1. However, these days, 10 is the Lord's grade :)");
 		}
@@ -478,11 +478,16 @@ public:
 		return copy;;
 
 	}
+
+	explicit operator char*()
+	{
+		return *this->dateOfEvent;
+	}
 };
 
 int Event::NO_OF_EVENTS = 0;
 int Event::ID_COUNTER = 0;
-ostream operator<<(ostream& console, const Event& auxEvent)
+void operator<<(ostream& console, const Event& auxEvent)
 {
 	console << endl << "This event is called:" << " " << auxEvent.getNameOfEvent();
 	console << endl << "This event has an unique ID, this being: " << " " << auxEvent.getEventId();
