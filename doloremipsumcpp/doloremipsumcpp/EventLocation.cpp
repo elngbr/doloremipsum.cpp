@@ -34,27 +34,31 @@ int main() {
     int const seatsPerRow = 10;
     int const auxNoZones = 2;
 
-    int locuri1[rows][seatsPerRow] =
-    {
-        {0, 0, 1},
-        {1, 1, 1},
-        {0, 1, 0},
-        {1, 0, 1}
-    };
+    int locuri1[rows * seatsPerRow];
 
-    EventPlace event1(rows, seatsPerRow, auxNoZones, typeOfPlace::STADIUM);
+    for (int i = 0; i < 30; i++)
+    {
+        locuri1[i] = 1;              /////////////im filling the first 30 seats
+    }
+    
+
+    for (int i = 30; i < rows * seatsPerRow; i++)
+    {
+        locuri1[i] = 1;              /////////////im decalring as empty the last 30 seats
+    }
+
+    EventPlace event1(rows, seatsPerRow, auxNoZones, typeOfPlace::STADIUM, locuri1);
 
     cout << endl << "**TESTING THE OUTPUT OPERATOR FOR EVENTPLACE**";
     cout << event1;
 
 
-    Event event2("Cupa Romaniei", "15/04/24", "15:00");
+    //Event event2("Cupa Romaniei", "15/04/24", "15:00");
 
 
-    cout << endl << endl << endl << endl;
-    cout << endl << "**TESTING THE OUTPUT OPERATOR for event**";
+   
 
-    cout << event2;
+    //cout << event2;
 
     Ticket event3(STAND1, "01/01/24");
     cout << endl << endl << endl << endl;
@@ -135,7 +139,7 @@ int main() {
     cout << endl << "**Testing the <= operator for EventPlace.    It shall show which events have less or equal noZones than the object to which they are compared*****";
     cout << endl << endl << endl << endl << endl << endl;
 
-    EventPlace fourthEventPlace(9, 15, 4, typeOfPlace::SQUARE);   ///this one is a protest
+    EventPlace fourthEventPlace(9, 15, 4, typeOfPlace::SQUARE, locuri1);   ///this one is a protest
 
     if (fourthEventPlace <= event1)
     {
@@ -159,6 +163,20 @@ int main() {
     {
         cout << endl << "The events are different!";
     }
+
+
+
+    cout << endl << endl << endl << endl << endl << endl << endl;
+
+    cout << "NOW LET'S CHECK THE OPERATORS FOR EVENTS";
+
+    cout << endl << endl << endl << endl;
+    cout << endl << "**TESTING THE OUTPUT OPERATOR for event**";
+    Event event2("Cupa Romaniei", "15/04/24", "15:00");
+    cout << event2;
+
+
+
 
 }
 

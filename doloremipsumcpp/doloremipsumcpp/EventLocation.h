@@ -30,6 +30,7 @@ private:
 	int noZones = 0;
 	//typeOfTicket;
 	int noSeatsPerRow = 0;
+	int* stateOfSeats = nullptr;
 
 
 public:
@@ -37,6 +38,36 @@ public:
 	int static const MIN_ZONES = 1;
 	int static const MIN_ROWS_PER_ZONE = 5;
 	int static const MIN_SEATS_PER_ROW = 10;
+
+	int* getStateOfSeats()
+	{
+		int* copy = new int[this->noRows * this->noSeatsPerRow];
+		for (int i = 0; i < this->noRows * this->noSeatsPerRow; i++)
+		{
+			copy[i] = stateOfSeats[i];
+
+		}
+
+		return copy;
+	}
+
+	void setStateOfSeats(int* auxState, int auxRows, int auxSeatsPerRow)
+	{
+		if (auxState == nullptr || auxRows == NULL|| auxRows<MIN_ZONES*MIN_ROWS_PER_ZONE||auxSeatsPerRow<MIN_SEATS_PER_ROW)
+		{
+			throw exception("Wrong Value!");
+		}
+
+		if (this->stateOfSeats != nullptr)
+		{
+			delete[]this->stateOfSeats;
+		}
+
+		this->stateOfSeats = new int[auxRows * auxSeatsPerRow];
+		memcpy(this->stateOfSeats, auxState, sizeof(int) * auxRows * auxSeatsPerRow);  ///SA NU UITI DE SIZE OF
+
+
+	}
 
 	typeOfPlace getName()
 	{
@@ -108,7 +139,7 @@ public:
 
 	}
 
-	EventPlace(int auxNoRows, int auxNoSeatsPerRow, int auxNoZones, typeOfPlace auxName)
+	EventPlace(int auxNoRows, int auxNoSeatsPerRow, int auxNoZones, typeOfPlace auxName, int*stateOfSeats)
 	{
 
 		this->setNumberofZones(auxNoZones);
@@ -225,6 +256,21 @@ public:
 	int noOfFreeSeats = 0;
 
 
+
+	///check this error!!!!!
+	/*for (int i = 0; i < place.noRows * place.noSeatsPerRow; i++) {
+		if (place.stateOfSeats[i] == 0) {
+			noOfFreeSeats++;
+		}
+		else if (place.stateOfSeats[i] == 1) {
+			noOfOccupiedSeats++;
+		}
+		else {
+			console << endl << "Wrong value in stateOfSeats at index " << i << ": " << place.stateOfSeats[i];
+		}
+	}
+	*/
+
 	console << endl << "The evet occures at the" << " ";
 	//console << std::endl << "Type of Place: ";
 	switch (place.name) {
@@ -267,6 +313,7 @@ public:
 class Event {
 private:
 	int  static NO_OF_EVENTS; ///if you have such things, you can only decrement it in the destructor
+	int static ID_COUNTER;
 	//so also define at least one dynamic attribute, so that the destructor will be called
 	int const eventId = 0;//no setter for this one
 	char* nameOfEvent = nullptr; ///so that NO ONE CAN MODIFY
@@ -361,17 +408,18 @@ public:
 	//////////DEFAULT CONSTRUCTOR
 
 
-	Event() :eventId(++NO_OF_EVENTS)
+	Event() :eventId(++ID_COUNTER)
 	{
+		NO_OF_EVENTS++;
 
 	}
 	///CONSTRUCTOR WITH PARAMETERS
-	Event(const char* auxNameOfEvent, const char* auxDate, const char* auxTime) : eventId(++NO_OF_EVENTS)
+	Event(const char* auxNameOfEvent, const char* auxDate, const char* auxTime) : eventId(++ID_COUNTER)
 	{
 		this->setNameOfEvent(const_cast<char*>(auxNameOfEvent));
 		this->setDate(auxDate);
 		this->setTime(auxTime);
-
+		NO_OF_EVENTS++;
 	}
 	~Event()
 	{
@@ -380,17 +428,19 @@ public:
 		Event::NO_OF_EVENTS--;
 	}
 
-	Event(Event& newEvent) : eventId(++NO_OF_EVENTS)
+	Event(Event& newEvent) : eventId(++ID_COUNTER)
 	{
 		strcpy_s(dateOfEvent, sizeof(dateOfEvent), newEvent.getDate());
 		strcpy_s(this->timeOfEvent, strlen(timeOfEvent) + 1, newEvent.getTime());
 		this->nameOfEvent = newEvent.getNameOfEvent();
+		NO_OF_EVENTS++;
 	}
 	friend void operator<<(ostream& console, const Event& auxEvent);
 
 };
 
 int Event::NO_OF_EVENTS = 0;
+int Event::ID_COUNTER = 0;
 
 void operator<<(ostream& console, const Event& auxEvent)
 {
