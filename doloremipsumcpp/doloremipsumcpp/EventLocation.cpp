@@ -44,19 +44,122 @@ int main() {
 
     EventPlace event1(rows, seatsPerRow, auxNoZones, typeOfPlace::STADIUM);
 
-
+    cout << endl << "**TESTING THE OUTPUT OPERATOR FOR EVENTPLACE**";
     cout << event1;
 
 
     Event event2("Cupa Romaniei", "15/04/24", "15:00");
 
+
+    cout << endl << endl << endl << endl;
+    cout << endl << "**TESTING THE OUTPUT OPERATOR for event**";
+
     cout << event2;
 
     Ticket event3(STAND1, "01/01/24");
+    cout << endl << endl << endl << endl;
+    cout << endl << "**TESTING THE OUTPUT OPERATOR for TICKET**";
 
     cout << event3;
 
-    //return 0;
+    cout << endl << endl << endl << endl;
+
+    cout << endl << "***************testing the postfix operator for EventPlace class";
+    
+    EventPlace auxEvent;
+
+    auxEvent = event1++;
+
+
+    cout << endl << "**************HERE THE 2ST EVENTPLACE HAS TO BE ALLOCATED WITH 2 ZONES(copy.noZones++). IT IS POSTINCREMENTATION, IT SHOULD'T MODIFY THE IT HERE. here we only assignate!";
+
+    cout << endl;
+    cout << endl;
+    cout << endl;
+    cout << endl;
+    cout << endl;
+    cout << auxEvent;  ////this one will have exactly the number of events I have in event one, since is post incrementation.
+    //NOW LET SEE HOW MANY ZONES i have in event 1, after the post incrementation
+
+
+    cout << endl << "*********HERE THE 1ST EVENTPLACE HAS TO BE ALLOCATED WITH 3 ZONES(2++)";
+    cout << event1; ////this one has to have 3 nr of zones. It has
+
+    cout << endl;
+    cout << endl;
+    cout << endl;
+    cout << endl << "testing the prefix operator for EventPlace class";
+
+    cout << endl;
+    cout << endl;
+    cout << endl;
+    cout << endl;
+    cout << endl;
+
+
+    EventPlace auxNewEvent;
+    auxNewEvent = ++event1;
+    cout << endl << "***********************Here we shall have the number of zones=3, since it takes the nr of zones of auxEvent(which is 2) preincremented";
+    cout << auxNewEvent;
+    cout << endl;
+    cout << endl;
+    cout << endl << "*********HERE THE 1ST EVENTPLACE HAS TO BE ALLOCATED WITH 4 ZONES(++3)l but it really didn't matter if post or pre. The event passed with incrementation always takes last value.";
+
+    cout << event1;
+    cout << endl;
+    cout << endl;
+    cout << endl;
+    cout << endl;
+
+
+    cout << endl << "Testing the cast operator: It shall pass the number of rows on an object of type EVENTPLACE to a  new defined var of type int (since the noRows is int).";
+
+    cout << endl;
+    cout << endl;
+    cout << endl;
+    cout << endl;
+    cout << endl << "**We know it shall be 6!******";
+
+    int testCastToIntOperator = int(event1);
+    cout << endl << "The number of rows of the first defined EVENTPLACE passed by AN EXPLICIT CAST OPERATOR is:" << testCastToIntOperator;
+
+    cout << endl << "**Testing the !operator for EVENTPLACE. Ckecking if the event is held in an Event_Hall or not.";
+    cout << endl << endl << endl << endl << endl << endl;
+    if (!event1)
+    {
+        cout <<endl<<"The 1st defined place is not held in an EVENT_HALL!";
+    }
+
+
+
+    cout << endl << "**Testing the <= operator for EventPlace.    It shall show which events have less or equal noZones than the object to which they are compared*****";
+    cout << endl << endl << endl << endl << endl << endl;
+
+    EventPlace fourthEventPlace(9, 15, 4, typeOfPlace::SQUARE);   ///this one is a protest
+
+    if (fourthEventPlace <= event1)
+    {
+        cout << endl << "The 4th event palce has less or equal noZones than the fisrts defined palce";
+    }
+    else
+    {
+        cout << endl << "The 4th event palce DOES NOT HAVE less or equal noZones than the fisrts defined palce";
+
+    }
+
+    cout << endl << endl << endl << endl;
+
+    cout << endl << "Now we are testing the == operator for two objects(Event places) which I selected to be the same!";
+
+    if (auxEvent == auxNewEvent)
+    {
+        cout << endl << "This events are the same!";
+    }
+    else
+    {
+        cout << endl << "The events are different!";
+    }
+
 }
 
 

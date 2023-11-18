@@ -129,7 +129,72 @@ public:
 
 
 	}
+	///OVERLOADING THE OPERATOR FOR POSTFIX INCREMENTATION
+	EventPlace operator++(int)
+	{
+		EventPlace copy = *this;
+		this->noZones += 1;
+		return copy;
+	}
 
+
+	//overloading the prefix operator
+
+	EventPlace operator++()///no int in here
+	{
+		this->noZones++;
+		return *this;
+	}
+
+
+
+	///overloading the indexing operator so that I can only pass the number of rows from an EVENTPLACE
+
+	explicit operator int()
+	{
+		return this->noRows;
+	}
+
+	///overloading the negation operator for EVENT PLACES
+
+	bool operator!()
+	{
+		if (this->name != 3) ////AND HERE WE CAN CLEARLY SEE WHY WE LOVE ENUMS INSTREAD OF ENUM CLASSES!!!!!
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	bool operator<=(EventPlace somePlace)
+	{
+		if (this->noZones <= somePlace.noZones)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+	}
+
+	bool operator==(EventPlace& auxPlace)
+	{
+		if (this->name == auxPlace.name && this->noRows*this->noSeatsPerRow==auxPlace.noRows*auxPlace.noSeatsPerRow)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	///overloading the operator <= for noZones
 	/*
 	bool areThereStillPlaces(int auxStateOfSeats, int auxNoRows, int auxSeatsPerRow)
 	{
