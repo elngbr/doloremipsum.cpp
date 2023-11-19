@@ -14,8 +14,8 @@ enum typeOfTicket { VIP, LAWN, TRIBUNE, BOXES, STAND1, STAND2, CATEGORY1, CATEGO
 class Ticket {
 private:  //could be by default
 
-	int static NO_OF_TICKETS;
 	double static Id_COUNTER;
+	int static NO_OF_TICKETS;
 	double ticketId = 0.0;
 	typeOfTicket type = typeOfTicket::BOXES;
 	char* dateOfIssue = nullptr;     ///IT IS A REQUIREMENT THAT THE DATE WILL BE ONLY INTRODUCED IN THE FOLLOWING FORMAT:    DD/MM/YY
@@ -23,7 +23,7 @@ private:  //could be by default
 
 public:
 
-	int getId()
+	double getId()
 	{
 		return this->ticketId;
 	}
@@ -138,7 +138,7 @@ public:
 	{
 		if (index < 0 || index > 8)
 		{
-			// Throw an exception or handle the error appropriately
+			
 			throw exception ("Index out of bounds");
 		}
 
@@ -153,17 +153,77 @@ public:
 
 		return copy;
 	}
+
+	Ticket& operator=(const Ticket& auxTicket)
+	{
+		if (&auxTicket == this)///dereferentiere
+		{
+			return *this;
+		}
+
+		delete[]this->dateOfIssue;
+		this->dateOfIssue = auxTicket.dateOfIssue;
+
+
+		return *this;
+	}
+
+	bool operator == (const Ticket& auxTicket )
+	{
+		return (strcmp(this->dateOfIssue, auxTicket.dateOfIssue) == 0); ////////////////////MEREU COMPARA CU 0!!!!!!
+	}
+
+	bool operator!()
+	{
+		if (this->type != 0)
+		{
+			return true;
+		}
+
+		else
+		{
+			return false;
+		}
+
+	}
+
+
+	bool operator>(typeOfTicket value)
+	{
+		if (this->type > value)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	bool operator<(char number)
+	{
+		if (this->dateOfIssue[7] > number)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	explicit operator double()
+	{
+		return this->ticketId;
+	}
 };
 
-Ticket operator+(double value, Ticket& auxTicket)
+Ticket operator+(double value, Ticket auxTicket)
 {
-	
-	
-
 	return auxTicket+value;
 }
 
-int NO_OF_TICKETS=0;
+int Ticket::NO_OF_TICKETS=0;
 double Ticket::Id_COUNTER=-1;
 
 void operator<<(ostream& console, const Ticket& ticket)
