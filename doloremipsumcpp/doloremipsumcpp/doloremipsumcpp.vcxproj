@@ -130,6 +130,10 @@
     <ClCompile Include="EventLocation.h" />
     <ClCompile Include="EventLocation.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="Ticket.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
