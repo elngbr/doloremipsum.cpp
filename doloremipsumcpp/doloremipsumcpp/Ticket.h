@@ -5,8 +5,8 @@ using namespace std;
 
 
 
-enum typeOfPlace { STADIUM, CONCERT_HALL, OPERA_HOUSE, EVENTS_HALL, SPORT_HALL, CINEMA_HALL, SQUARE };
-enum typeOfEvent { CONCERT, FOOTBALL, THEATRE, FILM, CHARITY, FAIR, PROTEST };
+//enum typeOfPlace { STADIUM, CONCERT_HALL, OPERA_HOUSE, EVENTS_HALL, SPORT_HALL, CINEMA_HALL, SQUARE };
+//enum typeOfEvent { CONCERT, FOOTBALL, THEATRE, FILM, CHARITY, FAIR, PROTEST };
 enum typeOfTicket { VIP, LAWN, TRIBUNE, BOXES, STAND1, STAND2, CATEGORY1, CATEGORY2 }; ///also type of zone OR NOT?
 
 
@@ -15,8 +15,8 @@ class Ticket {
 private:  //could be by default
 
 	int static NO_OF_TICKETS;
-	int static ID_COUNTER;
-	int ticketId = 0;
+	double static Id_COUNTER;
+	double ticketId = 0.0;
 	typeOfTicket type = typeOfTicket::BOXES;
 	char* dateOfIssue = nullptr;     ///IT IS A REQUIREMENT THAT THE DATE WILL BE ONLY INTRODUCED IN THE FOLLOWING FORMAT:    DD/MM/YY
 
@@ -65,12 +65,13 @@ public:
 		this->dateOfIssue = new char[strlen(auxDate) + 1];
 
 		strcpy_s(this->dateOfIssue, strlen(auxDate) + 1, const_cast<char*>(auxDate));
+		this->dateOfIssue[strlen(this->dateOfIssue)] = '\0';
 
 	}
 
 	//Default Constructor
 
-	Ticket() : ticketId(++ID_COUNTER)
+	Ticket() : ticketId(++Id_COUNTER)
 	{
 
 		NO_OF_TICKETS++;
@@ -78,7 +79,7 @@ public:
 
 
 	///CTOR WITH AT LEAST ONE PARAMETER
-	Ticket(typeOfTicket auxType, const char* auxDateOfIssue) :ticketId(++ID_COUNTER)
+	Ticket(typeOfTicket auxType, const char* auxDateOfIssue) :ticketId(++Id_COUNTER)
 	{
 		this->setTypeOfTicket(auxType);
 		this->setDateOfIssue(auxDateOfIssue);
@@ -94,36 +95,76 @@ public:
 
 	//CPY-CONSTRUCTOR
 
-	Ticket(Ticket& ticket) :ticketId(++ID_COUNTER)
+	/*Ticket(Ticket& ticket) :ticketId(++ID_COUNTER)
 	{
 		this->setDateOfIssue(ticket.getDateOfIssue());
 		this->setTypeOfTicket(ticket.getType());
 		NO_OF_TICKETS++;
 	}
+	*/
+
+	Ticket(const Ticket& ticket) : ticketId(++Id_COUNTER)
+	{
+		
+		this->type = ticket.type;
+
+		
+		this->dateOfIssue = new char[strlen(ticket.dateOfIssue) + 1];
+		strcpy_s(this->dateOfIssue, strlen(ticket.dateOfIssue) + 1, ticket.dateOfIssue);
+
+		NO_OF_TICKETS++;
+	}
+
 
 	friend void operator<<(ostream& console, const Ticket& ticket);
 
 
 	///INDEXING OPERATOR
 
-	Ticket& operator()(int index, char value)
+	/*char& operator[](int index)
 	{
 
-		if (index < 0 || index>8 || value < '0' || value>'9')
+		if (index < 0 || index>8 )
 		{
-			throw exception("Wrong value!");
+			return;
 		}
 
-		this->dateOfIssue[index] = value;
+		return this->dateOfIssue[index];
 
-		return *this;
+		
+	}
+	*/
+	char& operator[](int index)
+	{
+		if (index < 0 || index > 8)
+		{
+			// Throw an exception or handle the error appropriately
+			throw exception ("Index out of bounds");
+		}
+
+		return this->dateOfIssue[index];
 	}
 
 
+	Ticket operator+(double value)
+	{
+		Ticket copy = *this;
+		copy.ticketId += value;
+
+		return copy;
+	}
 };
 
-int Ticket::NO_OF_TICKETS = 0;
-int ID_COUNTER = -1;
+Ticket operator+(double value, Ticket& auxTicket)
+{
+	
+	
+
+	return auxTicket+value;
+}
+
+int NO_OF_TICKETS=0;
+double Ticket::Id_COUNTER=-1;
 
 void operator<<(ostream& console, const Ticket& ticket)
 {

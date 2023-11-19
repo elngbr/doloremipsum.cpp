@@ -21,6 +21,9 @@
     <ClCompile Include="EventLocation.h">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="Ticket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Event.h">
