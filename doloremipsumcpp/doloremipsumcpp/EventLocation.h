@@ -407,7 +407,7 @@ public:
 	}
 
 	void setTime(const char* auxTime)
-	{
+	{   
 		if (auxTime == nullptr ||
 			auxTime[2] != ':' ||
 			(auxTime[0] != '0' && auxTime[0] != '1') ||
@@ -481,8 +481,50 @@ public:
 
 	explicit operator char*()
 	{
-		return *this->dateOfEvent;
+		return this->dateOfEvent;
 	}
+
+
+	Event& operator()(int index, char number)
+	{
+		if (index > 5 || index < 0 || number < '0' || number>'9')
+		{
+			throw exception("Wrong val!");
+
+		}
+
+		this->timeOfEvent[index] = number;
+
+		return *this;  //vreau obiectul cu totul
+	}
+
+	Event& operator=(const Event& other) {
+		
+		//source.setName(this->getName());
+
+
+		//test for self equality
+		if (&other == this) {
+			return *this;
+		}
+
+		//this->id = source.id;
+		delete[] this->nameOfEvent;
+		this->setNameOfEvent(other.getNameOfEvent());
+
+		return *this;
+	}
+
+	bool operator ==(const Event& auxEvent) const
+	{
+		
+			//ALWAYS  USE strcmp for string comparison
+			return (strcmp(this->nameOfEvent, auxEvent.getNameOfEvent()) == 0);       ///////////////////MEREU VERIFICA DACA E EGAL CU 0!!!!!!!!!!!!!!
+		
+			
+	}
+
+
 };
 
 int Event::NO_OF_EVENTS = 0;

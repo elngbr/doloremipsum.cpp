@@ -182,10 +182,36 @@ int main() {
     cout << endl << "****************Now, we shall ckeck is the operator + really modified my first defined event. I SHOULDN'T, SINCE it's neither postfix, nor pre:) . TAKE CARE IN HERE";
     cout << endl << event2;
 
+    cout << endl << "****WE CHECK THE CAST OPERATOR FOR CHAR*.   PARTICULAR CASE:   WE ASSIGN BY STRCPY_S, SINCE THEY ARE ARRAYS OF CHARACTERS!!!!";
+    char* testCastToDate = new char[9];
+   
+    strcpy_s(testCastToDate, strlen(testCastToDate)+1,static_cast<char*>(event2));              ///actually thats why strcpy was created!!!!!!!!!!!!!!!!!
 
-    char* testCastToDate = static_cast<char*>(event2);              ///actualy thats why strcpy was created!!!!!!!!!!!!!!!!!
+    cout<<endl<<"The date of the 1st defined event is"<<" " << testCastToDate;
 
-    cout << testCastToDate;
+
+    cout << endl << "***WE are checking the indexing operator for char. Is meant to make the event start at A PARTICULAR TIME which ends in 1.";
+    cout << endl << "**So if the event started at 15:00, now it'll start at 15:01";
+
+    event2 = event2(4, '1');
+
+    cout << endl << event2;
+
+
+    cout << endl << "**Checking the equal operator for 2 events. Testing self equality.";
+
+    Event eventX = event2;
+
+   // event2 = event2;
+
+    if (eventX == event2)
+    {
+        cout<<endl << "They are equal.";
+    }
+    else
+    {
+        cout << endl << "They are not equal.";
+    }
 
 }
 
