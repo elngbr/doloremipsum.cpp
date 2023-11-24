@@ -1,6 +1,6 @@
 
-
 /*
+
 #include "EventLocation.h"
 #include "Event.h"
 //#include"Ticket.h"
@@ -25,7 +25,7 @@ int main() {
     {
         locuri1[i] = 1;              /////////////im filling the first 30 seats
     }
-    
+
 
     for (int i = 30; i < rows * seatsPerRow; i++)
     {
@@ -38,13 +38,13 @@ int main() {
     cout << event1;
 
 
-   
-  
+
+
 
     cout << endl << endl << endl << endl;
 
     cout << endl << "***************testing the postfix operator for EventPlace class";
-    
+
     EventPlace auxEvent;
 
     auxEvent = event1++;
@@ -106,7 +106,7 @@ int main() {
     cout << endl << endl << endl << endl << endl << endl;
     if (!event1)
     {
-        cout <<endl<<"The 1st defined place is not held in an EVENT_HALL!";
+        cout << endl << "The 1st defined place is not held in an EVENT_HALL!";
     }
 
 
@@ -140,10 +140,24 @@ int main() {
     }
 
 
+    cout << endl << endl << endl << endl << endl << endl << endl;
+    cout << endl << endl << endl << endl << endl << endl << endl;
 
 
+    cout << endl << "Using the 2 generic methods FOR CLASS EVENTPLACE";
+    if (!event1.isProtest())
+    {
+        cout << endl << " event1 is not a protest!";
+    }
 
-    
+    event1.changeNameToSquare();
+    cout << endl << event1;
+
+    if (event1.isProtest())
+    {
+        cout << endl << "now, event1 is not a protest!";
+    }
+
 
 
 
@@ -152,7 +166,7 @@ int main() {
 
     cout << endl << endl << endl << endl << endl << endl << endl;
 
-    cout << "NOW LET'S CHECK THE OPERATORS FOR EVENTS";
+    cout << "NOW LET'S CHECK THE OPERATORS FOR a new calss:EVENT";
 
     cout << endl << endl << endl << endl;
 
@@ -177,7 +191,7 @@ int main() {
 
 
     cout << event2;
-    cout<<endl << "***********Testing the - operator fo the previous ranking of the 1st defined event. The grade was 8. now it shall be 7";
+    cout << endl << "***********Testing the - operator fo the previous ranking of the 1st defined event. The grade was 8. now it shall be 7";
     Event eventA = event2 - 1; ///aparent trebuia sa fac constructorul const :)
 
     cout << endl << eventA;
@@ -187,10 +201,10 @@ int main() {
 
     cout << endl << "****WE CHECK THE CAST OPERATOR FOR CHAR*.   PARTICULAR CASE:   WE ASSIGN BY STRCPY_S, SINCE THEY ARE ARRAYS OF CHARACTERS!!!!";
     char* testCastToDate = new char[9];
-    
-    strcpy_s(testCastToDate, strlen(testCastToDate)+1,static_cast<char*>(event2));              ///actually thats why strcpy was created!!!!!!!!!!!!!!!!!
 
-    cout<<endl<<"The date of the 1st defined event is"<<" " << testCastToDate;
+    strcpy_s(testCastToDate, strlen(testCastToDate) + 1, static_cast<char*>(event2));              ///actually thats why strcpy was created!!!!!!!!!!!!!!!!!
+
+    cout << endl << "The date of the 1st defined event is" << " " << testCastToDate;
 
 
     cout << endl << "***WE are checking the indexing operator for char. Is meant to make the event start at A PARTICULAR TIME which ends in 1.";
@@ -205,11 +219,11 @@ int main() {
 
     Event eventX = event2;
 
-   // event2 = event2;
+    // event2 = event2;
 
     if (eventX == event2)
     {
-        cout<<endl << "They are equal.";
+        cout << endl << "They are equal.";
     }
     else
     {
@@ -223,21 +237,34 @@ int main() {
 
 
     cout << endl << "************************************************";
-    if (!event2)   
-   {
-       cout << endl << "The event is not a fair!";
+    if (!event2)
+    {
+        cout << endl << "The event is not a fair!";
     }
-   else
+    else
     {
         cout << endl << "The event is a fair!";
-   }
+    }
 
 
     cout << endl << endl << endl << endl << endl << endl << endl << endl;
 
-   
+    cout << endl << "Testing ther generic methods for calss EVENT";
+
+    if (!event2.isTheEventHappeningInJanuary())
+    {
+
+        cout <<endl<<endl<<endl<< "This event is not occurig in january!";
+    }
+
+
+    if (!event2.isOccuringInaSqaure())
+    {
+        cout << endl << endl << endl << "This event is definitely not a protest!";
+    }
+
+
+
 }
 
 */
-
-

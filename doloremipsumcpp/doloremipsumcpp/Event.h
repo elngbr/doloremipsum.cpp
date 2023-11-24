@@ -22,11 +22,11 @@ private:
 	int static ID_COUNTER;
 	//so also define at least one dynamic attribute, so that the destructor will be called
 	int const eventId = 0;//no setter for this one
-	char* nameOfEvent = nullptr; ///so that NO ONE CAN MODIFY
+	char* nameOfEvent = nullptr; 
 	char dateOfEvent[9] = "dd/mm/yy"; ///it will follow the standard dd/mm/yyyy. the previous sequence has 8ch +1 =9
 	char timeOfEvent[6] = "hh:mm"; //will follow the satndard hh:mm. the previous sequence has 5 ch + 1=6
 	typeOfEvent type = typeOfEvent::FOOTBALL;
-	int eventPreviousRanking = 0;
+	int eventPreviousRanking = 0; ///shall be out of 10, but you cant define it as 10 from the start :)
 public:
 
 	int getRanking() const
@@ -134,7 +134,29 @@ public:
 		return this->type;
 	}
 
+	//generic methods
 
+	bool isOccuringInaSqaure()
+	{
+		if (this->type == PROTEST)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	bool isTheEventHappeningInJanuary()
+	{
+		if (this->dateOfEvent[3] == '0' && this->dateOfEvent[4] == '1')
+		{
+			return true;
+		}
+
+		else return false;
+	}
 
 
 	//////////DEFAULT CONSTRUCTOR

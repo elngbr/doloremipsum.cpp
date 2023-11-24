@@ -78,6 +78,32 @@ public:
 	}
 
 
+	////GENERIC METHIDS
+
+	bool isIssuedInOctober()
+	{
+		if (this->dateOfIssue[3] == '1' && this->dateOfIssue[4] == '0')
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	bool isVIP()
+	{
+		if (this->type == VIP)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	///CTOR WITH AT LEAST ONE PARAMETER
 	Ticket(typeOfTicket auxType, const char* auxDateOfIssue) :ticketId(++Id_COUNTER)
 	{

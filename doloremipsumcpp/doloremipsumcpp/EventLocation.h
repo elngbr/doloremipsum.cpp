@@ -30,6 +30,7 @@ private:
 	//typeOfTicket;
 	int noSeatsPerRow = 0;
 	int* stateOfSeats = nullptr;
+	bool istheEventaProtest = false;
 
 
 public:
@@ -238,6 +239,30 @@ public:
 				}
 	}
 	*/
+
+	//GENERIC METHODS
+
+	typeOfPlace changeNameToSquare()
+	{
+		this->name = SQUARE;
+		return this->name;
+	
+	
+	}
+
+	bool isProtest()
+	{
+		if (this->name == SQUARE)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+
 
 	friend void operator<<(ostream& console, const EventPlace& place);
 };
