@@ -279,7 +279,7 @@ public:
 	{
 		if (&auxLocation == this)
 		{
-			return;
+			return *this;
 		}
 		delete[] this->stateOfSeats;
 		this->stateOfSeats = auxLocation.stateOfSeats;

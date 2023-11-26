@@ -1,5 +1,4 @@
 
-/*
 
 #include "Ticket.h"
 #include<iostream>
@@ -160,6 +159,6 @@ int  main()
 
     
 }
-*/
+
 
 

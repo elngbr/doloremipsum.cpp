@@ -1,5 +1,5 @@
-/*
 
+/*
 #include "Event.h"
 //#include"Ticket.h"
 #include<iostream>
@@ -44,7 +44,7 @@ int main() {
 
 
     cout << event2;
-    cout << endl << "***********Testing the - operator fo the previous ranking of the 1st defined event. The grade was 8. now it shall be 7";
+    cout << endl << "***********Testing the - operator for the previous ranking of the 1st defined event. The grade was 8. now it shall be 7";
     Event eventA = event2 - 1; ///aparent trebuia sa fac constructorul const :)
 
     cout << endl << eventA;
@@ -68,7 +68,7 @@ int main() {
     cout << endl << event2;
 
 
-    cout << endl << "**Checking the equal operator for 2 events. Testing self equality.";
+    cout << endl << "*********Checking the equal operator for 2 events. Testing self equality.";
 
     Event eventX = event2;
 
@@ -102,7 +102,7 @@ int main() {
 
     cout << endl << endl << endl << endl << endl << endl << endl << endl;
 
-    cout << endl << "Testing ther generic methods for calss EVENT";
+    cout << endl << "****************Testing ther generic methods for calss EVENT";
 
     if (!event2.isTheEventHappeningInJanuary())
     {
@@ -117,7 +117,7 @@ int main() {
     }
 
 
-    cout << endl<<endl<<endl<<endl << "Testing the second ctor for class Event";
+    cout << endl<<endl<<endl<<endl << "************88Testing the second ctor for class Event";
 
     Event eventAlpha("EventAlpha", "25/12/24", "18:00");
     cout << eventAlpha;
@@ -129,5 +129,4 @@ int main() {
     cout << newEvent;
 
 }
-
 */
