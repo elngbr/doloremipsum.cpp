@@ -1,5 +1,5 @@
 
-
+/*
 #include "Ticket.h"
 #include<iostream>
 using namespace std;
@@ -36,7 +36,7 @@ int  main()
 
     cout << endl << "Testing the + operator";
     Ticket eventZ= 0.8 + event3;
-    //event3= event3 + 0.8;                        ///    PENTRU ASA CEVA ITI TREBUIE TESTING SELF EQUALITY CA NU DEGEABA SCRIE IN REQUIREMENTS SA-L DEFINESTI...   WHY DOESN.T IT WORK NOW?
+    //event3= event3 + 0.8;          nu mai face asta              ///    PENTRU ASA CEVA ITI TREBUIE TESTING SELF EQUALITY CA NU DEGEABA SCRIE IN REQUIREMENTS SA-L DEFINESTI...   WHY DOESN.T IT WORK NOW?
 
     cout << event3;
 
@@ -160,5 +160,5 @@ int  main()
     
 }
 
-
+*/
 

@@ -220,7 +220,7 @@ public:
 	{
 		Event copy = *this;
 		copy.eventPreviousRanking -= value;
-		return copy;;
+		return copy;
 
 	}
 
