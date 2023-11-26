@@ -1,5 +1,8 @@
-#pragma once
 
+
+///FULL!
+
+//FULL!
 
 #pragma once
 
@@ -26,7 +29,7 @@ private:
 	char dateOfEvent[9] = "dd/mm/yy"; ///it will follow the standard dd/mm/yyyy. the previous sequence has 8ch +1 =9
 	char timeOfEvent[6] = "hh:mm"; //will follow the satndard hh:mm. the previous sequence has 5 ch + 1=6
 	typeOfEvent type = typeOfEvent::FOOTBALL;
-	int eventPreviousRanking = 0; ///shall be out of 10, but you cant define it as 10 from the start :)
+	int eventPreviousRanking = 5; ///shall be out of 10, but you cant define it as 10 from the start :)
 public:
 
 	int getRanking() const
@@ -134,6 +137,11 @@ public:
 		return this->type;
 	}
 
+	void setType(typeOfEvent auxType)
+	{
+		this->type = auxType;
+	}
+
 	//generic methods
 
 	bool isOccuringInaSqaure()
@@ -174,6 +182,14 @@ public:
 		this->setDate(auxDate);
 		this->setTime(auxTime);
 		this->setEventPreviousRanking(auxRanking);
+		NO_OF_EVENTS++;
+	}
+
+	Event(const char* auxNameOfEvent, const char* auxDate, const char* auxTime) : eventId(++ID_COUNTER)
+	{
+		this->setNameOfEvent(const_cast<char*>(auxNameOfEvent));
+		this->setDate(auxDate);
+		this->setTime(auxTime);
 		NO_OF_EVENTS++;
 	}
 
@@ -266,6 +282,10 @@ public:
 
 	}
 
+
+	friend istream& operator >> (istream& read, Event& auxEvent);
+
+
 };
 
 int Event::NO_OF_EVENTS = 0;
@@ -314,45 +334,80 @@ void operator<<(ostream& console, const Event& auxEvent)
 	//return console;
 }
 
-/*void operator<<(ostream& console, const Event& auxEvent)
+
+
+//enum typeOfEvent { CONCERT, FOOTBALL, THEATRE, FILM, CHARITY, FAIR, PROTEST };
+istream& operator >> (istream& read, Event& auxEvent)
 {
-	console << endl << "This event is called:" << " " << auxEvent.nameOfEvent;
-	console << endl << "This event has an unique ID, this being:" << "" << auxEvent.eventId;
-	console << endl << "The event starts at: " << " " << auxEvent.timeOfEvent;
-	console << endl << "The events is occuring on:" << " " << auxEvent.dateOfEvent;
+	char buffer[2000];
+	cout << endl << "The name of this event is (starting with capital. (SPACES ALLOWED):";
+	read.getline(buffer, 2000);
+	auxEvent.setNameOfEvent(buffer);
 
-	console << endl << "The type of event is:" << " ";
+	cout << endl << "The date of the event is (format dd/mm/24):";
+	char* sir=new char[9];
+	read >>sir;
+	auxEvent.setDate(sir);
 
-	switch (auxEvent.type)
+	cout << endl << "The time of the event is (format hh:mm)";
+	char* sir1=new char[6];
+	read >>sir1;
+	auxEvent.setTime(sir1);
+	//strcpy_s(auxEvent.timeOfEvent, strlen(sir1) + 1, sir1);
+
+	cout<<endl << "The previous ranking of this kind of event is (maximum 9):";
+	int nota;
+	read >> nota;
+	auxEvent.setEventPreviousRanking(nota);
+
+	cout<<endl << "The type of this event is (please, insert an integer from the following set {0,1,2,3,4,5,6}:";
+	cout << endl << "Where:";
+	cout << endl << "0->Concert";
+	cout << endl << "1->Football";
+	cout << endl << "2->Theatre";
+	cout << endl << "3->Film";
+	cout << endl << "4->Charity";
+	cout << endl << "5->Fair";
+	cout << endl << "6->Protest";
+	cout << endl;
+
+	int type;
+
+	read >> type;
+
+	switch (type)
 	{
-	case FOOTBALL:
-		console << "Footbal";
+	case(0):
+		auxEvent.type = CONCERT;
 		break;
-	case CONCERT:
-		console << "Concert";
+	case(1):
+		auxEvent.type = FOOTBALL;
 		break;
-	case THEATRE:
-		console << "Theatre";
+	case(2):
+		auxEvent.type = THEATRE;
 		break;
-	case FILM:
-		console << "Film";
+	case(3):
+		auxEvent.type = FILM;
 		break;
-	case CHARITY:
-		console << "Charity";
+	case(4):
+		auxEvent.type = CHARITY;
 		break;
-	case FAIR:
-		console << "Fair";
+	case(5):
+		auxEvent.type = FAIR;
 		break;
-	case PROTEST:
-		console << "Protest";
+	case(6):
+		auxEvent.type = PROTEST;
 		break;
 	default:
-		console << "Unknown type of event";
-		break;
+		cout <<endl<< "This type of event is not defined. Please choose one from the previous given set";
+		return read;
 	}
-	console << endl;
-	console << endl;
-	console << endl;
+
+	return read;
+
+
+
 
 }
-*/
+
+

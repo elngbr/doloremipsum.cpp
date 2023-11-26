@@ -1,3 +1,8 @@
+
+
+
+//FULL!
+
 #pragma once
 #include<iostream>
 #include<string>
@@ -18,7 +23,7 @@ private:  //could be by default
 	int static NO_OF_TICKETS;
 	double ticketId = 0.0;
 	typeOfTicket type = typeOfTicket::BOXES;
-	char* dateOfIssue = nullptr;     ///IT IS A REQUIREMENT THAT THE DATE WILL BE ONLY INTRODUCED IN THE FOLLOWING FORMAT:    DD/MM/YY
+	char* dateOfIssue = nullptr;     ///IT IS A REQUIREMENT THAT THE DATE WILL BE ONLY INTRODUCED IN THE FOLLOWING FORMAT:    DD/MM/24
 
 
 public:
@@ -112,6 +117,13 @@ public:
 		NO_OF_TICKETS++;
 	}
 
+	Ticket(const char* auxDateOfIssue) : ticketId(++Id_COUNTER)
+	{
+		this->setDateOfIssue(auxDateOfIssue);
+		NO_OF_TICKETS++;
+	}
+
+
 	///DESTRUCTOR
 	~Ticket()
 	{
@@ -182,7 +194,7 @@ public:
 
 	Ticket& operator=(const Ticket& auxTicket)
 	{
-		if (&auxTicket == this)///dereferentiere
+		if (&auxTicket == this)
 		{
 			return *this;
 		}
@@ -252,6 +264,74 @@ Ticket operator+(double value, Ticket auxTicket)
 int Ticket::NO_OF_TICKETS=0;
 double Ticket::Id_COUNTER=-1;
 
+
+
+
+
+//class Ticket {
+//private:  //could be by default
+
+	//double static Id_COUNTER;
+	//int static NO_OF_TICKETS;
+	//double ticketId = 0.0;
+	//typeOfTicket type = typeOfTicket::BOXES;
+	//char* dateOfIssue = nullptr;
+
+
+
+istream& operator>>(istream& read, Ticket& t)
+{
+	cout << endl << "Insert date of issue for this new ticket. FORMAT:dd/mm/24. It must be issued in 2024:";
+	char buffer[2000];
+	read.getline(buffer, 2000);
+	t.setDateOfIssue(buffer);
+
+	cout << endl << "Insert type of ticket. It must be an integer from the set {0,1,2,3,4,5,6,7}:";
+	cout << endl << "Where:";
+	cout << endl << "0->Vip";
+	cout << endl << "1->Lawn";
+	cout << endl << "2->Tribune";
+	cout << endl << "3->Boxes";
+	cout << endl << "4->Stand1";
+	cout << endl << "5->Stand1";
+	cout << endl << "6->Category1";
+	cout << endl<<"7->Category2"<<endl;
+	int  type;
+	read >> type;
+	//enum typeOfTicket { VIP, LAWN, TRIBUNE, BOXES, STAND1, STAND2, CATEGORY1, CATEGORY2 }; ///also type of zone OR NOT?
+	switch (type)
+	{
+	case(0):
+		t.setTypeOfTicket(VIP);
+		break;
+	case(1):
+		t.setTypeOfTicket(LAWN);
+		break;
+	case(2):
+		t.setTypeOfTicket(TRIBUNE);
+		break; 
+	case(3):
+		t.setTypeOfTicket(BOXES);
+		break; 
+	case(4):
+		t.setTypeOfTicket(STAND1);
+		break;
+	case(5):
+		t.setTypeOfTicket(STAND2);
+		break;
+	case(6):
+		t.setTypeOfTicket(CATEGORY1);
+		break;
+	case(7):
+		t.setTypeOfTicket(CATEGORY2);
+		break;
+	default:
+		cout << endl << "This type of ticket is not valid. Plase insert an integer from the previous set.";
+		return read;
+	}
+
+	return read;
+}
 void operator<<(ostream& console, const Ticket& ticket)
 {
 	//console << "This is a ticket that allows you to go to the" <<" " << ticket.type;

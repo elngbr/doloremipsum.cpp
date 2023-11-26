@@ -1,4 +1,5 @@
-#include "EventLocation.h"
+/*
+
 #include "Event.h"
 //#include"Ticket.h"
 #include<iostream>
@@ -116,5 +117,17 @@ int main() {
     }
 
 
+    cout << endl<<endl<<endl<<endl << "Testing the second ctor for class Event";
+
+    Event eventAlpha("EventAlpha", "25/12/24", "18:00");
+    cout << eventAlpha;
+
+    cout << endl<<endl<<endl<<endl << "**Testing input oprator for class Event";
+
+    Event newEvent;
+    cin >> newEvent;
+    cout << newEvent;
 
 }
+
+*/

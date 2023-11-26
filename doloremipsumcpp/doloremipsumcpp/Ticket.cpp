@@ -39,7 +39,7 @@ int  main()
     Ticket eventZ= 0.8 + event3;
     //event3= event3 + 0.8;                        ///    PENTRU ASA CEVA ITI TREBUIE TESTING SELF EQUALITY CA NU DEGEABA SCRIE IN REQUIREMENTS SA-L DEFINESTI...   WHY DOESN.T IT WORK NOW?
 
-    //cout << event3;
+    cout << event3;
 
     //cout << endl << event3;
     cout << endl << endl << endl;
@@ -144,6 +144,22 @@ int  main()
 
         cout <<endl<< "this ticket is issued in october!";
     }
-}
 
+
+    cout << endl << "**Testing second constructor for ticket";
+
+    Ticket t("12/12/24");
+    cout << t;
+
+    cout << endl << "**Testing input operator for class Ticket";
+
+    Ticket newTicket1;
+
+    cin >> newTicket1;
+    cout << newTicket1;
+
+    
+}
 */
+
+

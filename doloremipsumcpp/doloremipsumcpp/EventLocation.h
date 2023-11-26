@@ -1,3 +1,6 @@
+
+
+
 #pragma once
 
 #include <iostream>
@@ -65,6 +68,8 @@ public:
 
 		this->stateOfSeats = new int[auxRows * auxSeatsPerRow];
 		memcpy(this->stateOfSeats, auxState, sizeof(int) * auxRows * auxSeatsPerRow);  ///SA NU UITI DE SIZE OF
+		this->noRows = auxRows;
+		this->setNoOfSeatsPerRows(auxSeatsPerRow);
 
 
 	}
@@ -149,7 +154,15 @@ public:
 
 	}
 
+	EventPlace(typeOfPlace auxName)
+	{
+		this->setName(auxName);
+	}
 
+	~EventPlace()
+	{
+		delete[]this->stateOfSeats;
+	}
 
 	EventPlace(const EventPlace& place)///I MADE IT CONST BECAUSE I FEAR MYSELF:)
 	{
@@ -226,19 +239,19 @@ public:
 	}
 
 	///overloading the operator <= for noZones
-	/*
-	bool areThereStillPlaces(int auxStateOfSeats, int auxNoRows, int auxSeatsPerRow)
-	{
-		int i, j;
+	
+	//bool areThereStillPlaces(int auxStateOfSeats, int auxNoRows, int auxSeatsPerRow)
+	//{
+	//	int i, j;
 
-		for(i=0; i<auxNoRows; i++)
-			for(j=0; j<auxSeatsPerRow; j++)
-				if (auxStateOfSeats[i][j])
-				{
+		//for(i=0; i<auxNoRows; i++)
+		//	for(j=0; j<auxSeatsPerRow; j++)
+		//		if (auxStateOfSeats[i][j])
+		//		{
 
-				}
-	}
-	*/
+		//		}
+	//}
+	
 
 	//GENERIC METHODS
 
@@ -262,12 +275,24 @@ public:
 		}
 	}
 
+	EventPlace& operator=(const EventPlace& auxLocation)
+	{
+		if (&auxLocation == this)
+		{
+			return;
+		}
+		delete[] this->stateOfSeats;
+		this->stateOfSeats = auxLocation.stateOfSeats;
+
+		return *this;
+	}
 
 
 	friend void operator<<(ostream& console, const EventPlace& place);
+	friend istream& operator>>(istream& read, EventPlace& event);
 };
 
-/**/void operator<<(ostream& console, const EventPlace& place)
+void operator<<(ostream& console, const EventPlace& place)
 {
 	console << endl << "No of rows:" << place.noRows;
 	console << endl << "No of seats per row:" << place.noSeatsPerRow;
@@ -282,18 +307,18 @@ public:
 
 
 	///check this error!!!!!
-	/*for (int i = 0; i < place.noRows * place.noSeatsPerRow; i++) {
-		if (place.stateOfSeats[i] == 0) {
-			noOfFreeSeats++;
-		}
-		else if (place.stateOfSeats[i] == 1) {
-			noOfOccupiedSeats++;
-		}
-		else {
-			console << endl << "Wrong value in stateOfSeats at index " << i << ": " << place.stateOfSeats[i];
-		}
-	}
-	*/
+	///for (int i = 0; i < place.noRows * place.noSeatsPerRow; i++) {
+		//if (place.stateOfSeats[i] == 0) {
+		//	noOfFreeSeats++;
+		//}
+		//else if (place.stateOfSeats[i] == 1) {
+		//	noOfOccupiedSeats++;
+		//}
+		////else {
+			//console << endl << "Wrong value in stateOfSeats at index " << i << ": " << place.stateOfSeats[i];
+		//}
+	//}
+	
 
 	console << endl << "The evet occures at the" << " ";
 	//console << std::endl << "Type of Place: ";
@@ -324,8 +349,85 @@ public:
 		break;
 	}
 
-	cout << endl;
-	console << "There are" << " " << noOfFreeSeats << " " << "free seats and" << " " << noOfOccupiedSeats << " " << "occupied seats." << endl;
+	console << endl;
+	//console << "There are" << " " << noOfFreeSeats << " " << "free seats and" << " " << noOfOccupiedSeats << " " << "occupied seats." << endl;
+
+}
+
+
+
+istream& operator>>(istream& read, EventPlace& event)
+{
+	cout << endl << "The number of rows is (at least 5):";
+	read >> event.noRows;
+
+	cout << endl << "The number of zones is (at least 1):";
+	read >> event.noZones;
+
+	cout <<endl<< "The number of seats per row is (at least 10):";
+	read >> event.noSeatsPerRow;
+
+	cout << endl << "The event occurs at:";
+
+
+
+	//enum typeOfPlace { STADIUM, CONCERT_HALL, OPERA_HOUSE, EVENTS_HALL, SPORT_HALL, CINEMA_HALL, SQUARE };
+
+	cout << endl << "Please insert an integer between the set of {0,1,2,3,4,5,6} ";
+	cout << endl << "where: 0->Stadium";
+	cout << endl << "1-> Concert Hall";
+	cout << endl << "2-> Opera House";
+	cout << endl << "3-> Events Hall";
+	cout << endl << "4-> Sport Hall";
+	cout << endl << "5-> Concert Hall";
+	cout << endl << "6-> Square";
+
+	int type;
+
+	read >> type;
+
+	switch (type)
+	{
+	case(0):
+		event.name = typeOfPlace::STADIUM;
+		break;
+	case(1):
+		event.name = typeOfPlace::CONCERT_HALL;
+		break;
+	case(2):
+		event.name = typeOfPlace::OPERA_HOUSE;
+		break;
+	case(3):
+		event.name = typeOfPlace::EVENTS_HALL;
+		break;
+	case(4):
+		event.name = typeOfPlace::SPORT_HALL;
+		break;
+	case(5):
+		event.name = typeOfPlace::CINEMA_HALL;
+		break;
+	case(6):
+		event.name = typeOfPlace::SQUARE;
+		break;
+	default:
+		cout <<endl<< "This location is not defined. Please set a defined location from the previous given set.";
+		return read;
+		
+	}
+
+
+	if (event.name == SQUARE)
+	{
+		event.istheEventaProtest = true;
+	}
+	else
+	{
+		event.istheEventaProtest = false;
+
+	}
+
+
+	return read;
 
 }
 
