@@ -243,7 +243,7 @@ public:
 		return *this;  //vreau obiectul cu totul
 	}
 
-	Event& operator=(const Event& other) {
+	Event operator=(const Event& other) {
 
 		//source.setName(this->getName());
 
@@ -257,7 +257,7 @@ public:
 		delete[] this->nameOfEvent;
 		this->setNameOfEvent(other.getNameOfEvent());
 
-		return *this;
+		return other;
 	}
 
 	bool operator ==(const Event& auxEvent) const

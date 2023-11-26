@@ -275,7 +275,7 @@ public:
 		}
 	}
 
-	EventPlace& operator=(const EventPlace& auxLocation)
+	EventPlace operator=(const EventPlace& auxLocation)
 	{
 		if (&auxLocation == this)
 		{
@@ -284,7 +284,7 @@ public:
 		delete[] this->stateOfSeats;
 		this->stateOfSeats = auxLocation.stateOfSeats;
 
-		return *this;
+		return auxLocation;
 	}
 
 

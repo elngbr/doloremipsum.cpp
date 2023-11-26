@@ -43,7 +43,7 @@ public:
 		this->type = auxType;
 	}
 
-	char* getDateOfIssue()
+	char* getDateOfIssue() const
 	{
 		char* copy = new char[strlen(this->dateOfIssue) + 1];
 		strcpy_s(copy, strlen(this->dateOfIssue) + 1, this->dateOfIssue);
@@ -154,7 +154,7 @@ public:
 	}
 
 
-	friend void operator<<(ostream& console, const Ticket& ticket);
+	friend ostream& operator<<(ostream& console, const Ticket& ticket);
 
 
 	///INDEXING OPERATOR
@@ -192,7 +192,7 @@ public:
 		return copy;
 	}
 
-	Ticket& operator=(const Ticket& auxTicket)
+	Ticket operator=(const Ticket& auxTicket)
 	{
 		if (&auxTicket == this)
 		{
@@ -203,7 +203,7 @@ public:
 		this->dateOfIssue = auxTicket.dateOfIssue;
 
 
-		return *this;
+		return auxTicket;
 	}
 
 	bool operator == (const Ticket& auxTicket )
@@ -332,11 +332,11 @@ istream& operator>>(istream& read, Ticket& t)
 
 	return read;
 }
-void operator<<(ostream& console, const Ticket& ticket)
+ostream & operator<<(ostream& console, const Ticket& ticket)
 {
 	//console << "This is a ticket that allows you to go to the" <<" " << ticket.type;
 	console << endl << "This ticket is uniquely defined by the Id" << " " << ticket.ticketId;
-	console << endl << "This ticket was issued at this date: " << ticket.dateOfIssue;
+	console << endl << "This ticket was issued at this date: " << ticket.getDateOfIssue();
 	console << endl << "This is a ticket that allows you to go to the" << " ";
 
 	switch (ticket.type)/////////////////////IF U RETURNED INSTEAD OF DISPLAYING WITH CONSOLE, YOU NEED'NT USE BREAK. BUT WE NEVER NEVER NEVER RETURN IN A VOID :)
@@ -372,5 +372,7 @@ void operator<<(ostream& console, const Ticket& ticket)
 	}
 
 	console << endl;
+
+	return console;
 
 }

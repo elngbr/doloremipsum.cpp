@@ -1,4 +1,3 @@
-
 /*
 
 #include "EventLocation.h"

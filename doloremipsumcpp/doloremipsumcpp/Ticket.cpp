@@ -25,6 +25,7 @@ int  main()
    cout << endl << "***so, this might be a way to trick the setter :):):):):):):)";
 
     event3[7] =  '5';   ////nu de 8, de 7. YOU COUNT FROM 0 IN programming. 
+    cout <<endl<<"************** PROOF THAT IT WORKS:  " << event3.getDateOfIssue();
     cout << endl << "**the dateOfIssue of the event is now:";
     cout << event3.getDateOfIssue();
     cout << endl << endl << endl << "NOW, THE 1st defined ticket looks like this:" << endl;
@@ -35,12 +36,14 @@ int  main()
 
 
     cout << endl << "Testing the + operator";
-    Ticket eventZ= 0.8 + event3;
-    //event3= event3 + 0.8;          nu mai face asta              ///    PENTRU ASA CEVA ITI TREBUIE TESTING SELF EQUALITY CA NU DEGEABA SCRIE IN REQUIREMENTS SA-L DEFINESTI...   WHY DOESN.T IT WORK NOW?
+    Ticket eventZ= 0.8 + event3; //ori il folosesti pe asta, ori pe urmatorul above. altfel se face buffer overflow undeva la date of issue si nu inteleg de ce
+    //pastreaza-l pe cel de sus in main!!
+    //event3= event3 + 0.8;                 
+    ///    PENTRU ASA CEVA ITI TREBUIE TESTING SELF EQUALITY CA NU DEGEABA SCRIE IN REQUIREMENTS SA-L DEFINESTI...   WHY DOESN.T IT WORK NOW?
 
-    cout << event3;
+    cout <<endl<<"**:):):):)**"<< event3;
 
-    //cout << endl << event3;
+    cout << endl << event3;
     cout << endl << endl << endl;
 
     cout << endl << "**************************We display the new event";
@@ -160,5 +163,5 @@ int  main()
     
 }
 
-*/
 
+*/
