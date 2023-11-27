@@ -1,4 +1,3 @@
-/*
 
 #include "EventLocation.h"
 #include<iostream>
@@ -160,7 +159,7 @@ int main()
     EventPlace alpha(OPERA_HOUSE);
     cout << alpha;
 
-    cout <<endl<<endl<< endl << "testing the input operator for class EventPlace";
+    cout << endl << endl << endl << "testing the input operator for class EventPlace";
     EventPlace location;
     cin >> location;
 
@@ -168,4 +167,3 @@ int main()
 
 }
 
-*/

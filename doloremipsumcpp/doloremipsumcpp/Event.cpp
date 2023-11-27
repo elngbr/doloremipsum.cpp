@@ -1,5 +1,5 @@
 
-
+/*
 #include "Event.h"
 //#include"Ticket.h"
 #include<iostream>
@@ -19,7 +19,7 @@ int main() {
 
     int locuri1[rows * seatsPerRow];
 
-    cout << "NOW LET'S CHECK THE OPERATORS FOR a new calss:EVENT";
+    cout << "NOW LET'S CHECK THE OPERATORS FOR a new class:EVENT";
 
     cout << endl << endl << endl << endl;
 
@@ -129,3 +129,5 @@ int main() {
     cout << newEvent;
 
 }
+
+*/

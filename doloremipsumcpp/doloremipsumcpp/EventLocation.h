@@ -56,7 +56,7 @@ public:
 
 	void setStateOfSeats(int* auxState, int auxRows, int auxSeatsPerRow)
 	{
-		if (auxState == nullptr || auxRows == NULL|| auxRows<MIN_ZONES*MIN_ROWS_PER_ZONE||auxSeatsPerRow<MIN_SEATS_PER_ROW)
+		if (auxState == nullptr || auxRows == NULL || auxRows < MIN_ZONES * MIN_ROWS_PER_ZONE || auxSeatsPerRow < MIN_SEATS_PER_ROW)
 		{
 			throw exception("Wrong Value!");
 		}
@@ -144,7 +144,7 @@ public:
 
 	}
 
-	EventPlace(int auxNoRows, int auxNoSeatsPerRow, int auxNoZones, typeOfPlace auxName, int*stateOfSeats)
+	EventPlace(int auxNoRows, int auxNoSeatsPerRow, int auxNoZones, typeOfPlace auxName, int* stateOfSeats)
 	{
 
 		this->setNumberofZones(auxNoZones);
@@ -212,7 +212,7 @@ public:
 			return false;
 		}
 	}
-	
+
 	bool operator<=(EventPlace somePlace)
 	{
 		if (this->noZones <= somePlace.noZones)
@@ -228,7 +228,7 @@ public:
 
 	bool operator==(EventPlace& auxPlace)
 	{
-		if (this->name == auxPlace.name && this->noRows*this->noSeatsPerRow==auxPlace.noRows*auxPlace.noSeatsPerRow)
+		if (this->name == auxPlace.name && this->noRows * this->noSeatsPerRow == auxPlace.noRows * auxPlace.noSeatsPerRow)
 		{
 			return true;
 		}
@@ -239,7 +239,7 @@ public:
 	}
 
 	///overloading the operator <= for noZones
-	
+
 	//bool areThereStillPlaces(int auxStateOfSeats, int auxNoRows, int auxSeatsPerRow)
 	//{
 	//	int i, j;
@@ -251,7 +251,7 @@ public:
 
 		//		}
 	//}
-	
+
 
 	//GENERIC METHODS
 
@@ -259,8 +259,8 @@ public:
 	{
 		this->name = SQUARE;
 		return this->name;
-	
-	
+
+
 	}
 
 	bool isProtest()
@@ -282,9 +282,13 @@ public:
 			return *this;
 		}
 		delete[] this->stateOfSeats;
-		this->stateOfSeats = auxLocation.stateOfSeats;
+		//this->stateOfSeats = auxLocation.stateOfSeats;
+		this->setName(auxLocation.name);
+		this->setNoOfSeatsPerRows(auxLocation.noSeatsPerRow);
+		this->setNumberofZones(auxLocation.noZones);
+		this->setNumberOfRows(auxLocation.noRows);
 
-		return auxLocation;
+		return *this;
 	}
 
 
@@ -318,7 +322,7 @@ void operator<<(ostream& console, const EventPlace& place)
 			//console << endl << "Wrong value in stateOfSeats at index " << i << ": " << place.stateOfSeats[i];
 		//}
 	//}
-	
+
 
 	console << endl << "The evet occures at the" << " ";
 	//console << std::endl << "Type of Place: ";
@@ -364,7 +368,7 @@ istream& operator>>(istream& read, EventPlace& event)
 	cout << endl << "The number of zones is (at least 1):";
 	read >> event.noZones;
 
-	cout <<endl<< "The number of seats per row is (at least 10):";
+	cout << endl << "The number of seats per row is (at least 10):";
 	read >> event.noSeatsPerRow;
 
 	cout << endl << "The event occurs at:";
@@ -410,9 +414,9 @@ istream& operator>>(istream& read, EventPlace& event)
 		event.name = typeOfPlace::SQUARE;
 		break;
 	default:
-		cout <<endl<< "This location is not defined. Please set a defined location from the previous given set.";
+		cout << endl << "This location is not defined. Please set a defined location from the previous given set.";
 		return read;
-		
+
 	}
 
 

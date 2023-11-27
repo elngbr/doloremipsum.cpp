@@ -1,6 +1,5 @@
 
 
-///FULL!
 
 //FULL!
 
@@ -254,10 +253,15 @@ public:
 		}
 
 		//this->id = source.id;
-		delete[] this->nameOfEvent;
+		//delete[] this->nameOfEvent;
 		this->setNameOfEvent(other.getNameOfEvent());
+		this->eventPreviousRanking = other.eventPreviousRanking;
+		this->setDate(other.getDate());
+		this->setTime(other.getTime());
+		this->setType(other.getType());
+		
 
-		return other;
+		return *this;
 	}
 
 	bool operator ==(const Event& auxEvent) const

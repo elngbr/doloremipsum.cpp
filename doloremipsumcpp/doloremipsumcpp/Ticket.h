@@ -201,9 +201,10 @@ public:
 
 		delete[]this->dateOfIssue;
 		this->dateOfIssue = auxTicket.dateOfIssue;
+		this->type = auxTicket.type;
 
 
-		return auxTicket;
+		return *this;
 	}
 
 	bool operator == (const Ticket& auxTicket )
@@ -293,7 +294,7 @@ istream& operator>>(istream& read, Ticket& t)
 	cout << endl << "2->Tribune";
 	cout << endl << "3->Boxes";
 	cout << endl << "4->Stand1";
-	cout << endl << "5->Stand1";
+	cout << endl << "5->Stand2";
 	cout << endl << "6->Category1";
 	cout << endl<<"7->Category2"<<endl;
 	int  type;
