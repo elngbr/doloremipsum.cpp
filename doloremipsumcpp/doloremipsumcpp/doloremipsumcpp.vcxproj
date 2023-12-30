@@ -133,6 +133,7 @@
     <ClCompile Include="Ticket.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="elenaSeats.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="Ticket.h" />
   </ItemGroup>
