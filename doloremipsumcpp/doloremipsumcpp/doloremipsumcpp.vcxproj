@@ -130,9 +130,11 @@
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventLocation.h" />
     <ClCompile Include="EventLocation.cpp" />
+    <ClCompile Include="relationshipsTester.cpp" />
     <ClCompile Include="Ticket.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="elenaRows.h" />
     <ClInclude Include="elenaSeats.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="Ticket.h" />

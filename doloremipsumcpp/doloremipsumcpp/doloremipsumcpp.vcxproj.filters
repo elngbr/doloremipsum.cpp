@@ -27,6 +27,9 @@
     <ClCompile Include="Event.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="relationshipsTester.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Event.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="elenaSeats.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="elenaRows.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
