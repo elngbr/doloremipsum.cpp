@@ -127,16 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="EventLocation.h" />
-    <ClCompile Include="EventLocation.cpp" />
     <ClCompile Include="relationshipsTester.cpp" />
-    <ClCompile Include="Ticket.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="elenaRows.h" />
     <ClInclude Include="elenaSeats.h" />
-    <ClInclude Include="Event.h" />
-    <ClInclude Include="Ticket.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
