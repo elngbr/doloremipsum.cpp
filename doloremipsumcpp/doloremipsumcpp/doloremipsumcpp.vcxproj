@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventLocation.h" />
     <ClCompile Include="EventLocation.cpp" />
     <ClCompile Include="relationshipsTester.cpp" />

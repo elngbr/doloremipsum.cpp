@@ -24,9 +24,6 @@
     <ClCompile Include="Ticket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Event.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="relationshipsTester.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
