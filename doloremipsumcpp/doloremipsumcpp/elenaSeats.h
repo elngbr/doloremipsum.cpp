@@ -1,5 +1,6 @@
 #pragma once
 #include<iostream>
+#include "elenaRows.h"
 #include<string>
 #include<fstream>
 
@@ -10,20 +11,20 @@ enum seatType{STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN };
 
 class Row;
 
-//exceptions for SEATS
-class WrongValueForSeat : public exception
-{
-public:
-	WrongValueForSeat(string msg) : exception(msg.c_str())
-	{
-
-	}
-
-	WrongValueForSeat()
-	{
-
-	}
-};
+////exceptions for SEATS
+//class WrongValueForSeat : public exception
+//{
+//public:
+//	WrongValueForSeat(string msg) : exception(msg.c_str())
+//	{
+//
+//	}
+//
+//	WrongValueForSeat()
+//	{
+//
+//	}
+//};
 
 
 
@@ -56,13 +57,13 @@ public:
 	{
 		if (auxNo > Row::MAX_NUMBER_OF_SEATS)
 		{
-			throw WrongValueForSeat("More seats than allowed!");
+			throw exception("More seats than allowed!");
 		}
 		else if (auxNo < 0)
 		{
-			throw WrongValueForSeat("A seat cannot be negative!");
+			throw exception("A seat cannot be negative!");
 		}
-		else throw WrongValueForSeat();
+		else throw exception();
 
 		this->seatNumber = auxNo;
 
@@ -84,23 +85,18 @@ public:
 
 	}
 
-	/*nt getAvailableSeats() const
-	{
-		return row.getNoOfSeats();
-	}*/
+
 	
 	
 	///CONSTRUCTOR
-	Seat(int auxSeatNo, seatType auxType, int auxRowNumber, const Row& auxRow) : rowIdentifier(auxRow) 
+	Seat(int auxSeatNo, seatType auxType, const Row& auxRow) : rowIdentifier(auxRow) 
 	{
 		this->setSeatNumber(auxSeatNo);
 		this->setType(auxType);
 
 	}
 
-	Seat(int auxSeatNo, seatType auxType, const Row& auxRow) : seatNumber(auxSeatNo), type(auxType), rowIdentifier(auxRow)
-	{
-	}
+	
 };
 
 
