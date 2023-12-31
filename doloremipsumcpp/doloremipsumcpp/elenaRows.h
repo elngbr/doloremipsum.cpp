@@ -93,10 +93,21 @@ public:
 
     Row()
     {
+        seats = nullptr;
+    }
 
+    Row(int noOfSeats) : noOfSeatsForRow(noOfSeats) {
+        seats = new Seat * [noOfSeatsForRow];
+        for (int i = 0; i < noOfSeatsForRow; ++i) {
+            seats[i] = nullptr; 
+        }
     }
 
     ~Row() {
+        for (int i = 0; i < this->noOfSeatsForRow; ++i)
+        {
+            delete seats[i];
+        }
         delete[] seats;
     }
 

@@ -137,62 +137,77 @@ int main() {
 		cout << seats[i];
 	}
 
-	Row* rows=new Row[noRows];
+
+	///////////////////TILL HERE WORKS PERFECTLY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+	Seat x(1, CHOSEN); ///////////////////////////////////////////////////////////////////////////THIS WAY IT LITERALLY WORKS. YES IT DOES
+	Seat t(3, STANDARD);
+	Row y;
+	y.addSeats(x);
+	y.addSeats(t);
+
+	cout << y;
+
+
+
+	//Row* rows = new Row[noRows];
+
+
 
 	//for (int i = 0; i < noRows; i++)
 	//	rows[i].addSeats(draftSeat);
 
-	/*rows[0].addSeats(&seats[0]);
-	rows[1].addSeats(&seats[0]);*/
+	///*rows[0].addSeats(&seats[0]);
+	//rows[1].addSeats(&seats[0]);*/
 
-	/*out << rows[0] << endl << rows[1];*/
+	///*out << rows[0] << endl << rows[1];*/
 
 
-	while (true)
-	{
-		for (int i = 0; i <noRows; i++)
-		{
-			cout << endl << "Let's create row"<<" "<<i+1;
-			try
-			{
-				/*cout << endl << "Please insert the row identifier";
-				int auxRowIdentifier;
-				cin >> auxRowIdentifier;*/
-				rows[i].setRowIdentifier(i+1);
+	//while (true)
+	//{
+	//	for (int i = 0; i <noRows; i++)
+	//	{
+	//		cout << endl << "Let's create row"<<" "<<i+1;
+	//		try
+	//		{
+	//			/*cout << endl << "Please insert the row identifier";
+	//			int auxRowIdentifier;
+	//			cin >> auxRowIdentifier;*/
+	//			rows[i].setRowIdentifier(i+1);
 
-			/*	cout << endl << "Please insert a number of seats per row";*/
-				int auxNoSeatsPerRow=noSeats;
-				
-				rows[i].setNoOfSeatsForRow(auxNoSeatsPerRow);
+	//		/*	cout << endl << "Please insert a number of seats per row";*/
+	//			int auxNoSeatsPerRow=noSeats;
+	//			
+	//			rows[i].setNoOfSeatsForRow(auxNoSeatsPerRow);
 
-				cout << endl << "**insertion for seats occuring...";
-				for (int j = 0; j < auxNoSeatsPerRow; j++)
-				{
-					rows[i].addSeats(seats[j]);
-				}
+	//			cout << endl << "**insertion for seats occuring...";
+	//			for (int j = 0; j < auxNoSeatsPerRow; j++)
+	//			{
+	//				rows[i].addSeats(seats[j]);
+	//			}
 
-				break;
-			}
-			catch (const RowException& ex)
-			{
-				cout<<endl << "Row identifier negative or more than 50 or number of seats negative or more than 15";
-				continue;
-			}
-			catch (...)
-			{
-				cout << endl << "Exception thrown at rows";
-				continue;
-			}
-		}
+	//			//break;
+	//		}
+	//		catch (const RowException& ex)
+	//		{
+	//			cout<<endl << "Row identifier negative or more than 50 or number of seats negative or more than 15";
+	//			
+	//		}
+	//		catch (...)
+	//		{
+	//			cout << endl << "Exception thrown at rows";
+	//			
+	//		}
+	//	}
 
-		break;
-	}
+	//	break;
+	//}
 
-	for (int i = 0; i < noRows; i++)
-	{
-		cout << endl << "******Row" << " " << i + 1;
-		cout << rows[i];
-	}
+	//for (int i = 0; i < noRows; i++)
+	//{
+	//	cout << endl << "******Row" << " " << i + 1;
+	//	cout << rows[i];
+	//}
 
 
 
