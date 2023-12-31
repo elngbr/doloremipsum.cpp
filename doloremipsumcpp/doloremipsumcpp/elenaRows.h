@@ -4,10 +4,16 @@
 #include<iostream>
 #include<fstream>
 
-
-class RowException : public exception {
+class RowException  {
+private:
+    string message;
 public:
-    RowException(const string& msg) : exception(msg.c_str()) {}
+    RowException(const string& msg) : message(msg) {}
+
+    string what()const
+    {
+        return message;
+    }
 };
 
 class Row {
@@ -20,14 +26,15 @@ private:
 public:
 
     static const int MAX_NUMBER_OF_SEATS = 10;
+    static const int MAX_ROW_IDENTIFIER = 50;
 
     int getRowIdentifier() const {
         return rowIdentifier;
     }
 
     void setRowIdentifier(int auxIdentifier) {
-        if (auxIdentifier < 0) {
-            throw RowException("Row identifier cannot be negative");
+        if (auxIdentifier < 0 || auxIdentifier>MAX_ROW_IDENTIFIER) {
+            throw RowException("Row identifier cannot be negative or more than 50");
         }
         rowIdentifier = auxIdentifier;
     }
@@ -66,7 +73,25 @@ public:
         setSeats(initialSeats, numberOfSeats);
     }
 
+    Row()
+    {
+
+    }
+
     ~Row() {
         delete[] seats;
     }
 };
+
+ostream& operator <<(ostream& console, const Row& auxRow)
+{
+    console << endl << "This row's identifier is" << " " << auxRow.getRowIdentifier();
+    console << endl << "This row's number of seats is" << " " << auxRow.getNoOfSeatsForRow();
+    console << endl << "This row has the following seats:" << endl;
+    for (int i = 0; i < auxRow.getNoOfSeatsForRow(); i++)
+    {
+        cout << auxRow.getSeats()[i]<<endl;
+    }
+
+    return  console;
+}

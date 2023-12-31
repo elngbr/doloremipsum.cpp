@@ -4,8 +4,42 @@
 #include<string>
 #include<iostream>
 #include<fstream>
+void decodeSeats(int noSeats)
+{
+	while (noSeats < 0|| noSeats > Row::MAX_NUMBER_OF_SEATS)
+	{
+		cout << "No seats less than 0 ore more than 15. Please insert again no of seats:";
+		cin >> noSeats;
+		
+	}
 
+	
+}
+
+void decodeRows(int noRows)
+{
+	while (noRows < 0 || noRows > Row::MAX_ROW_IDENTIFIER)
+	{
+		cout << "No rows less than 0 ore more than 50. Please insert again no of rows:";
+		cin >> noRows;
+
+	}
+}
 int main() {
+
+
+	int noSeats = 0;
+	int noRows = 0;
+	cout << "Please insert no of seats:";
+	cin >> noSeats;
+
+	decodeSeats(noSeats);
+
+	cout << "Please insert no of rows:";
+	cin >> noRows;
+
+	decodeRows(noRows);
+	
 	Seat seat1;
 
 	while (true)
@@ -67,11 +101,11 @@ int main() {
 
 	cout << seat1;
 	
-	Seat* seats=new Seat[Seat::MAX_IDENTIFIER_OF_SEAT];
+	Seat* seats=new Seat[noSeats];
 
 	while (true)
 	{
-		for (int i = 0; i < Seat::MAX_IDENTIFIER_OF_SEAT; i++)
+		for (int i = 0; i < noSeats; i++)
 		{
 			cout << endl << "let's build seat" << " " << i + 1 << endl;
 			try {	
@@ -128,9 +162,59 @@ int main() {
 			}
 
 		}
+		break;
 	}
 
+	for (int i = 0; i < noSeats; i++)
+	{
+		cout << endl << "******Seat" << " " << i + 1;
+		cout << seats[i];
+	}
 
+	Row* rows=new Row[noRows];
+
+	while (true)
+	{
+		for (int i = 0; i <noRows; i++)
+		{
+			cout << endl << "Let's create row"<<" "<<i+1;
+			try
+			{
+				cout << endl << "Please insert the row identifier";
+				int auxRowIdentifier;
+				cin >> auxRowIdentifier;
+				rows[i].setRowIdentifier(auxRowIdentifier);
+
+				cout << endl << "Please insert a number of seats per row";
+				int auxNoSeatsPerRow;
+				cin >> auxNoSeatsPerRow;
+				rows[i].setNoOfSeatsForRow(auxNoSeatsPerRow);
+
+				cout << endl << "**insertion for seats occuring...";
+				rows[i].setSeats(&seats, auxNoSeatsPerRow);
+
+				break;
+			}
+			catch (const RowException& ex)
+			{
+				cout<<endl << "Row identifier negative or more than 50 or number of seats negative or more than 15";
+				break;
+			}
+			catch (...)
+			{
+				cout << endl << "Exception thrown at rows";
+				break;
+			}
+		}
+
+		break;
+	}
+
+	for (int i = 0; i < noRows; i++)
+	{
+		cout << endl << "******Row" << " " << i + 1;
+		cout << rows[i];
+	}
 
 }
 
