@@ -38,20 +38,33 @@ void decodeTypeOfSeat(int auxType)
 
 
 }
+
+void decodeRowIdentifier(int auxRowIdentifier, int noRows)
+{
+	if (auxRowIdentifier<0 || auxRowIdentifier>noRows)
+	{
+		cout << "The identifier cannot be negative.Please insert a positive unique value.";
+		cin >> auxRowIdentifier;
+	}
+}
 int main() {
 
 
 	int noSeats = 0;
 	int noRows = 0;
-	cout << "Please insert no of seats:";
-	cin >> noSeats;
 
-	decodeSeats(noSeats);
+	Seat draftSeat(0, BROKEN);
 
 	cout << "Please insert no of rows:";
 	cin >> noRows;
 
 	decodeRows(noRows);
+
+	cout << "Please insert no of seats per row:";
+	cin >> noSeats;
+
+	decodeSeats(noSeats);
+
 	
 	Seat* seats=new Seat[noSeats];
 
@@ -61,10 +74,10 @@ int main() {
 		{
 			cout << endl << "let's build seat" << " " << i + 1 << endl;
 			try {	
-					cout << endl << "Insert the seat number. It shall be less or equal than 15:";
+					/*cout << endl << "Insert the seat number. It shall be less or equal than 15:";
 					int auxSeatNumber;
-					cin >> auxSeatNumber;
-					seats[i].setSeatNumber(auxSeatNumber);
+					cin >> auxSeatNumber;*/
+					seats[i].setSeatNumber(i+1);
 
 					cout << endl << "Insert the seat type. It shall be an integer from the set {0, 1, 2, 3, 4}";
 					cout << endl << "Where";
@@ -126,33 +139,36 @@ int main() {
 
 	Row* rows=new Row[noRows];
 
-	rows[0].addSeats(&seats[0]);
-	rows[1].addSeats(&seats[0]);
+	//for (int i = 0; i < noRows; i++)
+	//	rows[i].addSeats(draftSeat);
 
-	cout << rows[0] << endl << rows[1];
+	/*rows[0].addSeats(&seats[0]);
+	rows[1].addSeats(&seats[0]);*/
+
+	/*out << rows[0] << endl << rows[1];*/
 
 
-	/*while (true)
+	while (true)
 	{
 		for (int i = 0; i <noRows; i++)
 		{
 			cout << endl << "Let's create row"<<" "<<i+1;
 			try
 			{
-				cout << endl << "Please insert the row identifier";
+				/*cout << endl << "Please insert the row identifier";
 				int auxRowIdentifier;
-				cin >> auxRowIdentifier;
-				rows[i].setRowIdentifier(auxRowIdentifier);
+				cin >> auxRowIdentifier;*/
+				rows[i].setRowIdentifier(i+1);
 
-				cout << endl << "Please insert a number of seats per row";
-				int auxNoSeatsPerRow;
-				cin >> auxNoSeatsPerRow;
+			/*	cout << endl << "Please insert a number of seats per row";*/
+				int auxNoSeatsPerRow=noSeats;
+				
 				rows[i].setNoOfSeatsForRow(auxNoSeatsPerRow);
 
 				cout << endl << "**insertion for seats occuring...";
-				for (int j = 0; j < noSeats; j++)
+				for (int j = 0; j < auxNoSeatsPerRow; j++)
 				{
-					rows[j].addSeats(&seats[j]);
+					rows[i].addSeats(seats[j]);
 				}
 
 				break;
@@ -170,7 +186,7 @@ int main() {
 		}
 
 		break;
-	}*/
+	}
 
 	for (int i = 0; i < noRows; i++)
 	{

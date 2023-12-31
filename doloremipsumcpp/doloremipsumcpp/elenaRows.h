@@ -71,7 +71,7 @@ public:
         seats = newSeats;
     }
 
-    void addSeats(Seat* auxSeat)
+    void addSeats(Seat& auxSeat)
     {
         
         Seat** newSeats = new Seat * [this->noOfSeatsForRow+1];
@@ -80,7 +80,7 @@ public:
             newSeats[i] = this->seats[i];
         }
 
-        newSeats[this->noOfSeatsForRow] = auxSeat;
+        newSeats[this->noOfSeatsForRow] = new Seat(auxSeat);
         delete[]this->seats;
         this->seats = newSeats;
         this->noOfSeatsForRow++;
