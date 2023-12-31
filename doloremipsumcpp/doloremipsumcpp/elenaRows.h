@@ -5,115 +5,68 @@
 #include<fstream>
 
 
-//****************************************************************************************************
-class Zone;
+class RowException : public exception {
+public:
+    RowException(const string& msg) : exception(msg.c_str()) {}
+};
 
-///class ROW
-class Row
-{
-protected:
-	int rowIdentifier = 0;
-	int seatsNumber = 0;
-	int* seats = nullptr;
-	Row()
-	{
+class Row {
+private:
+    int rowIdentifier = 0;
+    int noOfSeatsForRow = 0;
+    Seat** seats = nullptr;
 
-	}
 
 public:
 
-	
-	int const static MAX_NUMBER_OF_SEATS = 15;
+    static const int MAX_NUMBER_OF_SEATS = 10;
 
-	int getNoOfSeats()
-	{
-		return this->seatsNumber;
-	}
+    int getRowIdentifier() const {
+        return rowIdentifier;
+    }
 
-	void setNoOfSeats(int auxSeatsNo)
-	{
-		if (auxSeatsNo > MAX_NUMBER_OF_SEATS)
-		{
-			throw exception("Too many rows. Such number is not available");
-		}
-		else if (auxSeatsNo < 0)
-		{
-			throw exception("You cannot have a row identified by a negative number");
-		}
-		else throw exception();
+    void setRowIdentifier(int auxIdentifier) {
+        if (auxIdentifier < 0) {
+            throw RowException("Row identifier cannot be negative");
+        }
+        rowIdentifier = auxIdentifier;
+    }
 
-		this->seatsNumber = auxSeatsNo;
-	}
+    int getNoOfSeatsForRow() const {
+        return noOfSeatsForRow;
+    }
 
-	int* getSeats()
-	{
-		int* copy = new int[this->seatsNumber];
+    void setNoOfSeatsForRow(int auxNoOfSeats) {
+        if (auxNoOfSeats <= 0 || auxNoOfSeats > MAX_NUMBER_OF_SEATS) {
+            throw RowException("Invalid number of seats for the row");
+        }
+        noOfSeatsForRow = auxNoOfSeats;
+    }
 
-		for (int i = 0; i < this->seatsNumber; i++)
-		{
-			copy[i] = this->seats[i];
-		}
+    Seat** getSeats() const {
+        return seats;
+    }
 
-		return copy;
-	}
+    void setSeats(Seat** newSeats, int numberOfSeats) {
+        if (numberOfSeats <= 0 || numberOfSeats > MAX_NUMBER_OF_SEATS) {
+            throw RowException("Invalid number of seats");
+        }
 
-	void setSeats(int* auxSeats, int auxSeatsNo)
-	{
-		if (auxSeats == nullptr)
-		{
-			throw exception("The seats you inserted are null");
+        for (int i = 0; i < numberOfSeats; ++i) {
+            if (newSeats[i] == nullptr) {
+                throw RowException("Null seat encountered");
+            }
+        }
 
-		}
-		else if (auxSeatsNo > MAX_NUMBER_OF_SEATS)
-		{
-			throw exception("Too many rows. Such number is not available");
-		}
-		else if (auxSeatsNo < 0)
-		{
-			throw exception("You cannot have a row identified by a negative number");
-		}
-		else throw exception("Huston we have a problem");
+        seats = newSeats;
+    }
 
-		delete[]this->seats;
+    Row(int auxRowIdentifier, int auxNoOfSeatsForRow, Seat** initialSeats, int numberOfSeats)
+        : rowIdentifier(auxRowIdentifier), noOfSeatsForRow(auxNoOfSeatsForRow) {
+        setSeats(initialSeats, numberOfSeats);
+    }
 
-		this->seats = new int[auxSeatsNo];
-
-		for (int i = 0; i < auxSeatsNo; i++)
-		{
-			this->seats[i] = auxSeats[i];
-		}
-
-		this->seatsNumber = auxSeatsNo;
-
-	}
-
-	int getRowIdentifier() const
-	{
-		return this->rowIdentifier;
-	}
-
-	void setRowIdentifier(int auxIdentifier)
-	{
-		if (auxIdentifier < Zone::MAX_NO_ROWS_PER_ZONE)
-		{
-			throw exception("The identifier excedees the number accepted rows by a zone");
-		}
-		else if (auxIdentifier < 0)
-		{
-			throw exception("You cannot identify a row by a negatove number");
-
-		}
-		this->rowIdentifier = auxIdentifier;
-	}
-
-	Row(int auxRowIdentifier, int auxSeatsNumber)
-	{
-		this->setNoOfSeats(auxSeatsNumber);
-		this->setRowIdentifier(auxRowIdentifier);
-	}
-
-	~Row()
-	{
-		delete[] seats;
-	}
+    ~Row() {
+        delete[] seats;
+    }
 };

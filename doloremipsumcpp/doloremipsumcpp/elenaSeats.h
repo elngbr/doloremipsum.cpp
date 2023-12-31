@@ -1,143 +1,90 @@
+
 #pragma once
-#include<iostream>
 #include "elenaRows.h"
 #include<string>
+#include<iostream>
 #include<fstream>
 
 using namespace std;
+enum SeatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN };
 
-
-enum seatType{STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN };
-
-class Row;
-
-////exceptions for SEATS
-//class WrongValueForSeat : public exception
-//{
-//public:
-//	WrongValueForSeat(string msg) : exception(msg.c_str())
-//	{
-//
-//	}
-//
-//	WrongValueForSeat()
-//	{
-//
-//	}
-//};
-
-
-
-
-//CLASS SEATS
-class Seat
-{
+class SeatException {
 private:
-	int seatNumber = 0;
-	seatType type = seatType::STANDARD;
+   string message;
 
-
-	const Row& rowIdentifier;
-
-
-	Seat() : rowIdentifier(*new Row(0, 0))
-	{
-
-	}
 public:
+    SeatException(const string& msg) : message(msg) {}
 
+    string what() const {
+        return message;
+    }
+};
 
-	
-	int getSeatNumber() const
-	{
-		return this->seatNumber;
-	}
+class Seat {
+private:
+    int seatNumber = 0;
+    SeatType type = SeatType::STANDARD;
 
-	void setSeatNumber(int auxNo)
-	{
-		if (auxNo > Row::MAX_NUMBER_OF_SEATS)
-		{
-			throw exception("More seats than allowed!");
-		}
-		else if (auxNo < 0)
-		{
-			throw exception("A seat cannot be negative!");
-		}
-		else throw exception();
+public:
+    int static const MAX_IDENTIFIER_OF_SEAT = 15;
+    int getSeatNumber() const {
+        return seatNumber;
+    }
 
-		this->seatNumber = auxNo;
+    void setSeatNumber(int auxNo) {
+        if (auxNo < 0||auxNo>Seat::MAX_IDENTIFIER_OF_SEAT) {
+            throw SeatException("Seat number cannot be negative");
+        }
+        seatNumber = auxNo;
+    }
 
+    SeatType getType() const {
+        return type;
+    }
 
-	}
+    void setType(SeatType auxType) {
+        this->type = auxType;
+    }
 
-	int getType() const
-	{
-		return this->type;
-	}
+    Seat()
+    {
 
-	void setType(seatType auxType)
-	{
-		this->type = auxType;
-	}
-	int getRowIdentifier() const
-	{
-		return rowIdentifier.getRowIdentifier();
-
-	}
-
-
-	
-	
-	///CONSTRUCTOR
-	Seat(int auxSeatNo, seatType auxType, const Row& auxRow) : rowIdentifier(auxRow) 
-	{
-		this->setSeatNumber(auxSeatNo);
-		this->setType(auxType);
-
-	}
-
-	
+    }
+    Seat(int auxSeatNo, SeatType auxType) : seatNumber(auxSeatNo), type(auxType) {}
+    friend ostream& operator <<(ostream& console, const Seat& auxSeat);
+    
 };
 
 
-
-class Zone
+ostream& operator <<(ostream& console, const Seat& auxSeat)
 {
-protected:
-	string* zoneName = nullptr;
-	int rowsNumber = 0;
-	int* rows = 0;
-	Zone()
-	{
+    console << endl << "This seat has the identifier" << " " << auxSeat.getSeatNumber();
 
-	}
-public:
-	int static const MAX_NO_ROWS_PER_ZONE = 50;
-};
+    console << endl << "This seats's type is:" << " ";
+    /*enum SeatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN };*/
 
-//class Location
-//{
-//protected:
-//	int noZones = 0;
-//	string* zones=nullptr;
-//	string* locationName = nullptr;
-//	Location()
-//	{
-//
-//	}
-//public:
-//};
-//
-//class Ticket
-//{
-//protected:
-//	int ticketId = 0;
-//	//Seat seatNumber;  
-//	Ticket()
-//	{
-//
-//	}
-//public:
-//
-//
-//};
+    switch (auxSeat.getType())
+    {
+    case(0):
+        console  << "standard.";
+        break;
+    case(1):
+        console  << "for people with disabilities.";
+        break;
+    case(2):
+        console  << "broken. It cannot be reserved.";
+        break;
+    case(3):
+        console  << "occupied. Please choose another seat.";
+        break;
+    case(4):
+        console  << "the seat you have already chosen. Please go to the cart.";
+        break;
+    default:
+        console << "This type of seat has been added subsequently. Plase redifine the switch function";
+    }
+
+    console << endl;
+
+    return console;
+ }

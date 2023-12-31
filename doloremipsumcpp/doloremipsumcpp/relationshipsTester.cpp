@@ -1,111 +1,138 @@
-//#include "elenaSeats.h"
-//#include "elenaRows.h"
-//#include<string>
-//#include<iostream>
-//#include<fstream>
-//
-//int main()
-//{
-//	Row row1(2, 5);
-//
-//	Seat seat(1, OCCUPIED, row1);
-//
-//	cout << "Seat number: " << seat.getSeatNumber() << endl;
-//	cout << "Seat type: " << seat.getType() << endl;
-//	cout << "Row identifier: : " << seat.getRowIdentifier() << endl;
-//	
-//}
-#include <iostream>
-#include <string>
-#include <fstream>
 
-using namespace std;
-
-enum seatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN };
-
-class Row {
-private:
-    int rowNumber = 0;
-    int seatsNumber = 0;
-    int* seats = nullptr;
-
-    // Private default constructor
-    Row() {}
-
-public:
-    int const static MAX_NUMBER_OF_SEATS = 15;
-
-    int getNoOfSeats() const {
-        return this->seatsNumber;
-    }
-
-    void setNoOfSeats(int auxSeatsNo) {
-        this->seatsNumber = auxSeatsNo;
-    }
-
-    // Other methods...
-
-    // Destructor to free dynamically allocated memory
-    ~Row() {
-        delete[] seats;
-    }
-
-    // Public constructor
-    Row(int rowNumber, int seatsNumber) : rowNumber(rowNumber), seatsNumber(seatsNumber) {
-        seats = new int[seatsNumber];
-        // Initialize other members as needed...
-    }
-};
-
-class Seat {
-private:
-    int seatNumber = 0;
-    seatType type = seatType::STANDARD;
-
-    // Using a reference to represent the association with a Row
-    const Row& rowNumber;
-
-    // Private default constructor
-    Seat() : rowNumber(*new Row(0, 0)) {}
-
-public:
-    int getSeatNumber() const {
-        return this->seatNumber;
-    }
-
-    void setSeatNumber(int auxNo) {
-        this->seatNumber = auxNo;
-    }
-
-    int getType() const {
-        return this->type;
-    }
-
-    void setType(seatType auxType) {
-        this->type = auxType;
-    }
-
-    // Accessor to get the associated row number
-    int getRowNumber() const {
-        return rowNumber.getNoOfSeats();
-    }
-
-    // Constructor with Row as a parameter
-    Seat(int auxSeatNo, seatType auxType, const Row& auxRow) : rowNumber(auxRow) {
-        this->setSeatNumber(auxSeatNo);
-        this->setType(auxType);
-    }
-};
+#include "elenaRows.h"
+#include "elenaSeats.h"
+#include<string>
+#include<iostream>
+#include<fstream>
 
 int main() {
-    // Example usage
-    Row row(1, 10);
+	Seat seat1;
 
-    Seat seat(1, STANDARD, row);
+	while (true)
+	{
+		try {
+			cout << endl << "Insert the seat number. It shall be less or equal than 15:";
+			int auxSeatNumber;
+			cin >> auxSeatNumber;
+			seat1.setSeatNumber(auxSeatNumber);
 
-    cout << "Seat Number: " << seat.getSeatNumber() << endl;
-    cout << "Seat Type: " << seat.getType() << endl;
-    cout << "Associated Row Number: " << seat.getRowNumber() << endl;
+			cout << endl << "Insert the seat type. It shall be an integer from the set {0, 1, 2, 3, 4}";
+			cout << endl << "Where";
+			cout << endl << "0->STANDARD seat";
+			cout << endl << "1->WHEELCHAIR seat";
+			cout << endl << "2->BROKEN seat";
+			cout << endl << "3->OCCUPIED seat";
+			cout << endl << "4->CHOSEN seat";
+			cout << endl << "Your choice is:";
 
-    return 0;
+			int auxType;
+			cin >> auxType;
+			switch (auxType)
+			{
+			case(0):
+				seat1.setType(STANDARD);
+				break;
+			case(1):
+				seat1.setType(WHEELCHAIR);
+				break;
+			case(2):
+				seat1.setType(BROKEN);
+				break;
+			case(3):
+				seat1.setType(OCCUPIED);
+				break;
+			case(4):
+				seat1.setType(CHOSEN);
+				break;
+			default:
+				seat1.setType(OCCUPIED);
+			}
+
+
+			break;
+
+		}
+		catch (const SeatException& ex)
+		{
+			cout << endl << "Wrong seat number";
+		}
+		catch (...)
+		{
+			cout << endl << "We have an issue!";
+
+		}
+
+
+	}
+
+	cout << seat1;
+	
+	Seat* seats=new Seat[Seat::MAX_IDENTIFIER_OF_SEAT];
+
+	while (true)
+	{
+		for (int i = 0; i < Seat::MAX_IDENTIFIER_OF_SEAT; i++)
+		{
+			cout << endl << "let's build seat" << " " << i + 1 << endl;
+			try {	
+					cout << endl << "Insert the seat number. It shall be less or equal than 15:";
+					int auxSeatNumber;
+					cin >> auxSeatNumber;
+					seats[i].setSeatNumber(auxSeatNumber);
+
+					cout << endl << "Insert the seat type. It shall be an integer from the set {0, 1, 2, 3, 4}";
+					cout << endl << "Where";
+					cout << endl << "0->STANDARD seat";
+					cout << endl << "1->WHEELCHAIR seat";
+					cout << endl << "2->BROKEN seat";
+					cout << endl << "3->OCCUPIED seat";
+					cout << endl << "4->CHOSEN seat";
+					cout << endl << "Your choice is:";
+
+					int auxType;
+					cin >> auxType;
+					switch (auxType)
+					{
+					case(0):
+						seats[i].setType(STANDARD);
+						break;
+					case(1):
+						seats[i].setType(WHEELCHAIR);
+						break;
+					case(2):
+						seats[i].setType(BROKEN);
+						break;
+					case(3):
+						seats[i].setType(OCCUPIED);
+						break;
+					case(4):
+						seats[i].setType(CHOSEN);
+						break;
+					default:
+						seats[i].setType(OCCUPIED);
+					}
+
+
+					//break;
+			}
+			catch (const SeatException& ex)
+			{
+				cout << endl << "Wrong seat number for seat";
+				break;
+			}
+			catch (...)
+			{
+				cout << endl << "We have an issue!";
+				break;
+
+			}
+
+		}
+	}
+
+
+
 }
+
+
+	
