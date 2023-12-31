@@ -54,7 +54,10 @@ public:
         return seats;
     }
 
-    void setSeats(Seat** newSeats, int numberOfSeats) {
+
+
+    void setSeats(Seat** newSeats, int numberOfSeats)
+    {
         if (numberOfSeats <= 0 || numberOfSeats > MAX_NUMBER_OF_SEATS) {
             throw RowException("Invalid number of seats");
         }
@@ -66,6 +69,21 @@ public:
         }
 
         seats = newSeats;
+    }
+
+    void addSeats(Seat* auxSeat)
+    {
+        
+        Seat** newSeats = new Seat * [this->noOfSeatsForRow+1];
+        for (int i = 0; i < this->noOfSeatsForRow; i++)
+        {
+            newSeats[i] = this->seats[i];
+        }
+
+        newSeats[this->noOfSeatsForRow] = auxSeat;
+        delete[]this->seats;
+        this->seats = newSeats;
+        this->noOfSeatsForRow++;
     }
 
     Row(int auxRowIdentifier, int auxNoOfSeatsForRow, Seat** initialSeats, int numberOfSeats)
@@ -81,17 +99,24 @@ public:
     ~Row() {
         delete[] seats;
     }
+
+    friend  ostream& operator <<(ostream& console, const Row& auxRow);
 };
 
 ostream& operator <<(ostream& console, const Row& auxRow)
 {
     console << endl << "This row's identifier is" << " " << auxRow.getRowIdentifier();
     console << endl << "This row's number of seats is" << " " << auxRow.getNoOfSeatsForRow();
-    console << endl << "This row has the following seats:" << endl;
-    for (int i = 0; i < auxRow.getNoOfSeatsForRow(); i++)
-    {
-        cout << auxRow.getSeats()[i]<<endl;
-    }
 
-    return  console;
+
+    if (auxRow.getSeats()!=nullptr)
+    {
+        console << endl << "This row has the following seats:" << endl;
+        for (int i = 0; i < auxRow.noOfSeatsForRow; i++)
+        {
+            cout << *(auxRow.seats[i]) << endl;
+        }
+        console << "******************************************************************************************************";
+        return  console;
+    }
 }

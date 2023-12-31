@@ -25,6 +25,19 @@ void decodeRows(int noRows)
 
 	}
 }
+
+void decodeTypeOfSeat(int auxType)
+{
+	while (auxType != 0 && auxType != 1 && auxType != 2 && auxType != 3 && auxType != 4)
+	{
+		cout << endl << "Your choice is not from the available set. Insert type again:";
+
+		
+		cin >> auxType;
+	}
+
+
+}
 int main() {
 
 
@@ -39,67 +52,6 @@ int main() {
 	cin >> noRows;
 
 	decodeRows(noRows);
-	
-	Seat seat1;
-
-	while (true)
-	{
-		try {
-			cout << endl << "Insert the seat number. It shall be less or equal than 15:";
-			int auxSeatNumber;
-			cin >> auxSeatNumber;
-			seat1.setSeatNumber(auxSeatNumber);
-
-			cout << endl << "Insert the seat type. It shall be an integer from the set {0, 1, 2, 3, 4}";
-			cout << endl << "Where";
-			cout << endl << "0->STANDARD seat";
-			cout << endl << "1->WHEELCHAIR seat";
-			cout << endl << "2->BROKEN seat";
-			cout << endl << "3->OCCUPIED seat";
-			cout << endl << "4->CHOSEN seat";
-			cout << endl << "Your choice is:";
-
-			int auxType;
-			cin >> auxType;
-			switch (auxType)
-			{
-			case(0):
-				seat1.setType(STANDARD);
-				break;
-			case(1):
-				seat1.setType(WHEELCHAIR);
-				break;
-			case(2):
-				seat1.setType(BROKEN);
-				break;
-			case(3):
-				seat1.setType(OCCUPIED);
-				break;
-			case(4):
-				seat1.setType(CHOSEN);
-				break;
-			default:
-				seat1.setType(OCCUPIED);
-			}
-
-
-			break;
-
-		}
-		catch (const SeatException& ex)
-		{
-			cout << endl << "Wrong seat number";
-		}
-		catch (...)
-		{
-			cout << endl << "We have an issue!";
-
-		}
-
-
-	}
-
-	cout << seat1;
 	
 	Seat* seats=new Seat[noSeats];
 
@@ -125,6 +77,7 @@ int main() {
 
 					int auxType;
 					cin >> auxType;
+					decodeTypeOfSeat(auxType);
 					switch (auxType)
 					{
 					case(0):
@@ -173,7 +126,13 @@ int main() {
 
 	Row* rows=new Row[noRows];
 
-	while (true)
+	rows[0].addSeats(&seats[0]);
+	rows[1].addSeats(&seats[0]);
+
+	cout << rows[0] << endl << rows[1];
+
+
+	/*while (true)
 	{
 		for (int i = 0; i <noRows; i++)
 		{
@@ -191,30 +150,36 @@ int main() {
 				rows[i].setNoOfSeatsForRow(auxNoSeatsPerRow);
 
 				cout << endl << "**insertion for seats occuring...";
-				rows[i].setSeats(&seats, auxNoSeatsPerRow);
+				for (int j = 0; j < noSeats; j++)
+				{
+					rows[j].addSeats(&seats[j]);
+				}
 
 				break;
 			}
 			catch (const RowException& ex)
 			{
 				cout<<endl << "Row identifier negative or more than 50 or number of seats negative or more than 15";
-				break;
+				continue;
 			}
 			catch (...)
 			{
 				cout << endl << "Exception thrown at rows";
-				break;
+				continue;
 			}
 		}
 
 		break;
-	}
+	}*/
 
 	for (int i = 0; i < noRows; i++)
 	{
 		cout << endl << "******Row" << " " << i + 1;
 		cout << rows[i];
 	}
+
+
+
 
 }
 
