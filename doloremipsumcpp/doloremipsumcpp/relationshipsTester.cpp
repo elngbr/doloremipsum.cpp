@@ -170,27 +170,28 @@ int main() {
 	/////////////////////TILL HERE WORKS PERFECTLY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-	Row newRow(1, seats[0]);
+	/*Row newRow(1, seats[0]);
 	newRow.addSeats(seats[1]);
 	newRow.addSeats(seats[2]);
 
-	cout << newRow;
+	cout << newRow;*/
 
 	/*Row row(1);
 	row.addSeats(seats[0]);
 	cout << row;
 	*/
 
-	//Row rows[50];
-	//
-	//for (int i = 0; i < noRows; ++i) 
-	//{
-	//	rows[i] = Row(i + 1,1); 
-	//	for (int j = 0; j < noSeats; ++j) {
-	//		rows[i].addSeats(seats[j], j);
-	//		cout << rows[0];
-	//	}
-	//}
+	Row rows[3];
+
+	for (int i = 0; i < noRows; i++)
+	{
+		rows[i] = Row(i + 1, seats[0]);
+	}
+	
+	for (int i = 0; i < noRows; ++i) 
+	{
+		cout << rows[i] << endl;
+	}
 
 
 
