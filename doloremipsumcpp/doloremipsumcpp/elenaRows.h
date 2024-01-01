@@ -142,6 +142,8 @@ public:
 
 ostream& operator <<(ostream& console, const Row& auxRow)
 {
+    console << "******************************************************************************************************";
+
     console << endl << "This row's identifier is" << " " << auxRow.getRowIdentifier();
     console << endl << "This row's number of seats is" << " " << auxRow.getNoOfSeatsForRow();
 
@@ -153,7 +155,10 @@ ostream& operator <<(ostream& console, const Row& auxRow)
         {
             console << *(auxRow.seats[i]) << endl;
         }
-        console << "******************************************************************************************************";
-        return  console;
+      
     }
+
+    console << "******************************************************************************************************";
+
+    return  console;
 }

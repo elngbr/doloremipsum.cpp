@@ -106,7 +106,7 @@ ostream& operator <<(ostream& console, const Seat& auxSeat)
         console << "This type of seat has been added subsequently. Plase redefine the switch function";
     }
 
-    console << "******************************" << endl;
+   
 
     return console;
 }

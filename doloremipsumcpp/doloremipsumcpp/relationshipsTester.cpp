@@ -65,146 +65,177 @@ int main() {
 	decodeSeats(noSeats);
 
 
-	//Seat draftSeat(0, BROKEN);
 
-	Seat seats[15]
+
+	Seat normalCollectionOfSeats[15]
 	{
 		Seat(1, STANDARD),
 		Seat(2, STANDARD),
 		Seat(3, STANDARD),
 		Seat(4, STANDARD),
 		Seat(5, STANDARD),
-		Seat(6, STUDENT),
-		Seat(7, STUDENT),
-		Seat(8, BROKEN),
+		Seat(6, PREMIUM),
+		Seat(7,PREMIUM),
+		Seat(8, PREMIUM),
 		Seat(9, COUPLE),
 		Seat(10, STANDARD),
 		Seat(11, STANDARD),
 		Seat(12, WHEELCHAIR),
 		Seat(13, WHEELCHAIR),
 		Seat(14, STANDARD),
-		Seat(15, PREMIUM)
+		Seat(15, STUDENT)
+	};
+
+	Seat standardCollectionOfSeatsWithBrokenChair[15]
+	{
+		Seat(1, STANDARD),
+		Seat(2, STANDARD),
+		Seat(3, STANDARD),
+		Seat(4, STANDARD),
+		Seat(5, STANDARD),
+		Seat(6, PREMIUM),
+		Seat(7,PREMIUM),
+		Seat(8, PREMIUM),
+		Seat(9, COUPLE),
+		Seat(10, BROKEN),
+		Seat(11, BROKEN),
+		Seat(12, WHEELCHAIR),
+		Seat(13, WHEELCHAIR),
+		Seat(14, STANDARD),
+		Seat(15, STUDENT)
+	};
+
+	Seat standardCollectionOfSeats[15]
+	{
+		Seat(1, STANDARD),
+		Seat(2, STANDARD),
+		Seat(3, STANDARD),
+		Seat(4, STANDARD),
+		Seat(5, STANDARD),
+		Seat(6, STANDARD),
+		Seat(7,STANDARD),
+		Seat(8,STANDARD),
+		Seat(9,STANDARD),
+		Seat(10,STANDARD),
+		Seat(11,STANDARD),
+		Seat(12,STANDARD),
+		Seat(13,STANDARD),
+		Seat(14,STANDARD),
+		Seat(15,STANDARD)
 	};
 
 
-	//cout << seats[0];
 
 
-//while (true)
-//{
-//	for (int i = 0; i < noSeats; i++)
-//	{
-//		cout << endl << "let's build seat" << " " << i + 1 << endl;
-//		try {
-//			/*cout << endl << "Insert the seat number. It shall be less or equal than 15:";
-//			int auxSeatNumber;
-//			cin >> auxSeatNumber;*/
-//			seats[i++].setSeatNumber(i + 1);
-//			//enum SeatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN, STUDENT, CHILDREN, COUPLE, FLEXIBLE, VIP, PREMIUM };
-
-//			cout << endl << "Insert the seat type. It shall be an integer from the set {0, 1, 2, 3, 4}";
-//			cout << endl << "Where";
-//			cout << endl << "0->STANDARD seat";
-//			cout << endl << "1->WHEELCHAIR seat";
-//			cout << endl << "2->BROKEN seat";
-//			cout << endl << "3->OCCUPIED seat";
-//			cout << endl << "4->CHOSEN seat";
-//			cout << endl << "5->STUDENT seat";
-//			cout << endl << "4->CHILDREN seat";
-//			cout << endl << "4->COUPLE seat";
-//			cout << endl << "4->FLEXIBLE seat";
-//			cout << endl << "4->VIP seat";
-//			cout << endl << "4->PREMIUM seat";
-//			cout << endl << "Your choice is:";
-
-//			int auxType;
-//			cin >> auxType;
-//			decodeTypeOfSeat(auxType);
-//			switch (auxType)
-//			{
-//			case(0):
-//				seats[i].setType(STANDARD);
-//				break;
-//			case(1):
-//				seats[i].setType(WHEELCHAIR);
-//				break;
-//			case(2):
-//				seats[i].setType(BROKEN);
-//				break;
-//			case(3):
-//				seats[i].setType(OCCUPIED);
-//				break;
-//			case(4):
-//				seats[i].setType(CHOSEN);
-//				break;
-//			default:
-//				seats[i].setType(OCCUPIED);
-//			}
-
-
-//			//break;
-//		}
-//		catch (const SeatException& ex)
-//		{
-//			cout << endl << "Wrong seat number for seat";
-//			break;
-//		}
-//		catch (...)
-//		{
-//			cout << endl << "We have an issue!";
-//			break;
-
-//		}
-
-//	}
-//	break;
-//}
-
-	for (int i = 0; i < noSeats; i++)
+	Seat standardCollectionOfSeatsWithWheelchairs[15]
 	{
-		cout << endl << "******Seat" << " " << i + 1;
-		cout << seats[i];
-	}
+		Seat(1, STANDARD),
+		Seat(2, STANDARD),
+		Seat(3, STANDARD),
+		Seat(4, CHILDREN),
+		Seat(5, COUPLE),
+		Seat(6, BROKEN),
+		Seat(7, STANDARD),
+		Seat(8, STANDARD),
+		Seat(9, STANDARD),
+		Seat(10, STANDARD),
+		Seat(11, STANDARD),
+		Seat(12, WHEELCHAIR),
+		Seat(13, WHEELCHAIR),
+		Seat(14, STANDARD),
+		Seat(15, STANDARD)
+	};
 
-
-	/////////////////////TILL HERE WORKS PERFECTLY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-	/*Row newRow(1, seats[0]);
-	newRow.addSeats(seats[1]);
-	newRow.addSeats(seats[2]);
-
-	cout << newRow;*/
-
-	Row row(1, seats[0]);
-	row.addSeats(seats[0]);
-	cout << row;
+	Seat vipCollectionOfSeatsWithWhellchairAndPremium[15]
+	{
+		Seat(1, VIP),
+		Seat(2, VIP),
+		Seat(3, VIP),
+		Seat(4, VIP),
+		Seat(5, PREMIUM),
+		Seat(6, PREMIUM),
+		Seat(7, VIP),
+		Seat(8, VIP),
+		Seat(9, VIP),
+		Seat(10,VIP),
+		Seat(11,VIP),
+		Seat(12,WHEELCHAIR),
+		Seat(13,WHEELCHAIR),
+		Seat(14,WHEELCHAIR),
+		Seat(15,WHEELCHAIR)
+	};
 	
 
-	Row rows[3];
 
-	for (int i = 0; i < noRows; i++)
+
+	Row normalRows[Row::MAX_ROW_IDENTIFIER];
+	for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
 	{
-		rows[i] = Row(i + 1, seats[0]);
+		normalRows[i]=Row(i+1, normalCollectionOfSeats[0]);
+
+		for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
+		{
+			normalRows[i].addSeats(normalCollectionOfSeats[j]);
+		}
 	}
-	
-	for (int i = 0; i < noRows; ++i) 
+	/*for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
+	cout << normalRows[i];*/
+
+	Row standardRows[Row::MAX_ROW_IDENTIFIER];
+	for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
 	{
-		for(int j=0; j<noSeats; j++)
-		rows[i].addSeats(seats[1]);
+		standardRows[i] = Row(i + 1, standardCollectionOfSeats[0]);
+
+		for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
+		{
+			standardRows[i].addSeats(standardCollectionOfSeats[j]);
+		}
+	}
+
+	//for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
+	//	cout << standardRows[i];
+
+
+	Row standardRowsWithBrokenChair[Row::MAX_ROW_IDENTIFIER];
+	for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
+	{
+		standardRowsWithBrokenChair[i] = Row(i + 1, standardCollectionOfSeatsWithBrokenChair[0]);
+
+		for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
+		{
+			standardRowsWithBrokenChair[i].addSeats(standardCollectionOfSeatsWithBrokenChair[j]);
+		}
 	}
 
 
 
-	
 
-	/*for (int i = 0; i < noRows; i++)
+	Row standardRowsWithWheelchairs[Row::MAX_ROW_IDENTIFIER];
+	for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
 	{
-		cout << endl << "******Row" << " " << i + 1;
-		cout << rows[i];
-	}*/
+		standardRowsWithWheelchairs[i] = Row(i + 1, standardCollectionOfSeatsWithWheelchairs[0]);
+
+		for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
+		{
+			standardRowsWithWheelchairs[i].addSeats(standardCollectionOfSeatsWithWheelchairs[j]);
+		}
+	}
 
 
+	/*for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
+		cout << standardRowsWithWheelchairs[i];*/
 
+	Row vipRowsWithWheelchairAndPremium[Row::MAX_ROW_IDENTIFIER];
+	for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
+	{
+		vipRowsWithWheelchairAndPremium[i] = Row(i + 1, vipCollectionOfSeatsWithWhellchairAndPremium[0]);
 
+		for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
+		{
+			vipRowsWithWheelchairAndPremium[i].addSeats(vipCollectionOfSeatsWithWhellchairAndPremium[j]);
+		}
+	}
+
+	for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
+		cout << vipRowsWithWheelchairAndPremium[i];
 }
