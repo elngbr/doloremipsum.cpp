@@ -176,10 +176,10 @@ int main() {
 
 	cout << newRow;*/
 
-	/*Row row(1);
+	Row row(1, seats[0]);
 	row.addSeats(seats[0]);
 	cout << row;
-	*/
+	
 
 	Row rows[3];
 
@@ -190,82 +190,19 @@ int main() {
 	
 	for (int i = 0; i < noRows; ++i) 
 	{
-		cout << rows[i] << endl;
+		for(int j=0; j<noSeats; j++)
+		rows[i].addSeats(seats[1]);
 	}
 
 
 
-	//cout << endl<<rows[0];
+	
 
-	/*for (int i = 0; i < 50; ++i) {
-		rows[i] = Row(i + 1, 1);
-		rows[i].addSeats(seats[0]);
-	}
-
-	rows[0].addSeats(seats[0]);
-
-	cout << rows[0];*/
-	////////////////////////////////////////////FOR TOMORROW :                              FA UN CONSTRUCTOR PT ROW CU TOT CU SEATS!
-
-
-
-	//for (int i = 0; i < noSeats; i++)
-	//{
-	//	rows[1].addSeats(seats[i]);
-	//}
-
-
-	/*rows[0].addSeats(&seats[0]);
-	rows[1].addSeats(&seats[0]);*/
-
-	/*out << rows[0] << endl << rows[1];*/
-
-
-	//while (true)
-	//{
-	//	for (int i = 0; i < noRows; i++)
-	//	{
-	//		cout << endl << "Let's create row" << " " << i + 1;
-	//		try
-	//		{
-	//			/*cout << endl << "Please insert the row identifier";
-	//			int auxRowIdentifier;
-	//			cin >> auxRowIdentifier;*/
-	//			rows[i].setRowIdentifier(i + 1);
-
-	//			/*	cout << endl << "Please insert a number of seats per row";*/
-	//			int auxNoSeatsPerRow = noSeats;
-
-	//			rows[i].setNoOfSeatsForRow(auxNoSeatsPerRow);
-
-	//			cout << endl << "**insertion for seats occuring...";
-	//			for (int j = 0; j < auxNoSeatsPerRow; j++)
-	//			{
-	//				rows[i].addSeats(seats[j]);
-	//			}
-
-	//			//break;
-	//		}
-	//		catch (const RowException& ex)
-	//		{
-	//			cout << endl << "Row identifier negative or more than 50 or number of seats negative or more than 15";
-
-	//		}
-	//		catch (...)
-	//		{
-	//			cout << endl << "Exception thrown at rows";
-
-	//		}
-	//	}
-
-	//	break;
-	//}
-
-	//for (int i = 0; i < noRows; i++)
-	//{
-	//	cout << endl << "******Row" << " " << i + 1;
-	//	cout << rows[i];
-	//}
+	/*for (int i = 0; i < noRows; i++)
+	{
+		cout << endl << "******Row" << " " << i + 1;
+		cout << rows[i];
+	}*/
 
 
 

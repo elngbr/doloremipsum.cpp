@@ -86,7 +86,8 @@ public:
         }
 
         newSeats[this->noOfSeatsForRow] = new Seat(auxSeat);
-        delete[]this->seats;
+       
+        delete[] this->seats;
         this->seats = newSeats;
         this->noOfSeatsForRow++;
     }
@@ -106,7 +107,7 @@ public:
     void initializeSeats() {
         seats = new Seat * [noOfSeatsForRow];
         for (int i = 0; i < noOfSeatsForRow; ++i) {
-            seats[i] = nullptr; // Initialize seats to nullptr
+            seats[i] = nullptr; 
         }
     }
 
