@@ -36,6 +36,7 @@ public:
         if (auxNo < 0 || auxNo>Seat::MAX_IDENTIFIER_OF_SEAT) {
             throw SeatException("Seat number cannot be negative");
         }
+        else throw exception("Something wrong at seats ID");
         seatNumber = auxNo;
     }
 

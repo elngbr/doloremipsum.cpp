@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="elenaRows.h" />
     <ClInclude Include="elenaSeats.h" />
+    <ClInclude Include="elenaZones.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

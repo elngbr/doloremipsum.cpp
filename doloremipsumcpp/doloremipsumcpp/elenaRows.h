@@ -4,11 +4,35 @@
 #include<iostream>
 #include<fstream>
 
-class RowException {
+class RowIdentifierException {
 private:
     string message;
 public:
-    RowException(const string& msg) : message(msg) {}
+    RowIdentifierException(const string& msg) : message(msg) {}
+
+    string what()const
+    {
+        return message;
+    }
+};
+
+class NoOfSeatsForRowException {
+private:
+    string message;
+public:
+    NoOfSeatsForRowException(const string& msg) : message(msg) {}
+
+    string what()const
+    {
+        return message;
+    }
+};
+
+class NullSeatException {
+private:
+    string message;
+public:
+    NullSeatException(const string& msg) : message(msg) {}
 
     string what()const
     {
@@ -39,8 +63,10 @@ public:
 
     void setRowIdentifier(int auxIdentifier) {
         if (auxIdentifier < 0 || auxIdentifier>MAX_ROW_IDENTIFIER) {
-            throw RowException("Row identifier cannot be negative or more than 50");
+            throw RowIdentifierException("Row identifier cannot be negative or more than 50");
         }
+        else throw RowIdentifierException("Something wrong with row identifier");
+
         rowIdentifier = auxIdentifier;
     }
 
@@ -50,8 +76,9 @@ public:
 
     void setNoOfSeatsForRow(int auxNoOfSeats) {
         if (auxNoOfSeats <= 0 || auxNoOfSeats > MAX_NUMBER_OF_SEATS) {
-            throw RowException("Invalid number of seats for the row");
+            throw NoOfSeatsForRowException("Invalid number of seats for the row");
         }
+        else throw NoOfSeatsForRowException("Something wrong with the number of seats per row");
         noOfSeatsForRow = auxNoOfSeats;
     }
 
@@ -61,20 +88,22 @@ public:
 
 
 
-    void setSeats(Seat** newSeats, int numberOfSeats)
-    {
-        if (numberOfSeats <= 0 || numberOfSeats > MAX_NUMBER_OF_SEATS) {
-            throw RowException("Invalid number of seats");
-        }
+    //void setSeats(Seat** newSeats, int numberOfSeats)
+    //{
+    //    if (numberOfSeats <= 0 || numberOfSeats > MAX_NUMBER_OF_SEATS) {
+    //        throw NoOfSeatsForRowException("Invalid number of seats");
+    //    }
+    //    else throw NoOfSeatsForRowException("Something wrong with the number of seats per row");
 
-        for (int i = 0; i < numberOfSeats; ++i) {
-            if (newSeats[i] == nullptr) {
-                throw RowException("Null seat encountered");
-            }
-        }
 
-        seats = newSeats;
-    }
+    //    for (int i = 0; i < numberOfSeats; ++i) {
+    //        if (newSeats[i] == nullptr) {
+    //            throw NullSeatException("Null seat encountered");
+    //        }
+    //    }
+
+    //    seats = newSeats;
+    //}
 
     void addSeats(Seat auxSeat)
     {
