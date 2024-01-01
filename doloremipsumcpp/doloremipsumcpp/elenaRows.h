@@ -4,7 +4,7 @@
 #include<iostream>
 #include<fstream>
 
-class RowException  {
+class RowException {
 private:
     string message;
 public:
@@ -16,7 +16,7 @@ public:
     }
 };
 
-class Row {
+class Row : public Seat {
 private:
     int rowIdentifier = 0;
     int noOfSeatsForRow = 0;
@@ -25,7 +25,12 @@ private:
 
 public:
 
-    static const int MAX_NUMBER_OF_SEATS = 10;
+
+    Row() : Seat(0, STANDARD)
+    {
+        seats = nullptr;
+    }
+    static const int MAX_NUMBER_OF_SEATS = 15;
     static const int MAX_ROW_IDENTIFIER = 50;
 
     int getRowIdentifier() const {
@@ -71,10 +76,10 @@ public:
         seats = newSeats;
     }
 
-    void addSeats(Seat& auxSeat)
+    void addSeats(Seat auxSeat)
     {
-        
-        Seat** newSeats = new Seat * [this->noOfSeatsForRow+1];
+
+        Seat** newSeats = new Seat * [this->noOfSeatsForRow + 1];
         for (int i = 0; i < this->noOfSeatsForRow; i++)
         {
             newSeats[i] = this->seats[i];
@@ -86,30 +91,50 @@ public:
         this->noOfSeatsForRow++;
     }
 
-    Row(int auxRowIdentifier, int auxNoOfSeatsForRow, Seat** initialSeats, int numberOfSeats)
+    Row(int auxRowIdentifier, Seat singleSeat)
+        : rowIdentifier(auxRowIdentifier), noOfSeatsForRow(1) {
+        initializeSeats();
+        seats[0] = &singleSeat;
+    }
+
+    Row(int auxRowIdentifier, int auxNoOfSeatsForRow, Seat seatArray)
         : rowIdentifier(auxRowIdentifier), noOfSeatsForRow(auxNoOfSeatsForRow) {
-        setSeats(initialSeats, numberOfSeats);
+        initializeSeats();
+        addSeats(seatArray);
     }
 
-    Row()
-    {
-        seats = nullptr;
-    }
-
-    Row(int noOfSeats) : noOfSeatsForRow(noOfSeats) {
+    void initializeSeats() {
         seats = new Seat * [noOfSeatsForRow];
         for (int i = 0; i < noOfSeatsForRow; ++i) {
-            seats[i] = nullptr; 
+            seats[i] = nullptr; // Initialize seats to nullptr
         }
     }
 
-    ~Row() {
+
+    /*void addSeats(Seat& auxSeat, int seatIndex) {
+        if (seatIndex >= 0 && seatIndex < noOfSeatsForRow) {
+            seats[seatIndex] = &auxSeat;
+        }
+    }*/
+    /*Row()
+    {
+        seats = nullptr;
+    }*/
+
+    Row(int noOfSeats) : noOfSeatsForRow(noOfSeats), Seat(0, STANDARD) {
+        seats = new Seat * [noOfSeatsForRow];
+        for (int i = 0; i < noOfSeatsForRow; ++i) {
+            seats[i] = nullptr;
+        }
+    }
+
+    /*~Row() {
         for (int i = 0; i < this->noOfSeatsForRow; ++i)
         {
             delete seats[i];
         }
         delete[] seats;
-    }
+    }*/
 
     friend  ostream& operator <<(ostream& console, const Row& auxRow);
 };
@@ -120,12 +145,12 @@ ostream& operator <<(ostream& console, const Row& auxRow)
     console << endl << "This row's number of seats is" << " " << auxRow.getNoOfSeatsForRow();
 
 
-    if (auxRow.getSeats()!=nullptr)
+    if (auxRow.getSeats() != nullptr)
     {
         console << endl << "This row has the following seats:" << endl;
         for (int i = 0; i < auxRow.noOfSeatsForRow; i++)
         {
-            cout << *(auxRow.seats[i]) << endl;
+            console << *(auxRow.seats[i]) << endl;
         }
         console << "******************************************************************************************************";
         return  console;
