@@ -5,6 +5,8 @@
 #include<iostream>
 #include<fstream>
 
+using namespace std;
+
 ///a zone IS a collection of rows
 
 class WrongZoneIdentifierException
@@ -20,9 +22,12 @@ public:
 	}
 };
 
-enum zoneType{STAND, NORMAL, VIP, CATEGORY, CAMPING, PREMIUM, FAMILY, STUDENT, BACKSTAGE, GREEN, SRO, NETWORKING, GAME, RESTAURANT, BALCONY, AMPHITEATHER};
+enum zoneType{STAND, NORMAL, VIPZ, CATEGORY, CAMPING, PREMIUMZ, FAMILY, STUDENTZ, BACKSTAGE, GREEN, SRO, NETWORKING, GAME, RESTAURANT, BALCONY, AMPHITEATHER};
 //SRO-----seating room only
-class Zone :public Row
+
+
+
+class Zone 
 {
 private:
 	int zoneIdentifier = 0;
@@ -47,7 +52,7 @@ public:
 		{
 			throw WrongZoneIdentifierException("A location cannot have more that 6 zones.");
 		}
-		else throw WrongZoneIdentifierException("Something wrong with zone Identifier");
+		
 		this->zoneIdentifier = auxZoneIdentifier;
 	}
 
@@ -67,7 +72,7 @@ public:
 			throw RowIdentifierException("You cannot have more than 50 rows per zone.");
 
 		}
-		else throw RowIdentifierException("Something went wrong when initialising the number of rows.");
+		
 		this->numberOfRowsPerZone = auxNumberOfRowsPerZone;
 	}
 
@@ -89,7 +94,7 @@ public:
 			throw SeatException("A row cannot have more than seats.");
 
 		}
-		else throw SeatException("Something wrong at number of seats ");
+		
 
 		this->numberOfSeatsPerRowPerZone = auxNumberOfSeatsPerRowPerZone;
 
@@ -134,17 +139,42 @@ public:
 		rows[0] = &auxRow;
 	}
 
+	Zone( Row auxRow)
+		
+	{
+
+		initializeRows();
+		rows[0] = &auxRow;
+		this->numberOfRowsPerZone++;
+		this->numberOfSeatsPerRowPerZone = auxRow.getNoOfSeatsForRow();
+	}
+
+	/*Zone() :Row(STANDARD)
+	{
+
+	}*/
+
+	Zone()
+	{
+
+	}
+
 	friend ostream& operator<<(ostream& console, Zone& auxZone);
 };
 
 
 ostream& operator<<(ostream& console, Zone& auxZone)
 {
+
+	console << endl << "This zone has identifier" << " " << auxZone.zoneIdentifier;
+	console << endl << "This zone has " << " " << auxZone.numberOfRowsPerZone<<" "<<"rows.";
+	console << endl << "This zone has " << " " << auxZone.numberOfSeatsPerRowPerZone << " " << "row.";
+
 	console << endl << "***********************************************************************";
 	console << endl << "This zone has type " << " ";
 	//enum zoneType { STAND, NORMAL, VIP, CATEGORY, CAMPING, PREMIUM, FAMILY, STUDENT, BACKSTAGE, GREEN, SRO, NETWORKING, GAME, RESTAURANT, BALCONY, AMPHITEATHER };
 
-	switch (auxZone.getType())
+	switch (auxZone.typeOfZone)
 	{
 	case(0):
 		console << "Stand zone";
@@ -196,4 +226,12 @@ ostream& operator<<(ostream& console, Zone& auxZone)
 		break;
 	}
 	
+
+
+	for (int i = 0; i < auxZone.numberOfRowsPerZone; i++)
+	{
+		console << endl << (*auxZone.rows[i]);
+	}
+	return console;
+
 }

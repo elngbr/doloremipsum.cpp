@@ -1,8 +1,13 @@
 #include "elenaRows.h"
 #include "elenaSeats.h"
+#include "elenaZones.h"
 #include<string>
 #include<iostream>
 #include<fstream>
+
+class Row;
+class Seat;
+class Zone;
 void decodeSeats(int noSeats)
 {
 	while (noSeats < 0 || noSeats > Row::MAX_NUMBER_OF_SEATS)
@@ -165,77 +170,123 @@ int main() {
 		Seat(15,WHEELCHAIR)
 	};
 	
+	///*********************************************************************************************************************************************************************8
 
 
+	//Row normalRows[Row::MAX_ROW_IDENTIFIER];
 
-	Row normalRows[Row::MAX_ROW_IDENTIFIER];
-	for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
-	{
-		normalRows[i]=Row(i+1, normalCollectionOfSeats[0]);
 
-		for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
-		{
-			normalRows[i].addSeats(normalCollectionOfSeats[j]);
-		}
-	}
-	/*for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
-	cout << normalRows[i];*/
-
-	Row standardRows[Row::MAX_ROW_IDENTIFIER];
-	for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
-	{
-		standardRows[i] = Row(i + 1, standardCollectionOfSeats[0]);
-
-		for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
-		{
-			standardRows[i].addSeats(standardCollectionOfSeats[j]);
-		}
-	}
 
 	//for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
-	//	cout << standardRows[i];
+	//{
+	//	normalRows[i]=Row(i+1, normalCollectionOfSeats[0]);
+
+	//	for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
+	//	{
+	//		normalRows[i].addSeats(normalCollectionOfSeats[j]);
+	//	}
+	//}
+	///*for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
+	//cout << normalRows[i];*/
+
+	//Row standardRows[Row::MAX_ROW_IDENTIFIER];
+	//for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
+	//{
+	//	standardRows[i] = Row(i + 1, standardCollectionOfSeats[0]);
+
+	//	for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
+	//	{
+	//		standardRows[i].addSeats(standardCollectionOfSeats[j]);
+	//	}
+	//}
+
+	////for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
+	////	cout << standardRows[i];
 
 
-	Row standardRowsWithBrokenChair[Row::MAX_ROW_IDENTIFIER];
-	for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
-	{
-		standardRowsWithBrokenChair[i] = Row(i + 1, standardCollectionOfSeatsWithBrokenChair[0]);
+	//Row standardRowsWithBrokenChair[Row::MAX_ROW_IDENTIFIER];
+	//for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
+	//{
+	//	standardRowsWithBrokenChair[i] = Row(i + 1, standardCollectionOfSeatsWithBrokenChair[0]);
 
-		for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
-		{
-			standardRowsWithBrokenChair[i].addSeats(standardCollectionOfSeatsWithBrokenChair[j]);
-		}
-	}
-
-
+	//	for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
+	//	{
+	//		standardRowsWithBrokenChair[i].addSeats(standardCollectionOfSeatsWithBrokenChair[j]);
+	//	}
+	//}
 
 
-	Row standardRowsWithWheelchairs[Row::MAX_ROW_IDENTIFIER];
-	for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
-	{
-		standardRowsWithWheelchairs[i] = Row(i + 1, standardCollectionOfSeatsWithWheelchairs[0]);
-
-		for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
-		{
-			standardRowsWithWheelchairs[i].addSeats(standardCollectionOfSeatsWithWheelchairs[j]);
-		}
-	}
 
 
-	/*for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
-		cout << standardRowsWithWheelchairs[i];*/
+	//Row standardRowsWithWheelchairs[Row::MAX_ROW_IDENTIFIER];
+	//for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
+	//{
+	//	standardRowsWithWheelchairs[i] = Row(i + 1, standardCollectionOfSeatsWithWheelchairs[0]);
 
-	Row vipRowsWithWheelchairAndPremium[Row::MAX_ROW_IDENTIFIER];
-	for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
-	{
-		vipRowsWithWheelchairAndPremium[i] = Row(i + 1, vipCollectionOfSeatsWithWhellchairAndPremium[0]);
+	//	for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
+	//	{
+	//		standardRowsWithWheelchairs[i].addSeats(standardCollectionOfSeatsWithWheelchairs[j]);
+	//	}
+	//}
 
-		for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
-		{
-			vipRowsWithWheelchairAndPremium[i].addSeats(vipCollectionOfSeatsWithWhellchairAndPremium[j]);
-		}
-	}
 
-	for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
-		cout << vipRowsWithWheelchairAndPremium[i];
+	///*for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
+	//	cout << standardRowsWithWheelchairs[i];*/
+
+	//Row vipRowsWithWheelchairAndPremium[Row::MAX_ROW_IDENTIFIER];
+	//for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
+	//{
+	//	vipRowsWithWheelchairAndPremium[i] = Row(i + 1, vipCollectionOfSeatsWithWhellchairAndPremium[0]);
+
+	//	for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
+	//	{
+	//		vipRowsWithWheelchairAndPremium[i].addSeats(vipCollectionOfSeatsWithWhellchairAndPremium[j]);
+	//	}
+	//}
+
+	//for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
+	//	cout << vipRowsWithWheelchairAndPremium[i];
+
+	/////********************************************************************************************************************************************************************************
+
+	////enum zoneType { STAND, NORMAL, VIP, CATEGORY, CAMPING, PREMIUM, FAMILY, STUDENT, BACKSTAGE, GREEN, SRO, NETWORKING, GAME, RESTAURANT, BALCONY, AMPHITEATHER };
+
+
+
+
+
+
+
+
+	/////*******************************************************************************************************************************************************************************
+	//Zone standZone[Zone::MAX_ZONE_IDENTIFIER];
+
+	//for (int i = 0; i < Zone::MAX_ZONE_IDENTIFIER; i++)
+	//{
+	//	standZone[i] = Zone(i + 1, standardRows[0]);
+
+	//	for (int j =0; j < 4;j++)
+	//	{
+	//		standZone[i].addRows(j, standardRows[j]);
+	//	}
+
+	//	for (int j = 4; j<6; j++)
+	//	{
+	//		standZone[i].addRows(j, standardRowsWithWheelchairs[j]);
+
+	//	}
+
+	//	
+	//}
+
+
+
+	Seat seat(BROKEN);
+	//cout << seat;
+	Row row(seat);
+	Zone zone(row);
+
+	cout << zone;
+	
+
 }

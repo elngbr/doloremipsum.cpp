@@ -1,9 +1,12 @@
 
 #pragma once
 #include "elenaRows.h"
+#include "elenaZones.h"
 #include<string>
 #include<iostream>
 #include<fstream>
+
+
 
 using namespace std;
 enum SeatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN, STUDENT, CHILDREN, COUPLE, FLEXIBLE, VIP, PREMIUM };
@@ -36,7 +39,7 @@ public:
         if (auxNo < 0 || auxNo>Seat::MAX_IDENTIFIER_OF_SEAT) {
             throw SeatException("Seat number cannot be negative");
         }
-        else throw exception("Something wrong at seats ID");
+        
         seatNumber = auxNo;
     }
 
@@ -55,12 +58,17 @@ public:
     Seat(int auxSeatNo, SeatType auxType) : seatNumber(auxSeatNo), type(auxType) {}
     friend ostream& operator <<(ostream& console, const Seat& auxSeat);
 
+    Seat(SeatType auxType):type(auxType)
+    {
+
+    }
+
 };
 
 
 ostream& operator <<(ostream& console, const Seat& auxSeat)
 {
-    console << endl << "This seat has the identifier" << " " << auxSeat.seatNumber;
+   // console << endl << "This seat has the identifier" << " " << auxSeat.seatNumber;
 
     console << endl << "This seats's type is:" << " ";
     /*enum SeatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN };*/

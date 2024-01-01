@@ -1,8 +1,12 @@
 #pragma once
+#include "elenaRows.h"
+
 #include "elenaSeats.h"
 #include<string>
 #include<iostream>
 #include<fstream>
+
+using namespace std;
 
 class RowIdentifierException {
 private:
@@ -40,7 +44,8 @@ public:
     }
 };
 
-class Row : public Seat {
+class Row 
+{
 private:
     int rowIdentifier = 0;
     int noOfSeatsForRow = 0;
@@ -50,10 +55,7 @@ private:
 public:
 
 
-    Row() : Seat(0, STANDARD)
-    {
-        seats = nullptr;
-    }
+    
     static const int MAX_NUMBER_OF_SEATS = 15;
     static const int MAX_ROW_IDENTIFIER = 50;
 
@@ -65,7 +67,7 @@ public:
         if (auxIdentifier < 0 || auxIdentifier>MAX_ROW_IDENTIFIER) {
             throw RowIdentifierException("Row identifier cannot be negative or more than 50");
         }
-        else throw RowIdentifierException("Something wrong with row identifier");
+        
 
         rowIdentifier = auxIdentifier;
     }
@@ -78,7 +80,7 @@ public:
         if (auxNoOfSeats <= 0 || auxNoOfSeats > MAX_NUMBER_OF_SEATS) {
             throw NoOfSeatsForRowException("Invalid number of seats for the row");
         }
-        else throw NoOfSeatsForRowException("Something wrong with the number of seats per row");
+       
         noOfSeatsForRow = auxNoOfSeats;
     }
 
@@ -127,6 +129,12 @@ public:
         seats[0] = &singleSeat;
     }
 
+    Row( Seat singleSeat)
+        : noOfSeatsForRow(1) {
+        initializeSeats();
+        seats[0] = &singleSeat;
+    }
+
     Row(int auxRowIdentifier, int auxNoOfSeatsForRow, Seat seatArray)
         : rowIdentifier(auxRowIdentifier), noOfSeatsForRow(auxNoOfSeatsForRow) {
         initializeSeats();
@@ -140,6 +148,11 @@ public:
         }
     }
 
+    Row()
+    {
+
+    }
+
 
     /*void addSeats(Seat& auxSeat, int seatIndex) {
         if (seatIndex >= 0 && seatIndex < noOfSeatsForRow) {
@@ -151,12 +164,7 @@ public:
         seats = nullptr;
     }*/
 
-    Row(int noOfSeats) : noOfSeatsForRow(noOfSeats), Seat(0, STANDARD) {
-        seats = new Seat * [noOfSeatsForRow];
-        for (int i = 0; i < noOfSeatsForRow; ++i) {
-            seats[i] = nullptr;
-        }
-    }
+   
 
     /*~Row() {
         for (int i = 0; i < this->noOfSeatsForRow; ++i)
@@ -166,6 +174,8 @@ public:
         delete[] seats;
     }*/
 
+
+    
     friend  ostream& operator <<(ostream& console, const Row& auxRow);
 };
 
@@ -182,6 +192,7 @@ ostream& operator <<(ostream& console, const Row& auxRow)
         console << endl << "This row has the following seats:" << endl;
         for (int i = 0; i < auxRow.noOfSeatsForRow; i++)
         {
+            console << endl << "This seat has identifier" << " " << i + 1;
             console << *(auxRow.seats[i]) << endl;
         }
       
