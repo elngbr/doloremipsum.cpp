@@ -1,47 +1,22 @@
 
 #pragma once
+
 #include "elenaRows.h"
-#include "elenaZones.h"
+
+
 #include<string>
 #include<iostream>
 #include<fstream>
 
-
-
 using namespace std;
-enum SeatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN, STUDENT, CHILDREN, COUPLE, FLEXIBLE, VIP, PREMIUM };
-
-class SeatException {
-private:
-    string message;
-
-public:
-    SeatException(const string& msg) : message(msg) {}
-
-    string what() const {
-        return message;
-    }
-};
+enum SeatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN, STUDENT, CHILDREN, COUPLE, FLEXIBLE, VIP, PREMIUM, BEANBAG };
 
 class Seat {
 private:
-    int seatNumber = 0;
+
     SeatType type = SeatType::STANDARD;
 
 public:
-    int static const MAX_IDENTIFIER_OF_SEAT = 15;
-    int getSeatNumber() const
-    {
-        return seatNumber;
-    }
-
-    void setSeatNumber(int auxNo) {
-        if (auxNo < 0 || auxNo>Seat::MAX_IDENTIFIER_OF_SEAT) {
-            throw SeatException("Seat number cannot be negative");
-        }
-        
-        seatNumber = auxNo;
-    }
 
     SeatType getType() const {
         return type;
@@ -51,26 +26,20 @@ public:
         this->type = auxType;
     }
 
-    Seat()
+    Seat(SeatType auxType) :type(auxType)
     {
 
     }
-    Seat(int auxSeatNo, SeatType auxType) : seatNumber(auxSeatNo), type(auxType) {}
-    friend ostream& operator <<(ostream& console, const Seat& auxSeat);
 
-    Seat(SeatType auxType):type(auxType)
-    {
-
-    }
+    friend inline ostream& operator <<(ostream& console, const Seat& auxSeat);
 
 };
 
 
-ostream& operator <<(ostream& console, const Seat& auxSeat)
+inline ostream& operator <<(ostream& console, const Seat& auxSeat)
 {
-   // console << endl << "This seat has the identifier" << " " << auxSeat.seatNumber;
 
-    console << endl << "This seats's type is:" << " ";
+    console << endl << "This seat's type is:" << " ";
     /*enum SeatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN };*/
     //enum SeatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN, STUDENT, CHILDREN, COUPLE, FLEXIBLE, VIP, PREMIUM };
 
@@ -110,12 +79,14 @@ ostream& operator <<(ostream& console, const Seat& auxSeat)
     case(10):
         console << "PREMIUM seat";
         break;
-
+    case(11):
+        console << "BEAN-BAG seat.very comfortable";
+        break;
     default:
         console << "This type of seat has been added subsequently. Plase redefine the switch function";
     }
 
-   
+
 
     return console;
 }

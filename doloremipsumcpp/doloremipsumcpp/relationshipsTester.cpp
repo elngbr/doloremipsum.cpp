@@ -1,284 +1,226 @@
+
+
 #include "elenaRows.h"
 #include "elenaSeats.h"
 #include "elenaZones.h"
+#include "OverloadedF.h"
 #include<string>
 #include<iostream>
 #include<fstream>
 
-class Row;
-class Seat;
-class Zone;
-void decodeSeats(int noSeats)
-{
-	while (noSeats < 0 || noSeats > Row::MAX_NUMBER_OF_SEATS)
-	{
-		cout << "No seats less than 0 ore more than 15. Please insert again no of seats:";
-		cin >> noSeats;
+int main()
 
+{
+
+	Seat standardSeat(STANDARD);
+	Seat wheelchairSeat(WHEELCHAIR);
+	Seat brokenseat(BROKEN);
+	Seat occupiedSeat(OCCUPIED);
+	Seat chosenSeat(CHOSEN);
+	Seat studentSeat(STUDENT);
+	Seat childrenSeat(CHILDREN);
+	Seat coupleSeat(COUPLE);
+	Seat flexibleSeat(FLEXIBLE);
+	Seat vipSeat(VIP);
+	Seat premiumSeat(PREMIUM);
+	Seat beanbagSeat(BEANBAG);
+
+
+	///creating a normal row with: 
+	//first 5 seats=STANDARD,
+	//the 6th OCCUPIED,
+	//THE 7th STUDENT,
+	//the 8th BROKEN,
+	//the 9th&10th STUDENT,
+	//11th&12th&13th STANDARD
+	//the 14th OCCUPIED
+	//the 15th CHILDREN
+
+	Row normalRow;///////The best row to add anywhere, a combo of them all
+	Row standardRow;///Creating a standard row full of standard seats
+	Row studentRowWithWheelchair;//Creating a student row with 11 student seats and 4 wheelchairs
+	Row studentRow;//full of student rows
+	Row vipRow; //full of VIP
+	Row premiumRow;//full of premium
+	Row coupleRow;//full of couple
+	Row beanbagRow;///full of beanbags
+	Row vipWithWheelchairRow;
+	normalRow.addSeats(standardSeat); //1st row
+	normalRow.addSeats(standardSeat);
+	normalRow.addSeats(standardSeat);
+	normalRow.addSeats(standardSeat);
+	normalRow.addSeats(standardSeat);
+	normalRow.addSeats(occupiedSeat);
+	normalRow.addSeats(studentSeat);
+	normalRow.addSeats(brokenseat);
+	normalRow.addSeats(studentSeat);
+	normalRow.addSeats(studentSeat);
+	normalRow.addSeats(standardSeat);
+	normalRow.addSeats(wheelchairSeat);
+	normalRow.addSeats(wheelchairSeat);
+	normalRow.addSeats(occupiedSeat);
+	normalRow.addSeats(childrenSeat);
+
+
+
+	///Initializations for all rows created ********************************************************************************************
+
+	/*for (int i = 0; i < Row::MAX_NUMBER_OF_SEATS; i++)
+	{
+		standardRow.addSeats(standardSeat);
+	}*/
+
+	addSeats(standardRow, 15, standardSeat);
+
+
+
+	/*for (int i = 0; i < 12; i++)
+	{
+		studentRowWithWheelchair.addSeats(studentSeat);
+	}
+	for (int i = 12; i < Row::MAX_NUMBER_OF_SEATS; i++)
+	{
+		studentRowWithWheelchair.addSeats(wheelchairSeat);
+	}*/
+	addSeats(studentRowWithWheelchair, 12, studentSeat, Row::MAX_NUMBER_OF_SEATS, wheelchairSeat);
+
+
+
+
+	/*for (int i = 0; i < Row::MAX_NUMBER_OF_SEATS; i++)
+	{
+		studentRow.addSeats(studentSeat);
+	}*/
+	addSeats(studentRow, Row::MAX_NUMBER_OF_SEATS, studentSeat);
+
+
+	/*for (int i = 0; i < Row::MAX_NUMBER_OF_SEATS; i++)
+	{
+		vipRow.addSeats(vipSeat);
+	}*/
+
+	addSeats(vipRow, Row::MAX_NUMBER_OF_SEATS, vipSeat);
+
+	/*for (int i = 0; i < Row::MAX_NUMBER_OF_SEATS; i++)
+	{
+		premiumRow.addSeats(premiumSeat);
+	}*/
+	addSeats(premiumRow, Row::MAX_NUMBER_OF_SEATS, premiumSeat);
+
+
+
+
+	/*for (int i = 0; i < Row::MAX_NUMBER_OF_SEATS; i++)
+	{
+		coupleRow.addSeats(coupleSeat);
+	}*/
+
+	addSeats(coupleRow, Row::MAX_NUMBER_OF_SEATS, coupleSeat);
+
+	/*for (int i = 0; i < Row::MAX_NUMBER_OF_SEATS; i++)
+	{
+		beanbagRow.addSeats(beanbagSeat);
+	}*/
+
+	addSeats(beanbagRow, Row::MAX_NUMBER_OF_SEATS, beanbagSeat);
+
+	/*for (int i = 0; i < 10; i++)
+	{
+		vipWithWheelchairRow.addSeats(vipSeat);
+	}
+
+	for (int i = 10; i < Row::MAX_NUMBER_OF_SEATS; i++)
+	{
+		vipWithWheelchairRow.addSeats(wheelchairSeat);
+	}*/
+	addSeats(vipWithWheelchairRow, 10, vipSeat, Row::MAX_NUMBER_OF_SEATS, wheelchairSeat);
+
+	cout << vipWithWheelchairRow;
+	// *********************************************************************************************************************************************
+
+
+	Zone standZone(STAND); ////standard, standardwithwhellchair, students
+	Zone normalZone(NORMAL);
+	Zone vipZone(VIPZ);
+	Zone categoryZone(CATEGORY);
+	Zone campingZone(CAMPING);
+	Zone premiumZone(PREMIUMZ);
+	Zone familyZone(FAMILY);
+	Zone studentZone(STUDENTZ);
+	Zone backstageZone(BACKSTAGE);
+	Zone greenZone(GREEN);
+	Zone sroZone(SRO);
+	Zone networkingZone(NETWORKING);
+	Zone gameZone(GAME);
+	Zone restaurantZone(FOOD);
+	Zone balconyZone(BALCONY);
+	Zone amphitheaterZone(AMPHITHEATER);
+
+
+	///Insertions of rows in zones**********************************************************************************************************************
+
+
+
+
+	///**************************************************************************************************************************************************
+
+	for (int i = 0; i < 3; i++)
+	{
+		standZone.addRows(standardRow);
+	}
+	for (int i = 3; i < 7; i++)
+	{
+		standZone.addRows(normalRow);
+	}
+	for (int i = 7; i < Zone::MAX_ROW_IDENTIFIER_PER_ZONE; i++)
+	{
+		standZone.addRows(standardRow);
 	}
 
 
-}
 
-void decodeRows(int noRows)
-{
-	while (noRows < 0 || noRows > Row::MAX_ROW_IDENTIFIER)
+
+
+	for (int i = 0; i < Zone::MAX_ROW_IDENTIFIER_PER_ZONE; i++)
 	{
-		cout << "No rows less than 0 ore more than 50. Please insert again no of rows:";
-		cin >> noRows;
-
-	}
-}
-
-void decodeTypeOfSeat(int auxType)
-{
-	while (auxType != 0 && auxType != 1 && auxType != 2 && auxType != 3 && auxType != 4)
-	{
-		cout << endl << "Your choice is not from the available set. Insert type again:";
-
-
-		cin >> auxType;
+		normalZone.addRows(normalRow);
 	}
 
 
-}
-
-void decodeRowIdentifier(int auxRowIdentifier, int noRows)
-{
-	if (auxRowIdentifier<0 || auxRowIdentifier>noRows)
+	for (int i = 0; i < 6; i++)
 	{
-		cout << "The identifier cannot be negative.Please insert a positive unique value.";
-		cin >> auxRowIdentifier;
+		vipZone.addRows(vipWithWheelchairRow);
 	}
-}
-int main() {
 
-
-	int  noSeats = 0;
-	int noRows = 0;
-
-
-
-	cout << "Please insert no of rows:";
-	cin >> noRows;
-
-	decodeRows(noRows);
-
-	cout << "Please insert no of seats per row:";
-	cin >> noSeats;
-
-	decodeSeats(noSeats);
-
-
-
-
-	Seat normalCollectionOfSeats[15]
+	for (int i = 6; i < Zone::MAX_ROW_IDENTIFIER_PER_ZONE; i++)
 	{
-		Seat(1, STANDARD),
-		Seat(2, STANDARD),
-		Seat(3, STANDARD),
-		Seat(4, STANDARD),
-		Seat(5, STANDARD),
-		Seat(6, PREMIUM),
-		Seat(7,PREMIUM),
-		Seat(8, PREMIUM),
-		Seat(9, COUPLE),
-		Seat(10, STANDARD),
-		Seat(11, STANDARD),
-		Seat(12, WHEELCHAIR),
-		Seat(13, WHEELCHAIR),
-		Seat(14, STANDARD),
-		Seat(15, STUDENT)
-	};
+		vipZone.addRows(vipRow);
+	}
 
-	Seat standardCollectionOfSeatsWithBrokenChair[15]
+
+	for (int i = 0; i < 6; i++)
 	{
-		Seat(1, STANDARD),
-		Seat(2, STANDARD),
-		Seat(3, STANDARD),
-		Seat(4, STANDARD),
-		Seat(5, STANDARD),
-		Seat(6, PREMIUM),
-		Seat(7,PREMIUM),
-		Seat(8, PREMIUM),
-		Seat(9, COUPLE),
-		Seat(10, BROKEN),
-		Seat(11, BROKEN),
-		Seat(12, WHEELCHAIR),
-		Seat(13, WHEELCHAIR),
-		Seat(14, STANDARD),
-		Seat(15, STUDENT)
-	};
+		categoryZone.addRows(normalRow);
+	}
 
-	Seat standardCollectionOfSeats[15]
+	for (int i = 6; i < Zone::MAX_ROW_IDENTIFIER_PER_ZONE; i++)
 	{
-		Seat(1, STANDARD),
-		Seat(2, STANDARD),
-		Seat(3, STANDARD),
-		Seat(4, STANDARD),
-		Seat(5, STANDARD),
-		Seat(6, STANDARD),
-		Seat(7,STANDARD),
-		Seat(8,STANDARD),
-		Seat(9,STANDARD),
-		Seat(10,STANDARD),
-		Seat(11,STANDARD),
-		Seat(12,STANDARD),
-		Seat(13,STANDARD),
-		Seat(14,STANDARD),
-		Seat(15,STANDARD)
-	};
+		vipZone.addRows(standardRow);
+	}
 
-
-
-
-	Seat standardCollectionOfSeatsWithWheelchairs[15]
+	for (int i = 0; i < 3; i++)
 	{
-		Seat(1, STANDARD),
-		Seat(2, STANDARD),
-		Seat(3, STANDARD),
-		Seat(4, CHILDREN),
-		Seat(5, COUPLE),
-		Seat(6, BROKEN),
-		Seat(7, STANDARD),
-		Seat(8, STANDARD),
-		Seat(9, STANDARD),
-		Seat(10, STANDARD),
-		Seat(11, STANDARD),
-		Seat(12, WHEELCHAIR),
-		Seat(13, WHEELCHAIR),
-		Seat(14, STANDARD),
-		Seat(15, STANDARD)
-	};
-
-	Seat vipCollectionOfSeatsWithWhellchairAndPremium[15]
+		amphitheaterZone.addRows(premiumRow);
+	}
+	for (int i = 3; i < 6; i++)
 	{
-		Seat(1, VIP),
-		Seat(2, VIP),
-		Seat(3, VIP),
-		Seat(4, VIP),
-		Seat(5, PREMIUM),
-		Seat(6, PREMIUM),
-		Seat(7, VIP),
-		Seat(8, VIP),
-		Seat(9, VIP),
-		Seat(10,VIP),
-		Seat(11,VIP),
-		Seat(12,WHEELCHAIR),
-		Seat(13,WHEELCHAIR),
-		Seat(14,WHEELCHAIR),
-		Seat(15,WHEELCHAIR)
-	};
+		categoryZone.addRows(standardRow);
+	}
 
-	///*********************************************************************************************************************************************************************8
-
-
-	//Row normalRows[Row::MAX_ROW_IDENTIFIER];
-
-
-
-	//for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
-	//{
-	//	normalRows[i]=Row(i+1, normalCollectionOfSeats[0]);
-
-	//	for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
-	//	{
-	//		normalRows[i].addSeats(normalCollectionOfSeats[j]);
-	//	}
-	//}
-	///*for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
-	//cout << normalRows[i];*/
-
-	//Row standardRows[Row::MAX_ROW_IDENTIFIER];
-	//for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
-	//{
-	//	standardRows[i] = Row(i + 1, standardCollectionOfSeats[0]);
-
-	//	for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
-	//	{
-	//		standardRows[i].addSeats(standardCollectionOfSeats[j]);
-	//	}
-	//}
-
-	////for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
-	////	cout << standardRows[i];
-
-
-	//Row standardRowsWithBrokenChair[Row::MAX_ROW_IDENTIFIER];
-	//for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
-	//{
-	//	standardRowsWithBrokenChair[i] = Row(i + 1, standardCollectionOfSeatsWithBrokenChair[0]);
-
-	//	for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
-	//	{
-	//		standardRowsWithBrokenChair[i].addSeats(standardCollectionOfSeatsWithBrokenChair[j]);
-	//	}
-	//}
-
-
-
-
-	//Row standardRowsWithWheelchairs[Row::MAX_ROW_IDENTIFIER];
-	//for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
-	//{
-	//	standardRowsWithWheelchairs[i] = Row(i + 1, standardCollectionOfSeatsWithWheelchairs[0]);
-
-	//	for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
-	//	{
-	//		standardRowsWithWheelchairs[i].addSeats(standardCollectionOfSeatsWithWheelchairs[j]);
-	//	}
-	//}
-
-
-	///*for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
-	//	cout << standardRowsWithWheelchairs[i];*/
-
-	//Row vipRowsWithWheelchairAndPremium[Row::MAX_ROW_IDENTIFIER];
-	//for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
-	//{
-	//	vipRowsWithWheelchairAndPremium[i] = Row(i + 1, vipCollectionOfSeatsWithWhellchairAndPremium[0]);
-
-	//	for (int j = 1; j < Row::MAX_IDENTIFIER_OF_SEAT; j++)
-	//	{
-	//		vipRowsWithWheelchairAndPremium[i].addSeats(vipCollectionOfSeatsWithWhellchairAndPremium[j]);
-	//	}
-	//}
-
-	//for (int i = 0; i < Row::MAX_ROW_IDENTIFIER; i++)
-	//	cout << vipRowsWithWheelchairAndPremium[i];
-
-	/////********************************************************************************************************************************************************************************
-
-	////enum zoneType { STAND, NORMAL, VIP, CATEGORY, CAMPING, PREMIUM, FAMILY, STUDENT, BACKSTAGE, GREEN, SRO, NETWORKING, GAME, RESTAURANT, BALCONY, AMPHITEATHER };
-
-
-
-
-
-
-
-
-	/////*******************************************************************************************************************************************************************************
-	//Zone standZone[Zone::MAX_ZONE_IDENTIFIER];
-
-	//for (int i = 0; i < Zone::MAX_ZONE_IDENTIFIER; i++)
-	//{
-	//	standZone[i] = Zone(i + 1, standardRows[0]);
-
-	//	for (int j =0; j < 4;j++)
-	//	{
-	//		standZone[i].addRows(j, standardRows[j]);
-	//	}
-
-	//	for (int j = 4; j<6; j++)
-	//	{
-	//		standZone[i].addRows(j, standardRowsWithWheelchairs[j]);
-
-	//	}
-
-	//	
-	//}
-
+	for (int i = 6; i < Zone::MAX_ROW_IDENTIFIER_PER_ZONE; i++)
+	{
+		vipZone.addRows(studentRow);
+	}
 
 
 
