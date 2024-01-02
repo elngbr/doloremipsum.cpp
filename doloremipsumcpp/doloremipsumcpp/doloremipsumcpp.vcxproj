@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="elenaLocations.h" />
     <ClCompile Include="relationshipsTester.cpp" />
   </ItemGroup>
   <ItemGroup>

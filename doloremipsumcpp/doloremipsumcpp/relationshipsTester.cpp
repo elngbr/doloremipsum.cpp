@@ -3,6 +3,7 @@
 #include "elenaRows.h"
 #include "elenaSeats.h"
 #include "elenaZones.h"
+#include"elenaLocations.h"
 #include "OverloadedF.h"
 #include<string>
 #include<iostream>
@@ -24,6 +25,7 @@ int main()
 	Seat vipSeat(VIP);
 	Seat premiumSeat(PREMIUM);
 	Seat beanbagSeat(BEANBAG);
+	Seat virtualSeat(VIRTUAL);
 
 
 	///creating a normal row with: 
@@ -45,6 +47,11 @@ int main()
 	Row coupleRow;//full of couple
 	Row beanbagRow;///full of beanbags
 	Row vipWithWheelchairRow;
+	Row premiumRowWithWheelchair;
+	Row childrenRowWithStandardAndWheelchair;
+	Row flexibleRow;
+	Row virtualRow;
+
 	normalRow.addSeats(standardSeat); //1st row
 	normalRow.addSeats(standardSeat);
 	normalRow.addSeats(standardSeat);
@@ -63,79 +70,21 @@ int main()
 
 
 
-	///Initializations for all rows created ********************************************************************************************
 
-	/*for (int i = 0; i < Row::MAX_NUMBER_OF_SEATS; i++)
-	{
-		standardRow.addSeats(standardSeat);
-	}*/
 
 	addSeats(standardRow, 15, standardSeat);
-
-
-
-	/*for (int i = 0; i < 12; i++)
-	{
-		studentRowWithWheelchair.addSeats(studentSeat);
-	}
-	for (int i = 12; i < Row::MAX_NUMBER_OF_SEATS; i++)
-	{
-		studentRowWithWheelchair.addSeats(wheelchairSeat);
-	}*/
 	addSeats(studentRowWithWheelchair, 12, studentSeat, Row::MAX_NUMBER_OF_SEATS, wheelchairSeat);
-
-
-
-
-	/*for (int i = 0; i < Row::MAX_NUMBER_OF_SEATS; i++)
-	{
-		studentRow.addSeats(studentSeat);
-	}*/
 	addSeats(studentRow, Row::MAX_NUMBER_OF_SEATS, studentSeat);
-
-
-	/*for (int i = 0; i < Row::MAX_NUMBER_OF_SEATS; i++)
-	{
-		vipRow.addSeats(vipSeat);
-	}*/
-
 	addSeats(vipRow, Row::MAX_NUMBER_OF_SEATS, vipSeat);
-
-	/*for (int i = 0; i < Row::MAX_NUMBER_OF_SEATS; i++)
-	{
-		premiumRow.addSeats(premiumSeat);
-	}*/
 	addSeats(premiumRow, Row::MAX_NUMBER_OF_SEATS, premiumSeat);
-
-
-
-
-	/*for (int i = 0; i < Row::MAX_NUMBER_OF_SEATS; i++)
-	{
-		coupleRow.addSeats(coupleSeat);
-	}*/
-
 	addSeats(coupleRow, Row::MAX_NUMBER_OF_SEATS, coupleSeat);
-
-	/*for (int i = 0; i < Row::MAX_NUMBER_OF_SEATS; i++)
-	{
-		beanbagRow.addSeats(beanbagSeat);
-	}*/
-
 	addSeats(beanbagRow, Row::MAX_NUMBER_OF_SEATS, beanbagSeat);
-
-	/*for (int i = 0; i < 10; i++)
-	{
-		vipWithWheelchairRow.addSeats(vipSeat);
-	}
-
-	for (int i = 10; i < Row::MAX_NUMBER_OF_SEATS; i++)
-	{
-		vipWithWheelchairRow.addSeats(wheelchairSeat);
-	}*/
 	addSeats(vipWithWheelchairRow, 10, vipSeat, Row::MAX_NUMBER_OF_SEATS, wheelchairSeat);
+	addSeats(premiumRowWithWheelchair, 7, wheelchairSeat, Row::MAX_NUMBER_OF_SEATS, premiumSeat);
+	addSeats(childrenRowWithStandardAndWheelchair, 4, childrenSeat, 7, wheelchairSeat, 8, chosenSeat, Row::MAX_NUMBER_OF_SEATS, standardSeat);
+	addSeats(flexibleRow, 15, flexibleSeat);
+	addSeats(virtualRow, 4, virtualSeat, 7, wheelchairSeat, 8, virtualSeat, Row::MAX_NUMBER_OF_SEATS, wheelchairSeat);
 
-	cout << vipWithWheelchairRow;
 	// *********************************************************************************************************************************************
 
 
@@ -162,65 +111,66 @@ int main()
 
 
 
-	///**************************************************************************************************************************************************
-
-	for (int i = 0; i < 3; i++)
-	{
-		standZone.addRows(standardRow);
-	}
-	for (int i = 3; i < 7; i++)
-	{
-		standZone.addRows(normalRow);
-	}
-	for (int i = 7; i < Zone::MAX_ROW_IDENTIFIER_PER_ZONE; i++)
-	{
-		standZone.addRows(standardRow);
-	}
 
 
 
+	addRows(standZone, 3, standardRow, 7, normalRow, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, standardRow);
+	addRows(normalZone, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, normalRow);
+	addRows(vipZone, 6, vipWithWheelchairRow, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, vipRow);
+	addRows(categoryZone, 6, normalRow, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, standardRow);
+	addRows(amphitheaterZone, 3, premiumRow, 6, standardRow, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, studentRow);
+	addRows(campingZone, 3, beanbagRow, 6, standardRow, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, beanbagRow);
+	addRows(premiumZone, 6, premiumRow, 9, premiumRowWithWheelchair, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, premiumRow);
+	addRows(familyZone, 3, coupleRow, 12, childrenRowWithStandardAndWheelchair, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, standardRow);
+	addRows(studentZone, 3, studentRow, 12, studentRowWithWheelchair, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, studentRow);
+	addRows(backstageZone, 3, vipRow, 12, beanbagRow, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, vipWithWheelchairRow);
+	addRows(greenZone, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, beanbagRow);
+	addRows(sroZone, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, virtualRow);
+	addRows(networkingZone, 4, standardRow, 6, virtualRow, 8, flexibleRow, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, beanbagRow);
+	addRows(gameZone, 5, virtualRow, 10, beanbagRow, 13, virtualRow, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, beanbagRow);
+	addRows(balconyZone, 2, premiumRowWithWheelchair, 2, premiumRow);
 
 
-	for (int i = 0; i < Zone::MAX_ROW_IDENTIFIER_PER_ZONE; i++)
-	{
-		normalZone.addRows(normalRow);
-	}
 
 
-	for (int i = 0; i < 6; i++)
-	{
-		vipZone.addRows(vipWithWheelchairRow);
-	}
 
-	for (int i = 6; i < Zone::MAX_ROW_IDENTIFIER_PER_ZONE; i++)
-	{
-		vipZone.addRows(vipRow);
-	}
+	///Insertions of rows in zones****************************************************************************END
 
 
-	for (int i = 0; i < 6; i++)
-	{
-		categoryZone.addRows(normalRow);
-	}
+	//************************************************************************************************************************************
 
-	for (int i = 6; i < Zone::MAX_ROW_IDENTIFIER_PER_ZONE; i++)
-	{
-		vipZone.addRows(standardRow);
-	}
+	Location stadiumLocation(STADIUM);
+	Location concertHallLocation(CONCERT_HALL);
+	Location operaHouseLocation(OPERA_HOUSE);
+	Location eventsHallLocation(EVENTS_HALL);
+	Location sportHallLocation(SPORT_HALL);
+	Location cinemaHallLocation(CINEMA_HALL);
+	Location theatreLocation(THEATRE);
+	Location mallLocation(MALL);
+	Location publicInstitutionLocation(PUBLIC_INSTITUTION);
+	Location seaLocation(SEA);
+	Location forestLocation(FOREST);
+	Location mountainLocation(MOUNTAIN);
+	Location parkLocation(PARK);
+	Location schoolLocation(SCHOOL);
+	Location libraryLocation(LIBRARY);
+	Location cemeteryLocation(CEMETERY);
+	Location restaurantLocation(RESTAURANT);
 
-	for (int i = 0; i < 3; i++)
-	{
-		amphitheaterZone.addRows(premiumRow);
-	}
-	for (int i = 3; i < 6; i++)
-	{
-		categoryZone.addRows(standardRow);
-	}
 
-	for (int i = 6; i < Zone::MAX_ROW_IDENTIFIER_PER_ZONE; i++)
-	{
-		vipZone.addRows(studentRow);
-	}
+
+	////Insertions for zones in Locations
+
+	/*Location location(SCHOOL);
+
+	location.addZones(standZone);
+
+	cout << location;*/
+
+	addZones(stadiumLocation, 4, standZone, 6, premiumZone);
+
+	cout << stadiumLocation;
+
 
 
 

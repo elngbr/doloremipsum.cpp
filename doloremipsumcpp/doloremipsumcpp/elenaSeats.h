@@ -7,9 +7,11 @@
 #include<string>
 #include<iostream>
 #include<fstream>
-
 using namespace std;
-enum SeatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN, STUDENT, CHILDREN, COUPLE, FLEXIBLE, VIP, PREMIUM, BEANBAG };
+
+
+
+enum SeatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN, STUDENT, CHILDREN, COUPLE, FLEXIBLE, VIP, PREMIUM, BEANBAG, VIRTUAL };
 
 class Seat {
 private:
@@ -81,6 +83,9 @@ inline ostream& operator <<(ostream& console, const Seat& auxSeat)
         break;
     case(11):
         console << "BEAN-BAG seat.very comfortable";
+        break;
+    case(12):
+        console << "VIRTUAL seat. It means the zone with such a seat does not have seats, it has a capacity of persons.";
         break;
     default:
         console << "This type of seat has been added subsequently. Plase redefine the switch function";

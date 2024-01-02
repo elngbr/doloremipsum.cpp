@@ -18,6 +18,9 @@
     <ClCompile Include="relationshipsTester.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="elenaLocations.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="elenaSeats.h">

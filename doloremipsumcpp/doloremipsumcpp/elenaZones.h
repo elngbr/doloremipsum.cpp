@@ -5,15 +5,18 @@
 #include<string>
 #include<iostream>
 #include<fstream>
+using namespace std;
+
+
 
 ///a zone HAS a collection of rows
 
-class WrongZoneIdentifierException
+class WrongZoneNumberOfRowsException
 {
 private:
 	string message;
 public:
-	WrongZoneIdentifierException(const string& msg) : message(msg) {}
+	WrongZoneNumberOfRowsException(const string& msg) : message(msg) {}
 
 	string what()const
 	{
@@ -48,6 +51,21 @@ public:
 		this->typeOfZone = auxType;
 	}
 
+	void setNumberOfRowsPerZone(int auxNo)
+	{
+		if (auxNo < 0)
+		{
+			throw WrongZoneNumberOfRowsException("You cannot have less than 0 rows in a zone");
+		}
+		else if (auxNo > Zone::MAX_ROW_IDENTIFIER_PER_ZONE)
+		{
+			throw WrongZoneNumberOfRowsException("You cannot have more than 15 rows in a zone");
+
+		}
+
+		this->numberOfRowsPerZone = auxNo;
+	}
+
 	void addRows(Row auxRow)
 	{
 
@@ -70,6 +88,11 @@ public:
 	}
 
 	friend inline ostream& operator<<(ostream& console, Zone& auxZone);
+
+	zoneType getType() const
+	{
+		return this->typeOfZone;
+	}
 
 };
 
@@ -135,10 +158,10 @@ inline ostream& operator<<(ostream& console, Zone& auxZone)
 
 	console << endl << "This zone has" << " " << auxZone.numberOfRowsPerZone << " " << "rows";
 
-	for (int i = 0; i < auxZone.numberOfRowsPerZone; i++)
+	/*for (int i = 0; i < auxZone.numberOfRowsPerZone; i++)
 	{
 		console << endl << "This row's identifier is:" << " " << i + 1;
 		console << *(auxZone.rows[i]) << endl;
-	}
+	}*/
 	return console;
 }
