@@ -27,7 +27,7 @@ enum zoneType{STAND, NORMAL, VIPZ, CATEGORY, CAMPING, PREMIUMZ, FAMILY, STUDENTZ
 
 
 
-class Zone 
+class Zone :public Row 
 {
 private:
 	int zoneIdentifier = 0;
@@ -131,13 +131,13 @@ public:
 	}
 
 
-	Zone(int auxZoneIdentifier, Row auxRow)
+	/*Zone(int auxZoneIdentifier, Row auxRow)
 		: zoneIdentifier(auxZoneIdentifier), numberOfSeatsPerRowPerZone(auxRow.getNoOfSeatsForRow())
 	{
 
 		initializeRows();
 		rows[0] = &auxRow;
-	}
+	}*/
 
 	Zone( Row auxRow)
 		
