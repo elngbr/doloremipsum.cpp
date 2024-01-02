@@ -35,5 +35,11 @@
     <ClInclude Include="OverloadedF.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="elenaEvents.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OverloadedF1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

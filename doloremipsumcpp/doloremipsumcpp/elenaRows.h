@@ -57,23 +57,18 @@ public:
 
     void addSeats(Seat auxSeat)
     {
-        if (this->noOfSeatsForRow <= MAX_NUMBER_OF_SEATS)
+
+        Seat** newSeats = new Seat * [this->noOfSeatsForRow + 1];
+        for (int i = 0; i < this->noOfSeatsForRow; i++)
         {
-            Seat** newSeats = new Seat * [this->noOfSeatsForRow + 1];
-            for (int i = 0; i < this->noOfSeatsForRow; i++)
-            {
-                newSeats[i] = this->seats[i];
-            }
-
-            newSeats[this->noOfSeatsForRow] = new Seat(auxSeat);
-
-            delete[] this->seats;
-            this->seats = newSeats;
-            this->noOfSeatsForRow++;
+            newSeats[i] = this->seats[i];
         }
 
+        newSeats[this->noOfSeatsForRow] = new Seat(auxSeat);
 
-
+        delete[] this->seats;
+        this->seats = newSeats;
+        this->noOfSeatsForRow++;
 
     }
 

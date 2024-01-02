@@ -131,10 +131,12 @@
     <ClCompile Include="relationshipsTester.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="elenaEvents.h" />
     <ClInclude Include="elenaRows.h" />
     <ClInclude Include="elenaSeats.h" />
     <ClInclude Include="elenaZones.h" />
     <ClInclude Include="OverloadedF.h" />
+    <ClInclude Include="OverloadedF1.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
