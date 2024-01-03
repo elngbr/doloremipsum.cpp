@@ -26,8 +26,27 @@ enum locationType {
 
 class Location
 {
-private:
+protected:
 	locationType type = EVENTS_HALL;
+private:
+
+	int standZoneCounter = 0;
+	int normalZoneCounter = 0;
+	int vipZoneCounter = 0;
+	int categoryZoneCounter = 0;
+	int campingZoneCounter = 0;
+	int premiumZoneCounter = 0;
+	int familyZoneCounter = 0;
+	int studentZoneCounter = 0;
+	int backstageZoneCounter = 0;
+	int greenZoneCounter = 0;
+	int sroZoneCounter = 0;
+	int networkingZoneCounter = 0;
+	int gameZoneCounter = 0;
+	int foodZoneCounter = 0;
+	int balconyZoneCounter = 0;
+	int amphitheaterZoneCounter = 0;
+	int boxZoneCounter = 0;
 	int numberOfZones = 0;
 	Zone** zones = nullptr;
 public:
@@ -57,9 +76,73 @@ public:
 	{
 		this->type = auxType;
 	}
-	void addZones(Zone auxZone)
+	void initializeCounterOfZoneType(Zone auxZone)
 	{
 
+		switch (auxZone.getType())
+		{
+		case(STAND):
+			this->standZoneCounter++;
+			break;
+		case(NORMAL):
+			this->normalZoneCounter++;
+			break;
+		case(VIPZ):
+			this->vipZoneCounter++;
+
+			break;
+		case(CATEGORY):
+			this->categoryZoneCounter++;
+
+			break;
+		case(CAMPING):
+			this->campingZoneCounter++;
+
+			break;
+		case(PREMIUMZ):
+			this->premiumZoneCounter++;
+
+			break;
+		case(FAMILY):
+			//enum zoneType { STAND, NORMAL, VIPZ, CATEGORY, CAMPING, PREMIUMZ, FAMILY, STUDENTZ, BACKSTAGE, GREEN, SRO, NETWORKING, GAME, FOOD, BALCONY, AMPHITHEATER, BOX };
+			this->familyZoneCounter++;
+			break;
+		case(STUDENTZ):
+			this->studentZoneCounter++;
+			break;
+		case(BACKSTAGE):
+			this->backstageZoneCounter++;
+			break;
+		case(GREEN):
+			this->greenZoneCounter++;
+			break;
+		case(SRO):
+			this->sroZoneCounter++;
+			break;
+		case(NETWORKING):
+			this->networkingZoneCounter++;
+			break;
+		case(GAME):
+			this->gameZoneCounter++;
+			break;
+		case(FOOD):
+			this->foodZoneCounter++;
+			break;
+		case(BALCONY):
+			this->balconyZoneCounter++;
+			break;
+		case(AMPHITHEATER):
+			this->amphitheaterZoneCounter++;
+			break;
+		case(BOX):
+			this->boxZoneCounter++;
+			break;
+		}
+
+	}
+	void addZones(Zone auxZone)
+	{
+		initializeCounterOfZoneType(auxZone);
 		Zone** newZones = new Zone * [this->numberOfZones + 1];
 		for (int i = 0; i < this->numberOfZones; i++)
 		{
@@ -85,72 +168,72 @@ public:
 
 inline ostream& operator<<(ostream& console, Location& auxLocation)
 {
-	console << endl << "*******************************************************************************************************************";
+	//console << endl << "*******************************************************************************************************************";
 	console << endl << "This location has the following type" << " ";
 	switch (auxLocation.type)
 	{
 	case STADIUM:
-		console << "Stadium";
+		console << "STADIUM.";
 		break;
 	case CONCERT_HALL:
-		console << "Concert Hall";
+		console << "CONCERT HALL.";
 		break;
 	case OPERA_HOUSE:
-		console << "Opera House";
+		console << "OPERA HOUSE.";
 		break;
 	case EVENTS_HALL:
-		console << "Events Hall";
+		console << "EVENTS HALL.";
 		break;
 	case SPORT_HALL:
-		console << "Sport Hall";
+		console << "SPORT HALL.";
 		break;
 	case CINEMA_HALL:
-		console << "Cinema Hall";
+		console << "CINEMA HALL.";
 		break;
 	case SQUARE:
-		console << "Square";
+		console << "SQUARE.";
 		break;
 	case THEATRE:
-		console << "Theatre";
+		console << "THEATRE.";
 		break;
 	case MALL:
-		console << "Mall";
+		console << "MALL.";
 		break;
 	case PUBLIC_INSTITUTION:
-		console << "Public institution";
+		console << "PUBLIC INSTITUTION.";
 		break;
 	case SEA:
-		console << "Sea";
+		console << "SEA.";
 		break;
 	case FOREST:
-		console << "Forest";
+		console << "FOREST.";
 		break;
 	case MOUNTAIN:
-		console << "Mountain";
+		console << "MOUNTAIN.";
 		break;
 	case PARK:
-		console << "Park";
+		console << "PARK.";
 		break;
 	case SCHOOL:
-		console << "School";
+		console << "SCHOOL.";
 		break;
 	case UNIVERSITY:
-		console << "University";
+		console << "UNIVERSITY.";
 		break;
 	case CHURCH:
-		console << "Church";
+		console << "CHURCH.";
 		break;
 	case LIBRARY:
-		console << "Library";
+		console << "LIBRARY.";
 		break;
 	case CEMETERY:
-		console << "CEMETERY";
+		console << "CEMETERY.";
 		break;
 	case RESTAURANT:
-		console << "Restaurant";
+		console << "RESTAURANT.";
 		break;
 	case OTHER:
-		console << "OTHER";
+		console << "OTHER.";
 		break;
 
 	default:
@@ -158,15 +241,15 @@ inline ostream& operator<<(ostream& console, Location& auxLocation)
 		break;
 	}
 
-	console << endl << "This location has the following number of zones" << " " << auxLocation.numberOfZones;
+	console << endl << "This location has the following number of zones:" << " " << auxLocation.numberOfZones;
 	console << endl << "The zones are:";
 
 	zoneType typeChecker = auxLocation.zones[0]->getType();
 	int zoneTypeCounter = 0;
 	for (int i = 0; i < auxLocation.numberOfZones; i++)
 	{
-		console << endl << "This zone's identifier is" << " " << i + 1;
-		console << endl << "This is zone" << " ";
+		console << endl << "This zone's identifier is:" << " " << i + 1;
+		console << endl << "This is zone:" << " ";
 		switch (auxLocation.zones[i]->getType())
 		{
 		case(0):
@@ -182,16 +265,16 @@ inline ostream& operator<<(ostream& console, Location& auxLocation)
 			console << "CATEGORY";
 			break;
 		case(4):
-			console << " CAMPING ";
+			console << "CAMPING ";
 			break;
 		case(5):
-			console << " PREMIUM ";
+			console << "PREMIUM ";
 			break;
 		case(6):
 			console << "FAMILY ";
 			break;
 		case(7):
-			console << " STUDENT ";
+			console << "STUDENT ";
 			break;
 		case(8):
 			console << "BACKSTAGE ";
@@ -212,11 +295,16 @@ inline ostream& operator<<(ostream& console, Location& auxLocation)
 			console << "FOOD ";
 			break;
 		case(14):
-			console << " BALCONY ";
+			console << "BALCONY ";
 			break;
 		case(15):
-			console << "AMPHITEATHER ";
+			console << "AMPHITHEATER ";
 			break;
+		case(16):
+			console << "BOX";
+			break;
+		default:
+			console << "This type did not exist at the moment of creation. Please redefine the switch structure.";
 		}
 
 

@@ -24,15 +24,16 @@ public:
 	}
 };
 
-enum zoneType { STAND, NORMAL, VIPZ, CATEGORY, CAMPING, PREMIUMZ, FAMILY, STUDENTZ, BACKSTAGE, GREEN, SRO, NETWORKING, GAME, FOOD, BALCONY, AMPHITHEATER };
+enum zoneType { STAND, NORMAL, VIPZ, CATEGORY, CAMPING, PREMIUMZ, FAMILY, STUDENTZ, BACKSTAGE, GREEN, SRO, NETWORKING, GAME, FOOD, BALCONY, AMPHITHEATER, BOX };
 //SRO-----seating room only
 
 class Row;
 class Zone :public Row
 {
-private:
+protected:
 
 	zoneType typeOfZone = NORMAL;
+private:
 	int numberOfRowsPerZone = 0;
 	Row** rows = nullptr;
 public:
@@ -80,6 +81,7 @@ public:
 		delete[] this->rows;
 		this->rows = newRows;
 		this->numberOfRowsPerZone++;
+		auxRow.setRowIdentifier(this->numberOfRowsPerZone);
 	}
 
 	Zone(zoneType auxType)
@@ -99,64 +101,69 @@ public:
 
 inline ostream& operator<<(ostream& console, Zone& auxZone)
 {
-	console << endl << "***********************************************************************";
+	//console << endl << "***********************************************************************";
 	console << endl << "This zone has type " << " ";
 	//enum zoneType { STAND, NORMAL, VIP, CATEGORY, CAMPING, PREMIUM, FAMILY, STUDENT, BACKSTAGE, GREEN, SRO, NETWORKING, GAME, RESTAURANT, BALCONY, AMPHITEATHER };
 
 	switch (auxZone.typeOfZone)
 	{
 	case(0):
-		console << "Stand zone";
+		console << "STAND. ";
 		break;
 	case(1):
-		console << "NORMAL zone";
+		console << "NORMAL.";
 		break;
 	case(2):
-		console << "VIP zone";
+		console << "VIP. ";
 		break;
 	case(3):
-		console << "CATEGORY zone";
+		console << "CATEGORY.";
 		break;
 	case(4):
-		console << " CAMPING zone";
+		console << " CAMPING. ";
 		break;
 	case(5):
-		console << " PREMIUM zone";
+		console << " PREMIUM. ";
 		break;
 	case(6):
-		console << "FAMILY zone";
+		console << "FAMILY. ";
 		break;
 	case(7):
-		console << " STUDENT zone";
+		console << " STUDENT. ";
 		break;
 	case(8):
-		console << "BACKSTAGE zone";
+		console << "BACKSTAGE. ";
 		break;
 	case(9):
-		console << "GREEN zone";
+		console << "GREEN. ";
 		break;
 	case(10):
-		console << "SRO zone";
+		console << "SRO. ";
 		break;
 	case(11):
-		console << "NETWORKING zone";
+		console << "NETWORKING.";
 		break;
 	case(12):
-		console << "GAME zone";
+		console << "GAME. ";
 		break;
 	case(13):
-		console << "FOOD zone";
+		console << "FOOD. ";
 		break;
 	case(14):
-		console << " BALCONY  zone";
+		console << " BALCONY. ";
 		break;
 	case(15):
-		console << "AMPHITEATHER zone";
+		console << "AMPHITHEATER. ";
 		break;
+	case(16):
+		console << "BOX.";
+		break;
+	default:
+		console << "This type did not exist at the moment of creation. Please, redefine the switch structure.";
 	}
 
 
-	console << endl << "This zone has" << " " << auxZone.numberOfRowsPerZone << " " << "rows";
+	console << endl << "This zone has" << " " << auxZone.numberOfRowsPerZone << " " << "rows.";
 
 	/*for (int i = 0; i < auxZone.numberOfRowsPerZone; i++)
 	{

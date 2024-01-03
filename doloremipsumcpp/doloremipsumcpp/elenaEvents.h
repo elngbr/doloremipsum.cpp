@@ -1,5 +1,4 @@
 #pragma once
-
 #include "elenaRows.h"
 #include "elenaSeats.h"
 #include "elenaZones.h"
@@ -35,11 +34,24 @@ public:
 	}
 };
 
+class WrongDateForEvent {
+private:
+	string message;
+public:
+	WrongDateForEvent(const string& msg) : message(msg) {}
+
+	string what()const
+	{
+		return message;
+	}
+};
+
 class Event
 {
-private:
-
+protected:
+	char dateOfEvent[9] = "dd/mm/yy"; ///it will follow the standard dd/mm/yy. the previous sequence has 8ch +1 =9
 	string eventName = " ";
+private:
 	int numberOfLocations = 0;
 	Location** locations = nullptr;
 
@@ -89,9 +101,39 @@ public:
 
 	}
 
-	Event(string auxEventName)
+
+	char* getDate() const
+	{
+		char* copy = new char[strlen(this->dateOfEvent) + 1];
+		strcpy_s(copy, strlen(this->dateOfEvent) + 1, this->dateOfEvent);
+
+		return copy;
+
+
+
+	}
+
+	void setDate(const char* auxDate) {
+		if (auxDate == nullptr || auxDate[2] != '/' || auxDate[5] != '/' ||
+			(auxDate[0] > '3' && auxDate[1] > '1') ||
+			(auxDate[0] == '3' && auxDate[1] > '1') ||
+			(auxDate[3] > '1' && auxDate[4] > '2') ||
+			(auxDate[3] == '1' && auxDate[4] > '2') ||
+			(auxDate[6] < '2') ||
+			(auxDate[3] == '0' && auxDate[4] == '2' && (auxDate[0] == '2' && auxDate[1] == '9'))
+			)
+		{
+			throw WrongDateForEvent("Wrong input for event date!");
+		}
+
+		strcpy_s(this->dateOfEvent, strlen(auxDate) + 1, const_cast<char*>(auxDate));
+	}
+
+
+	Event(string auxEventName, const char* auxEventDate)
 	{
 		this->setEventName(auxEventName);
+		this->setDate(auxEventDate);
 	}
 
 
@@ -117,12 +159,13 @@ public:
 inline ostream& operator<<(ostream& console, Event& auxEvent)
 {
 	console << "*****************************************************************************************";
-	console << endl << "This event's name is" << " " << auxEvent.eventName;
-	console << endl << "This event has" << " " << auxEvent.numberOfLocations << " " << "locations";
+	console << endl << "This event's name is:" << " " << auxEvent.eventName;
+	console << endl << "This event's happens on:" << " " << auxEvent.dateOfEvent;
+	console << endl << "This event has" << " " << auxEvent.numberOfLocations << " " << "locations.";
 
 	for (int i = 0; i < auxEvent.numberOfLocations; i++)
 	{
-		console << endl << "This location has identifier" << i + 1;
+		console << endl << "This location has identifier:" << " " << i + 1;
 		console << endl << *(auxEvent.locations[i]);
 	}
 

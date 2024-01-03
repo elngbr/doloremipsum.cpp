@@ -3,7 +3,7 @@
 #include "elenaRows.h"
 #include "elenaSeats.h"
 #include "elenaZones.h"
-#include "elenaLocations.h"
+#include "elenaLocationS.h"
 #include "elenaEvents.h"
 #include "OverloadedF.h"
 #include "OverloadedF1.h"
@@ -110,6 +110,7 @@ int main()
 	Zone amphitheaterZone(AMPHITHEATER);
 	Zone beanbagZone(STAND);
 	Zone flexibleRowsZone(NORMAL);
+	Zone boxZone(NORMAL);
 
 
 	///Insertions of rows in zones**********************************************************************************************************************
@@ -122,6 +123,7 @@ int main()
 
 	addRows(standZone, 3, standardRow, 7, normalRow, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, standardRow);
 	addRows(normalZone, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, normalRow);
+	addRows(boxZone, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, normalRow);
 	addRows(vipZone, 6, vipWithWheelchairRow, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, vipRow);
 	addRows(categoryZone, 6, normalRow, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, standardRow);
 	addRows(amphitheaterZone, 3, standardRow, 6, studentRow, Zone::MAX_ROW_IDENTIFIER_PER_ZONE, premiumRow);
@@ -149,10 +151,12 @@ int main()
 
 
 	//************************************************************************************************************************************
-
+	///requested
 	Location stadiumLocation(STADIUM);
 	Location concertHallLocation(CONCERT_HALL);
 	Location operaHouseLocation(OPERA_HOUSE);
+
+
 	Location eventsHallLocation(EVENTS_HALL);
 	Location sportHallLocation(SPORT_HALL);
 	Location cinemaHallLocation(CINEMA_HALL);
@@ -173,13 +177,24 @@ int main()
 
 	////Insertions for zones in Locations*************************************************************************************************************
 
-	addZones(stadiumLocation, 2, standZone);
+
+
+
+
+	addZones(stadiumLocation, 2, standZone);//requested
+	addZones(cinemaHallLocation, 1, normalZone, 2, vipZone);//requested
+	addZones(theatreLocation, 2, categoryZone, 3, boxZone);//requested
+
+
+
+
+
+
+
 	addZones(concertHallLocation, 1, premiumZone, 2, vipZone, 3, normalZone, 4, balconyZone, 5, amphitheaterZone, Location::MAX_IDENTIFIER_OF_ZONE, sroZone);
 	addZones(operaHouseLocation, 1, premiumZone, 2, amphitheaterZone, 4, standZone, Location::MAX_IDENTIFIER_OF_ZONE, balconyZone);
-	addZones(eventsHallLocation, 2, standZone, 4, normalZone, 5, amphitheaterZone);
+	addZones(eventsHallLocation, 2, standZone, 4, normalZone, 5, amphitheaterZone, 6, balconyZone);
 	addZones(sportHallLocation, 1, premiumZone, Location::MAX_IDENTIFIER_OF_ZONE, standZone);
-	addZones(cinemaHallLocation, Location::MAX_IDENTIFIER_OF_ZONE, amphitheaterZone);
-	addZones(theatreLocation, 1, premiumZone, 2, backstageZone, 4, balconyZone, 5, standZone);
 	addZones(mallLocation, 1, vipZone, 2, sroZone, 3, beanbagZone);
 	addZones(squareLocation, Location::MAX_IDENTIFIER_OF_ZONE, sroZone);
 	addZones(publicInstitutionLocation, 1, standZone, 5, networkingZone);
@@ -206,17 +221,47 @@ int main()
 
 	cout << event;*/
 
-	Event EURO2024("EURO2024");
-	Event Filantropica("Filantropica");
-	Event Straini_in_noapte("Straini in noapte");
 
+
+
+
+
+
+
+
+
+	///requested events
+	Event EURO2024("EURO2024", "14/06/24");
+	Event Filantropica("Filantropica", "01/04/25");
+	Event Straini_in_noapte("Straini in noapte", "03/07/26");
+
+
+	//requested locations
 	EURO2024.addLocations(stadiumLocation);
-	//Filantropica.addLocations()
+	Filantropica.addLocations(cinemaHallLocation);
+	Straini_in_noapte.addLocations(theatreLocation);
+
+	//cout << EURO2024;
+	//cout << Filantropica;
+	//cout << Straini_in_noapte;
+
+	int asciiCode = 65;  // ASCII code for 'A'
+	char character = static_cast<char>(65);
+
+	// Print the result
+	cout << "ASCII Code: " << asciiCode << ", Character: " << character << endl;
 
 
+	Row c;
+
+	c.addSeats(Seat(SeatType::STANDARD));
+	c.addSeats(Seat(SeatType::STANDARD));
+	c.addSeats(Seat(SeatType::STANDARD));
+	c.addSeats(Seat(SeatType::STANDARD));
+	c.addSeats(Seat(SeatType::STANDARD));
 
 
-
+	cout << c;
 
 
 

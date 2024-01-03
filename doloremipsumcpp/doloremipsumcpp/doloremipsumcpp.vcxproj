@@ -134,6 +134,7 @@
     <ClInclude Include="elenaEvents.h" />
     <ClInclude Include="elenaRows.h" />
     <ClInclude Include="elenaSeats.h" />
+    <ClInclude Include="elenaTickets.h" />
     <ClInclude Include="elenaZones.h" />
     <ClInclude Include="OverloadedF.h" />
     <ClInclude Include="OverloadedF1.h" />
