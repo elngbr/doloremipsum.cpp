@@ -173,7 +173,7 @@ int main()
 
 	////Insertions for zones in Locations*************************************************************************************************************
 
-	addZones(stadiumLocation, 4, standZone, Location::MAX_IDENTIFIER_OF_ZONE, premiumZone);
+	addZones(stadiumLocation, 2, standZone);
 	addZones(concertHallLocation, 1, premiumZone, 2, vipZone, 3, normalZone, 4, balconyZone, 5, amphitheaterZone, Location::MAX_IDENTIFIER_OF_ZONE, sroZone);
 	addZones(operaHouseLocation, 1, premiumZone, 2, amphitheaterZone, 4, standZone, Location::MAX_IDENTIFIER_OF_ZONE, balconyZone);
 	addZones(eventsHallLocation, 2, standZone, 4, normalZone, 5, amphitheaterZone);
@@ -209,6 +209,13 @@ int main()
 	Event EURO2024("EURO2024");
 	Event Filantropica("Filantropica");
 	Event Straini_in_noapte("Straini in noapte");
+
+	EURO2024.addLocations(stadiumLocation);
+	//Filantropica.addLocations()
+
+
+
+
 
 
 
