@@ -97,6 +97,29 @@ public:
 	}
 };
 
+class WrongZoneIdentifierBasedOnType {
+private:
+	string message;
+public:
+	WrongZoneIdentifierBasedOnType(const string& msg) : message(msg) {}
+
+	string what()const
+	{
+		return message;
+	}
+};
+
+class WrongLocationIdentifierBasedOnType {
+private:
+	string message;
+public:
+	WrongLocationIdentifierBasedOnType(const string& msg) : message(msg) {}
+
+	string what()const
+	{
+		return message;
+	}
+};
 
 
 class Ticket : public Event
@@ -109,6 +132,9 @@ private:
 	int rowIdentifier = -1;
 	int zoneIdentifier = -1;
 	int locationIdentifier = -1;
+
+	int identifierOfZoneBasedOnType = -1;
+	int identifierOfLocationBasedOnType = -1;
 	zoneType typeZone = NORMAL;
 	locationType typeLocation = EVENTS_HALL;
 
@@ -141,6 +167,43 @@ public:
 	{
 		return this->ticketID;
 	}
+
+	void setZoneType(zoneType auxZoneType)
+	{
+		this->typeZone = auxZoneType;
+	}
+
+	void setSeatType(SeatType auxSeatType)
+	{
+		this->typeSeat = auxSeatType;
+	}
+
+	void setLocationType(locationType auxLocationType)
+	{
+		this->typeLocation = auxLocationType;
+	}
+
+	void setZoneIdentifierBasedOnType(int auxZoneIdBasedOnType)
+	{
+		if (auxZoneIdBasedOnType < 0)
+		{
+			throw WrongZoneIdentifierBasedOnType("The zone identifier based on type cannot be less than 0");
+		}
+
+		this->identifierOfZoneBasedOnType = auxZoneIdBasedOnType;
+	}
+
+
+	void setLocationIdentifierBasedOnType(int auxLocationIdBasedOnType)
+	{
+		if (auxLocationIdBasedOnType < 0)
+		{
+			throw WrongLocationIdentifierBasedOnType("The zone identifier based on type cannot be less than 0");
+		}
+
+		this->identifierOfLocationBasedOnType = auxLocationIdBasedOnType;
+	}
+
 
 	void setTicketID(string auxTicketId)
 	{
@@ -179,7 +242,6 @@ public:
 
 		strcpy_s(this->dateOfIssue, strlen(auxDate) + 1, const_cast<char*>(auxDate));
 	}
-
 
 
 	Ticket() :Event("MyEvent", "01/01/24")
@@ -272,6 +334,11 @@ public:
 		this->setTicketID(auxTicketid);
 	}
 
+	Ticket(const char* auxIssueDate, Event auxEvent) : Event(auxEvent)
+	{
+		this->setDateOfIssue(auxIssueDate);
+	}
+
 	Ticket(int auxLocationId, int auxZoneIndex, int auxRowIndex, int auxSeatIndex, Event auxEvent) : Event(auxEvent)
 	{
 		if (auxLocationId > 0 && auxLocationId < auxEvent.getNumberOfLocations())
@@ -305,7 +372,141 @@ public:
 	}
 	inline friend ostream& operator<<(ostream& console, Ticket& auxTicket);
 
+
+	string getStringTypeOfSeat()
+	{
+		switch (this->typeSeat)
+		{
+		case(0):
+			return "STANDARD";
+		case(1):
+			return "WHEELCHAIR";
+		case(2):
+			return "BROKEN";
+		case(3):
+			return "OCCUPIED";
+		case(4):
+			return "YOUR CHOICE";
+		case(5):
+			return "STUDENT";
+		case(6):
+			return "CHILDREN";
+		case(7):
+			return "COUPLES";
+		case(8):
+			return "FLEXIBLE";
+		case(9):
+			return "VIP";
+		case(10):
+			return "PREMIUM";
+		case(11):
+			return "BEAN BAG";
+		case(12):
+			return "VIRTUAL";
+		default:
+			return "This type of seat did not exist when this structure was created. Plase redefine the switch structure";
+		}
+	}
+
+	string getStringTypeOfZone()
+	{
+		switch (this->typeZone)
+		{
+		case(0):
+			return "STAND";
+		case(1):
+			return "NORMAL";
+		case(2):
+			return "VIP";
+		case(3):
+			return "CATEGORY";
+		case(4):
+			return "CAMPING";
+		case(5):
+			return "PREMIUM";
+			break;
+		case(6):
+			return "FAMILY";
+		case(7):
+			return "STUDENT";
+		case(8):
+			return "BACKSTAGE";
+		case(9):
+			return "GREEN";
+		case(10):
+			return "SRO";
+		case(11):
+			return "NETWORKING";
+		case(12):
+			return "GAME";
+		case(13):
+			return "FOOD";
+		case(14):
+			return "BALCONY";
+		case(15):
+			return "AMPHITHEATER";
+		case(16):
+			return "BOX";
+
+		default:
+			return "This type of zone did not exist when this structure was created. Plase redefine the switch structure";
+
+		}
+	}
+
+
+	string getStringTypeOfLocation()
+	{
+		switch (this->typeLocation)
+		{
+		case(0):
+			return "STADIUM";
+		case(1):
+			return "CONCERT HALL";
+		case(2):
+			return "OPERA HOUSE";
+		case(3):
+			return "EVENTS HALL";
+		case(4):
+			return "SPORT HALL";
+		case(5):
+			return "CINEMA HALL";
+		case(6):
+			return "SQUARE";
+		case(7):
+			return "THEATRE";
+		case(8):
+			return "MALL";
+		case(9):
+			return "PUBLIC INSTITUTION";
+		case(10):
+			return "SEA";
+		case(11):
+			return "FOREST";
+		case(12):
+			return "MOUNTAIN";
+		case(13):
+			return "PARK";
+		case(14):
+			return "SCHOOL";
+		case(15):
+			return "UNIVERSITY";
+		case(16):
+			return "CHURCH";
+		case(17):
+			return "lIBRARY";
+		case(18):
+			return "CEMETERY";
+		case(19):
+			return "RESTAURANT";
+		case(20):
+			return "OTHER";
+		default:
+			return "This type of zone did not exist when this structure was created. Plase redefine the switch structure";
+		}
+	}
 };
+
 
 inline ostream& operator<<(ostream& console, Ticket& auxTicket)
 {
@@ -314,12 +515,14 @@ inline ostream& operator<<(ostream& console, Ticket& auxTicket)
 	console << "Event name:" << " " << auxTicket.eventName << " " << endl;
 	console << "Event date: " << auxTicket.dateOfEvent << endl;
 	console << "Location identifier:" << " " << auxTicket.locationIdentifier << " " << endl;
-	console << "Location type:" << " " << auxTicket.typeLocation << endl;
+	console << "Location identifier based on type:" << " " << auxTicket.identifierOfLocationBasedOnType << " " << endl;
+	console << "Location type:" << " " << auxTicket.getStringTypeOfLocation() << endl;
 	console << "Zone identifier:" << " " << auxTicket.zoneIdentifier << endl;
-	console<< "Zone type:" << " " << auxTicket.typeLocation<<endl;
+	console << "Zone identifier based on type:" << auxTicket.identifierOfZoneBasedOnType << endl;
+	console << "Zone type:" << " " << auxTicket.getStringTypeOfZone() << endl;
 	console << "Row identifier:" << " " << auxTicket.rowIdentifier << endl;
 	console << "Seat identifier:" << auxTicket.seatIdentifier << endl;
-	console << "Seat type:" << " " << auxTicket.typeSeat << endl;
+	console << "Seat type:" << " " << auxTicket.getStringTypeOfSeat() << endl;
 
 	return console;
 }

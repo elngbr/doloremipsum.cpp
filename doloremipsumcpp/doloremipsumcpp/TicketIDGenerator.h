@@ -1,4 +1,3 @@
-
 #pragma once
 #include "elenaRows.h"
 #include "elenaSeats.h"
@@ -25,11 +24,6 @@ void generateTicketId(Ticket& auxTicket, int& counter)
 	auxTicket.extendTicketIdentifier(to_string(auxTicket.getSeatIdentifier() * 6));
 	auxTicket.extendTicketIdentifier(to_string(auxTicket.getRowIdentifier() * 2));
 	auxTicket.extendTicketIdentifier(to_string(auxTicket.getRowIdentifier() * 5));
-
-
-
-
-
 }
 
 //void generateTicketId(string& ceva, int& counter)

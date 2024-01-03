@@ -16,7 +16,6 @@
 using namespace std;
 
 
-
 int main()
 
 {
@@ -81,7 +80,7 @@ int main()
 
 
 
-
+	///->>here with the overloaded function
 	addSeats(standardRow, 15, standardSeat);
 	addSeats(studentRowWithWheelchair, 12, studentSeat, Row::MAX_NUMBER_OF_SEATS, wheelchairSeat);
 	addSeats(studentRow, Row::MAX_NUMBER_OF_SEATS, studentSeat);
@@ -160,18 +159,17 @@ int main()
 	///requested
 	Location stadiumLocation(STADIUM);
 	Location concertHallLocation(CONCERT_HALL);
-	Location operaHouseLocation(OPERA_HOUSE);
-
+	Location theatreLocation(THEATRE);
 
 	Location eventsHallLocation(EVENTS_HALL);
 	Location sportHallLocation(SPORT_HALL);
 	Location cinemaHallLocation(CINEMA_HALL);
 	Location squareLocation(SQUARE);
-	Location theatreLocation(THEATRE);
 	Location mallLocation(MALL);
 	Location publicInstitutionLocation(PUBLIC_INSTITUTION);
 	Location seaLocation(SEA);
 	Location forestLocation(FOREST);
+	Location operaHouseLocation(OPERA_HOUSE);
 	Location mountainLocation(MOUNTAIN);
 	Location parkLocation(PARK);
 	Location schoolLocation(SCHOOL);
@@ -320,23 +318,43 @@ int main()
 
 	//cout << rrt;
 	int value = 9;
-	//rrt.extendTicketIdentifier(to_string(rrt.getRowIdentifier()));
+	rrt.extendTicketIdentifier(to_string(rrt.getRowIdentifier()));
 	//cout << rrt;
 
 	//cout<< to_string(rrt.getRowIdentifier());
 
-	generateTicketId(rrt, counter);
-	//cout << rrt;
-
-	//generateTicketId(rrt, counter);
-	//cout << rrt;
-
-	//generateTicketId(rrt, counter);
-	//cout << rrt;
-
-	//generateTicketId(rrt, counter);
-	//cout << rrt;
-
-	//generateTicketId(rrt, counter);
+	/*generateTicketId(rrt, counter);
 	cout << rrt;
+
+	generateTicketId(rrt, counter);
+	cout << rrt;
+
+	generateTicketId(rrt, counter);
+	cout << rrt;
+
+	generateTicketId(rrt, counter);
+	cout << rrt;
+
+	generateTicketId(rrt, counter);*/
+	//cout << rrt;
+
+	////////////////////////////////////////////////////////////////////////////////////////THIS IS HOW YOU PROPERLY CREATE A TICKET
+	Ticket newTicket("12/06/28", Filantropica);
+	createTicketWithDetails(newTicket, Filantropica, 0, 1, 4, 8, counter);
+	////////////////////////////////////////////////////////////////////////////////////////THIS IS HOW YOU PROPERLY CREATE A TICKET
+
+	//cout << newTicket;
+
+	/*zoneType x = Filantropica.getLocationAtIndex(0)->getZoneAtIndex(1)->getType();
+	cout << x;*/
+
+	/*Zone* ticketZone = Filantropica.getLocationAtIndex(newTicket.getLocationIdentifier())->getZoneAtIndex(newTicket.getZoneIdentifier());
+
+	cout << *ticketZone;*/   ///THIS THING WORKS ON MAIN STACK
+
+	Ticket w("12/08/25", Straini_in_noapte);
+
+	createTicketWithDetails(w, Straini_in_noapte, 0, 2, 5, 8, counter);
+
+	cout << w;
 }
