@@ -309,13 +309,17 @@ public:
 
 inline ostream& operator<<(ostream& console, Ticket& auxTicket)
 {
-	console << endl << "This ticket's unique identifier is:" << " " << auxTicket.ticketID;
-	/*console << endl << "This ticket's was issued on the date" << " " << auxTicket.dateOfIssue << " " << "for the event" << " " << auxTicket.eventName << " " << endl << "which occures on";
-	console << " " << auxTicket.dateOfEvent << endl;
-	console << endl << "The location for which the ticket was selled is" << " " << auxTicket.locationIdentifier << " " << "the type of this zone being" << " " << auxTicket.typeLocation;
-	console << endl << "The zone for which the ticket was selled is" << " " << auxTicket.zoneIdentifier << " " << "the type of this zone being" << " " << auxTicket.typeZone;
-	console << endl << "The row for which the ticket was selled is" << " " << auxTicket.rowIdentifier << " ";
-	console << endl << "The seat reserved by this ticket is:" << auxTicket.seatIdentifier << " " << "having type" << " " << auxTicket.typeSeat << " " << "on the row" << " " << auxTicket.rowIdentifier;*/
+	console << endl << "This ticket's unique identifier is:" << " " << auxTicket.ticketID << endl;
+	console << "This ticket's was issued on the date:" << " " << auxTicket.dateOfIssue << endl;
+	console << "Event name:" << " " << auxTicket.eventName << " " << endl;
+	console << "Event date: " << auxTicket.dateOfEvent << endl;
+	console << "Location identifier:" << " " << auxTicket.locationIdentifier << " " << endl;
+	console << "Location type:" << " " << auxTicket.typeLocation << endl;
+	console << "Zone identifier:" << " " << auxTicket.zoneIdentifier << endl;
+	console<< "Zone type:" << " " << auxTicket.typeLocation<<endl;
+	console << "Row identifier:" << " " << auxTicket.rowIdentifier << endl;
+	console << "Seat identifier:" << auxTicket.seatIdentifier << endl;
+	console << "Seat type:" << " " << auxTicket.typeSeat << endl;
 
 	return console;
 }

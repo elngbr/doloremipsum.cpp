@@ -320,23 +320,23 @@ int main()
 
 	//cout << rrt;
 	int value = 9;
-	rrt.extendTicketIdentifier(to_string(rrt.getRowIdentifier()));
+	//rrt.extendTicketIdentifier(to_string(rrt.getRowIdentifier()));
 	//cout << rrt;
 
 	//cout<< to_string(rrt.getRowIdentifier());
 
 	generateTicketId(rrt, counter);
-	cout << rrt;
+	//cout << rrt;
 
-	generateTicketId(rrt, counter);
-	cout << rrt;
+	//generateTicketId(rrt, counter);
+	//cout << rrt;
 
-	generateTicketId(rrt, counter);
-	cout << rrt;
+	//generateTicketId(rrt, counter);
+	//cout << rrt;
 
-	generateTicketId(rrt, counter);
-	cout << rrt;
+	//generateTicketId(rrt, counter);
+	//cout << rrt;
 
-	generateTicketId(rrt, counter);
+	//generateTicketId(rrt, counter);
 	cout << rrt;
 }
