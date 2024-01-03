@@ -9,24 +9,24 @@
 #include<fstream>
 using namespace std;
 
-class WrongSeatIdentifier {
-private:
-    string message;
-public:
-    WrongSeatIdentifier(const string& msg) : message(msg) {}
-
-    string what()const
-    {
-        return message;
-    }
-};
+//class WrongSeatIdentifier {
+//private:
+//    string message;
+//public:
+//    WrongSeatIdentifier(const string& msg) : message(msg) {}
+//
+//    string what()const
+//    {
+//        return message;
+//    }
+//};
 
 enum SeatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN, STUDENT, CHILDREN, COUPLE, FLEXIBLE, VIP, PREMIUM, BEANBAG, VIRTUAL };
 
 class Seat {
 protected:
 
-    SeatType type = SeatType::STANDARD;
+    SeatType typeOfSeat = SeatType::STANDARD;
     int seatIndentifier = 0;
 
 public:
@@ -36,38 +36,38 @@ public:
         return this->seatIndentifier;
     }
 
-    void setSeatIdentifier(int auxSeatIdentifier)
+    /*void setSeatIdentifier(int auxSeatIdentifier)
     {
         if (auxSeatIdentifier < 0)
         {
             throw WrongSeatIdentifier("A seat identifier cannot be less than 0!");
             this->seatIndentifier = auxSeatIdentifier;
         }
-    }
+    }*/
 
     SeatType getType() const {
-        return type;
+        return typeOfSeat;
     }
 
     void setType(SeatType auxType) {
-        this->type = auxType;
+        this->typeOfSeat = auxType;
     }
 
-    Seat(SeatType auxType) :type(auxType)
+    Seat(SeatType auxType) :typeOfSeat(auxType)
     {
 
     }
-    Seat(SeatType auxType, int auxSeatIdentifier) : type(auxType) {
-        setSeatIdentifier(auxSeatIdentifier);
-    }
-    friend inline ostream& operator <<(ostream& console, const Seat& auxSeat);
+    //Seat(SeatType auxType, int auxSeatIdentifier) :typeOfSeat(auxType) {
+    //    setSeatIdentifier(auxSeatIdentifier);
+    //}
+    //friend inline ostream& operator <<(ostream& console, const Seat& auxSeat);
 
 };
 
 
 inline ostream& operator <<(ostream& console, const Seat& auxSeat)
 {
-    console << endl << "This seats; identifier is:" << auxSeat.getSeatIdentifier();
+    //console << endl << "This seats; identifier is:" << auxSeat.getSeatIdentifier();
     console << endl << "This seat's type is:" << " " << " ";
     /*enum SeatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN };*/
     //enum SeatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN, STUDENT, CHILDREN, COUPLE, FLEXIBLE, VIP, PREMIUM };

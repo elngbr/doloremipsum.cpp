@@ -51,8 +51,9 @@ class Event
 protected:
 	char dateOfEvent[9] = "dd/mm/yy"; ///it will follow the standard dd/mm/yy. the previous sequence has 8ch +1 =9
 	string eventName = " ";
-private:
 	int numberOfLocations = 0;
+private:
+
 	Location** locations = nullptr;
 
 public:
@@ -82,7 +83,7 @@ public:
 	string getEventName()const
 	{
 
-		this->eventName;
+		return this->eventName;
 
 	}
 
@@ -110,6 +111,11 @@ public:
 		return copy;
 
 
+
+	}
+
+	Event()
+	{
 
 	}
 
@@ -151,6 +157,16 @@ public:
 		this->numberOfLocations++;
 	}
 
+	Location* getLocationAtIndex(int givenIndex) const {
+
+		if (givenIndex >= 0 && givenIndex < this->numberOfLocations) {
+			return locations[givenIndex];
+		}
+		else {
+			// Handle error, return nullptr, throw an exception, or handle it according to your design
+			return nullptr;
+		}
+	}
 
 	inline friend ostream& operator<<(ostream& console, Event& auxEvent);
 

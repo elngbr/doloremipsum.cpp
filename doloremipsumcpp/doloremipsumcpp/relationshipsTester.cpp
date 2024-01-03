@@ -3,19 +3,25 @@
 #include "elenaRows.h"
 #include "elenaSeats.h"
 #include "elenaZones.h"
-#include "elenaLocationS.h"
+#include "elenaLocations.h"
 #include "elenaEvents.h"
+#include "elenaTickets.h"
 #include "OverloadedF.h"
 #include "OverloadedF1.h"
+#include "TicketIDGenerator.h"
 
 #include<string>
 #include<iostream>
 #include<fstream>
 using namespace std;
 
+
+
 int main()
 
 {
+	string* uniqueIdentifiers = nullptr;
+	int counter = 0;
 
 	Seat standardSeat(STANDARD);
 	Seat wheelchairSeat(WHEELCHAIR);
@@ -252,7 +258,7 @@ int main()
 	cout << "ASCII Code: " << asciiCode << ", Character: " << character << endl;
 
 
-	Row c;
+	/*Row c;
 
 	c.addSeats(Seat(SeatType::STANDARD));
 	c.addSeats(Seat(SeatType::STANDARD));
@@ -261,8 +267,76 @@ int main()
 	c.addSeats(Seat(SeatType::STANDARD));
 
 
-	cout << c;
+	cout << c;*/
 
 
+	/*Seat* x=normalRow.getSeatAtIndex(3);
+	cout << *x;
 
+	Row* y = standZone.getRowAtIndex(4);
+	cout << *y;*/
+
+	/*SeatType u = normalRow.getSeatAtIndex(3)->getType();
+	cout << u;
+
+	Seat* k = normalZone.getRowAtIndex(4)->getSeatAtIndex(5);
+	cout << *k;*/
+
+	/*Seat* j = Filantropica.getLocationAtIndex(0)->getZoneAtIndex(0)->getRowAtIndex(5)->getSeatAtIndex(8);
+	cout << *j;
+
+	SeatType u = normalRow.getSeatAtIndex(3)->getType();
+	SeatType m = normalRow.getSeatAtIndex(7)->getType();
+
+	cout << endl<< u;
+	cout <<endl<< m;
+
+	u = m;
+	cout << endl << u;*/
+
+
+	char* e = Filantropica.getDate();
+
+	//cout << e;  //merge
+
+	/*Location* r = Filantropica.getLocationAtIndex(0);
+	cout << *r;*/
+	string as = "C9898";
+
+	Ticket ticket(as, "13/11/2024", "Filantropica", "01/04/25", 0, 0, 0, 0);
+
+	//cout << ticket;   //merge
+
+	Ticket rrt("F77", "13/11/2024", Filantropica);
+	//addLocationZoneRowSeat(rrt, 0, 2, 14, 0, Filantropica);
+	//cout << rrt;
+
+	int numberOfRowsPerZone = Filantropica.getLocationAtIndex(0)->getZoneAtIndex(0)->getNumberOfRowsPerZone();
+	int numberOfSeatsPerRow = Filantropica.getLocationAtIndex(0)->getZoneAtIndex(0)->getRowAtIndex(0)->getNoOfSeatsForRow();
+
+	//cout << numberOfSeatsPerRow;
+
+	addLocationZoneRowSeat(rrt, 0, 2, 11, 14, Filantropica, numberOfRowsPerZone, numberOfSeatsPerRow);
+
+	//cout << rrt;
+	int value = 9;
+	rrt.extendTicketIdentifier(to_string(rrt.getRowIdentifier()));
+	//cout << rrt;
+
+	//cout<< to_string(rrt.getRowIdentifier());
+
+	generateTicketId(rrt, counter);
+	cout << rrt;
+
+	generateTicketId(rrt, counter);
+	cout << rrt;
+
+	generateTicketId(rrt, counter);
+	cout << rrt;
+
+	generateTicketId(rrt, counter);
+	cout << rrt;
+
+	generateTicketId(rrt, counter);
+	cout << rrt;
 }

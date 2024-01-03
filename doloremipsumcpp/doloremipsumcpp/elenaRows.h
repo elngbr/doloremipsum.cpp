@@ -32,10 +32,11 @@ class Row {
 
 protected:
     int rowIdentifier = 0;
+    int noOfSeatsForRow = 0;
 private:
 
 
-    int noOfSeatsForRow = 0;
+
     Seat** seats = nullptr;
 
 
@@ -51,14 +52,15 @@ public:
         return this->rowIdentifier;
     }
 
-    void setRowIdentifier(int auxRowIdentifier)
-    {
-        if (auxRowIdentifier < 0)
-        {
-            throw WrongSeatIdentifier("A seat identifier cannot be less than 0!");
-            this->rowIdentifier = auxRowIdentifier;
-        }
-    }
+
+    /* void setRowIdentifier(int auxRowIdentifier)
+     {
+         if (auxRowIdentifier < 0)
+         {
+             throw WrongSeatIdentifier("A seat identifier cannot be less than 0!");
+             this->rowIdentifier = auxRowIdentifier;
+         }
+     }*/
     static const int MAX_NUMBER_OF_SEATS = 15;
 
     int getNoOfSeatsForRow() const {
@@ -74,24 +76,23 @@ public:
         this->noOfSeatsForRow = auxNoOfSeats;
     }
 
-    //void addSeats(Seat auxSeat)
-    //{
-    //    
-    //        Seat** newSeats = new Seat * [this->noOfSeatsForRow + 1];
-    //        for (int i = 0; i < this->noOfSeatsForRow; i++)
-    //        {
-    //            newSeats[i] = this->seats[i];
-    //        }
+    void addSeats(Seat auxSeat)
+    {
 
-    //        newSeats[this->noOfSeatsForRow] = new Seat(auxSeat);
-    //        newSeats[this->noOfSeatsForRow]->setSeatIdentifier(this->noOfSeatsForRow + 1);
+        Seat** newSeats = new Seat * [this->noOfSeatsForRow + 1];
+        for (int i = 0; i < this->noOfSeatsForRow; i++)
+        {
+            newSeats[i] = this->seats[i];
+        }
 
-    //        delete[] this->seats;
-    //        this->seats = newSeats;
-    //        this->noOfSeatsForRow++;
-    //        //auxSeat.setSeatIdentifier(this->noOfSeatsForRow);
-    //    
-    //}
+        newSeats[this->noOfSeatsForRow] = new Seat(auxSeat);
+
+
+        delete[] this->seats;
+        this->seats = newSeats;
+        this->noOfSeatsForRow++;
+
+    }
     //void addSeats(Seat auxSeat) {
     //    if (this->noOfSeatsForRow >= MAX_NUMBER_OF_SEATS) {
     //        // Handle error, maybe throw an exception or return early
@@ -113,7 +114,7 @@ public:
     //    
     //}
 
-    void addSeats(Seat auxSeat) {
+   /* void addSeats(Seat auxSeat) {
         Seat** newSeats = new Seat * [this->noOfSeatsForRow + 1];
 
         for (int i = 0; i < this->noOfSeatsForRow; i++) {
@@ -125,10 +126,18 @@ public:
         delete[] this->seats;
         this->seats = newSeats;
         this->noOfSeatsForRow++;
+    }*/
+
+
+    Seat* getSeatAtIndex(int givenIndex) const {
+        if (givenIndex >= 0 && givenIndex < noOfSeatsForRow) {
+            return seats[givenIndex];
+        }
+        else {
+            // Handle error, return nullptr, throw an exception, or handle it according to your design
+            return nullptr;
+        }
     }
-
-
-
     friend inline ostream& operator <<(ostream& console, const Row& auxRow);
 };
 
@@ -143,7 +152,7 @@ inline ostream& operator <<(ostream& console, const Row& auxRow)
     console << endl << "This row has the following seats:" << endl;
     for (int i = 0; i < auxRow.getNoOfSeatsForRow(); i++)
     {
-        // console << endl << "The identifier of this seat is:" << " " << i + 1;
+        console << endl << "The identifier of this seat is:" << " " << i + 1;
         console << *(auxRow.seats[i]) << endl;
     }
 

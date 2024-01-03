@@ -33,9 +33,10 @@ class Zone :public Row
 protected:
 
 	zoneType typeOfZone = NORMAL;
-private:
 	int numberOfRowsPerZone = 0;
 	Row** rows = nullptr;
+private:
+
 public:
 	int const static MAX_ROW_IDENTIFIER_PER_ZONE = 15;
 
@@ -50,6 +51,11 @@ public:
 	void setType(zoneType auxType)
 	{
 		this->typeOfZone = auxType;
+	}
+
+	zoneType getSeatType()
+	{
+		return this->typeOfZone;
 	}
 
 	void setNumberOfRowsPerZone(int auxNo)
@@ -81,7 +87,7 @@ public:
 		delete[] this->rows;
 		this->rows = newRows;
 		this->numberOfRowsPerZone++;
-		auxRow.setRowIdentifier(this->numberOfRowsPerZone);
+		//auxRow.setRowIdentifier(this->numberOfRowsPerZone);
 	}
 
 	Zone(zoneType auxType)
@@ -96,6 +102,15 @@ public:
 		return this->typeOfZone;
 	}
 
+	Row* getRowAtIndex(int givenIndex) const {
+		if (givenIndex >= 0 && givenIndex < this->numberOfRowsPerZone) {
+			return rows[givenIndex];
+		}
+		else {
+			// Handle error, return nullptr, throw an exception, or handle it according to your design
+			return nullptr;
+		}
+	}
 };
 
 
@@ -165,10 +180,10 @@ inline ostream& operator<<(ostream& console, Zone& auxZone)
 
 	console << endl << "This zone has" << " " << auxZone.numberOfRowsPerZone << " " << "rows.";
 
-	/*for (int i = 0; i < auxZone.numberOfRowsPerZone; i++)
+	for (int i = 0; i < auxZone.numberOfRowsPerZone; i++)
 	{
 		console << endl << "This row's identifier is:" << " " << i + 1;
 		console << *(auxZone.rows[i]) << endl;
-	}*/
+	}
 	return console;
 }

@@ -27,7 +27,9 @@ enum locationType {
 class Location
 {
 protected:
-	locationType type = EVENTS_HALL;
+	locationType typeOfLocation = EVENTS_HALL;
+	int numberOfZones = 0;
+	Zone** zones = nullptr;
 private:
 
 	int standZoneCounter = 0;
@@ -47,8 +49,7 @@ private:
 	int balconyZoneCounter = 0;
 	int amphitheaterZoneCounter = 0;
 	int boxZoneCounter = 0;
-	int numberOfZones = 0;
-	Zone** zones = nullptr;
+
 public:
 	int static const MAX_IDENTIFIER_OF_ZONE = 6;
 
@@ -74,75 +75,75 @@ public:
 	}
 	void setType(locationType auxType)
 	{
-		this->type = auxType;
+		this->typeOfLocation = auxType;
 	}
-	void initializeCounterOfZoneType(Zone auxZone)
-	{
+	//void initializeCounterOfZoneType(Zone auxZone)
+	//{
+	//	
+	//	switch (auxZone.getType())
+	//	{
+	//	case(STAND):
+	//		this->standZoneCounter++;
+	//		break;
+	//	case(NORMAL):
+	//		this->normalZoneCounter++;
+	//		break;
+	//	case(VIPZ):
+	//		this->vipZoneCounter++;
 
-		switch (auxZone.getType())
-		{
-		case(STAND):
-			this->standZoneCounter++;
-			break;
-		case(NORMAL):
-			this->normalZoneCounter++;
-			break;
-		case(VIPZ):
-			this->vipZoneCounter++;
+	//		break;
+	//	case(CATEGORY):
+	//		this->categoryZoneCounter++;
 
-			break;
-		case(CATEGORY):
-			this->categoryZoneCounter++;
+	//		break;
+	//	case(CAMPING):
+	//		this->campingZoneCounter++;
 
-			break;
-		case(CAMPING):
-			this->campingZoneCounter++;
+	//		break;
+	//	case(PREMIUMZ):
+	//		this->premiumZoneCounter++;
 
-			break;
-		case(PREMIUMZ):
-			this->premiumZoneCounter++;
+	//		break;
+	//	case(FAMILY):
+	//		//enum zoneType { STAND, NORMAL, VIPZ, CATEGORY, CAMPING, PREMIUMZ, FAMILY, STUDENTZ, BACKSTAGE, GREEN, SRO, NETWORKING, GAME, FOOD, BALCONY, AMPHITHEATER, BOX };
+	//		this->familyZoneCounter++;
+	//		break;
+	//	case(STUDENTZ):
+	//		this->studentZoneCounter++;
+	//		break;
+	//	case(BACKSTAGE):
+	//		this->backstageZoneCounter++;
+	//		break;
+	//	case(GREEN):
+	//		this->greenZoneCounter++;
+	//		break;
+	//	case(SRO):
+	//		this->sroZoneCounter++;
+	//		break;
+	//	case(NETWORKING):
+	//		this->networkingZoneCounter++;
+	//		break;
+	//	case(GAME):
+	//		this->gameZoneCounter++;
+	//		break;
+	//	case(FOOD):
+	//		this->foodZoneCounter++;
+	//		break;
+	//	case(BALCONY):
+	//		this->balconyZoneCounter++;
+	//		break;
+	//	case(AMPHITHEATER):
+	//		this->amphitheaterZoneCounter++;
+	//		break;
+	//	case(BOX):
+	//		this->boxZoneCounter++;
+	//		break;
+	//	}
 
-			break;
-		case(FAMILY):
-			//enum zoneType { STAND, NORMAL, VIPZ, CATEGORY, CAMPING, PREMIUMZ, FAMILY, STUDENTZ, BACKSTAGE, GREEN, SRO, NETWORKING, GAME, FOOD, BALCONY, AMPHITHEATER, BOX };
-			this->familyZoneCounter++;
-			break;
-		case(STUDENTZ):
-			this->studentZoneCounter++;
-			break;
-		case(BACKSTAGE):
-			this->backstageZoneCounter++;
-			break;
-		case(GREEN):
-			this->greenZoneCounter++;
-			break;
-		case(SRO):
-			this->sroZoneCounter++;
-			break;
-		case(NETWORKING):
-			this->networkingZoneCounter++;
-			break;
-		case(GAME):
-			this->gameZoneCounter++;
-			break;
-		case(FOOD):
-			this->foodZoneCounter++;
-			break;
-		case(BALCONY):
-			this->balconyZoneCounter++;
-			break;
-		case(AMPHITHEATER):
-			this->amphitheaterZoneCounter++;
-			break;
-		case(BOX):
-			this->boxZoneCounter++;
-			break;
-		}
-
-	}
+	//}
 	void addZones(Zone auxZone)
 	{
-		initializeCounterOfZoneType(auxZone);
+		//initializeCounterOfZoneType(auxZone);
 		Zone** newZones = new Zone * [this->numberOfZones + 1];
 		for (int i = 0; i < this->numberOfZones; i++)
 		{
@@ -156,12 +157,27 @@ public:
 		this->numberOfZones++;
 	}
 
+	locationType getLocationType()
+	{
+		return this->typeOfLocation;
+	}
+
 	Location(locationType auxType)
 	{
 		this->setType(auxType);
 	}
 
 	friend inline ostream& operator<<(ostream& console, Location& auxLocation);
+
+	Zone* getZoneAtIndex(int givenIndex) const {
+		if (givenIndex >= 0 && givenIndex < this->numberOfZones) {
+			return zones[givenIndex];
+		}
+		else {
+			// Handle error, return nullptr, throw an exception, or handle it according to your design
+			return nullptr;
+		}
+	}
 
 };
 
@@ -170,7 +186,7 @@ inline ostream& operator<<(ostream& console, Location& auxLocation)
 {
 	//console << endl << "*******************************************************************************************************************";
 	console << endl << "This location has the following type" << " ";
-	switch (auxLocation.type)
+	switch (auxLocation.typeOfLocation)
 	{
 	case STADIUM:
 		console << "STADIUM.";

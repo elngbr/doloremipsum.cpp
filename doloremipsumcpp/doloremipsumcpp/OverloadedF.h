@@ -1,18 +1,15 @@
-
 #pragma once
 #include "elenaRows.h"
 #include "elenaSeats.h"
 #include "elenaZones.h"
 #include "elenaLocations.h"
-#include "elenaEvents.h"
 #include<string>
 #include<iostream>
 #include<fstream>
 ////////////////////////*******************************************************************************************INSERTIONS FOR SEATS
 void addSeats(Row& rowname, int numberOfSeats1, Seat auxSeat1, int numberOfSeats2, Seat auxSeat2)
 {
-	int initialNumberOfSeats = rowname.getNoOfSeatsForRow();
-	for (int i = initialNumberOfSeats; i < numberOfSeats1; i++)
+	for (int i = 0; i < numberOfSeats1; i++)
 	{
 		rowname.addSeats(auxSeat1);
 	}
@@ -32,9 +29,7 @@ void addSeats(Row& rowname, int numberOfSeats1, Seat auxSeat1)
 
 void addSeats(Row& rowname, int numberOfSeats1, Seat auxSeat1, int numberOfSeats2, Seat auxSeat2, int numberOfSeats3, Seat auxSeat3, int numberOfSeats4, Seat auxSeat4)
 {
-
-	int initialNumberOfSeats = rowname.getNoOfSeatsForRow();
-	for (int i = initialNumberOfSeats; i < numberOfSeats1; i++)
+	for (int i = 0; i < numberOfSeats1; i++)
 	{
 		rowname.addSeats(auxSeat1);
 	}
@@ -54,9 +49,7 @@ void addSeats(Row& rowname, int numberOfSeats1, Seat auxSeat1, int numberOfSeats
 
 void addSeats(Row& rowname, int numberOfSeats1, Seat auxSeat1, int numberOfSeats2, Seat auxSeat2, int numberOfSeats3, Seat auxSeat3)
 {
-
-	int initialNumberOfSeats = rowname.getNoOfSeatsForRow();
-	for (int i = initialNumberOfSeats; i < numberOfSeats1; i++)
+	for (int i = 0; i < numberOfSeats1; i++)
 	{
 		rowname.addSeats(auxSeat1);
 	}
@@ -73,9 +66,7 @@ void addSeats(Row& rowname, int numberOfSeats1, Seat auxSeat1, int numberOfSeats
 void addSeats(Row& rowname, int numberOfSeats1, Seat auxSeat1, int numberOfSeats2, Seat auxSeat2, int numberOfSeats3,
 	Seat auxSeat3, int numberOfSeats4, Seat auxSeat4, int numberOfSeats5, Seat auxSeat5)
 {
-
-	int initialNumberOfSeats = rowname.getNoOfSeatsForRow();
-	for (int i = initialNumberOfSeats; i < numberOfSeats1; i++)
+	for (int i = 0; i < numberOfSeats1; i++)
 	{
 		rowname.addSeats(auxSeat1);
 	}
@@ -100,9 +91,7 @@ void addSeats(Row& rowname, int numberOfSeats1, Seat auxSeat1, int numberOfSeats
 void addSeats(Row& rowname, int numberOfSeats1, Seat auxSeat1, int numberOfSeats2, Seat auxSeat2, int numberOfSeats3, Seat auxSeat3,
 	int numberOfSeats4, Seat auxSeat4, int numberOfSeats5, Seat auxSeat5, int numberOfSeats6, Seat auxSeat6)
 {
-
-	int initialNumberOfSeats = rowname.getNoOfSeatsForRow();
-	for (int i = initialNumberOfSeats; i < numberOfSeats1; i++)
+	for (int i = 0; i < numberOfSeats1; i++)
 	{
 		rowname.addSeats(auxSeat1);
 	}
@@ -131,9 +120,7 @@ void addSeats(Row& rowname, int numberOfSeats1, Seat auxSeat1, int numberOfSeats
 void addSeats(Row& rowname, int numberOfSeats1, Seat auxSeat1, int numberOfSeats2, Seat auxSeat2, int numberOfSeats3, Seat auxSeat3,
 	int numberOfSeats4, Seat auxSeat4, int numberOfSeats5, Seat auxSeat5, int numberOfSeats6, Seat auxSeat6, int numberOfSeats7, Seat auxSeat7)
 {
-
-	int initialNumberOfSeats = rowname.getNoOfSeatsForRow();
-	for (int i = initialNumberOfSeats; i < numberOfSeats1; i++)
+	for (int i = 0; i < numberOfSeats1; i++)
 	{
 		rowname.addSeats(auxSeat1);
 	}
@@ -167,9 +154,7 @@ void addSeats(Row& rowname, int numberOfSeats1, Seat auxSeat1, int numberOfSeats
 	int numberOfSeats4, Seat auxSeat4, int numberOfSeats5, Seat auxSeat5, int numberOfSeats6, Seat auxSeat6, int numberOfSeats7,
 	Seat auxSeat7, int numberOfSeats8, Seat auxSeat8)
 {
-
-	int initialNumberOfSeats = rowname.getNoOfSeatsForRow();
-	for (int i = initialNumberOfSeats; i < numberOfSeats1; i++)
+	for (int i = 0; i < numberOfSeats1; i++)
 	{
 		rowname.addSeats(auxSeat1);
 	}
@@ -207,9 +192,7 @@ void addSeats(Row& rowname, int numberOfSeats1, Seat auxSeat1, int numberOfSeats
 	Seat auxSeat3, int numberOfSeats4, Seat auxSeat4, int numberOfSeats5, Seat auxSeat5, int numberOfSeats6, Seat auxSeat6,
 	int numberOfSeats7, Seat auxSeat7, int numberOfSeats8, Seat auxSeat8, int numberOfSeats9, Seat auxSeat9)
 {
-
-	int initialNumberOfSeats = rowname.getNoOfSeatsForRow();
-	for (int i = initialNumberOfSeats; i < numberOfSeats1; i++)
+	for (int i = 0; i < numberOfSeats1; i++)
 	{
 		rowname.addSeats(auxSeat1);
 	}
@@ -251,9 +234,7 @@ void addSeats(Row& rowname, int numberOfSeats1, Seat auxSeat1, int numberOfSeats
 	Seat auxSeat3, int numberOfSeats4, Seat auxSeat4, int numberOfSeats5, Seat auxSeat5, int numberOfSeats6, Seat auxSeat6,
 	int numberOfSeats7, Seat auxSeat7, int numberOfSeats8, Seat auxSeat8, int numberOfSeats9, Seat auxSeat9, int numberOfSeats10, Seat auxSeat10)
 {
-
-	int initialNumberOfSeats = rowname.getNoOfSeatsForRow();
-	for (int i = initialNumberOfSeats; i < numberOfSeats1; i++)
+	for (int i = 0; i < numberOfSeats1; i++)
 	{
 		rowname.addSeats(auxSeat1);
 	}
@@ -300,9 +281,7 @@ void addSeats(Row& rowname, int numberOfSeats1, Seat auxSeat1, int numberOfSeats
 	int numberOfSeats7, Seat auxSeat7, int numberOfSeats8, Seat auxSeat8, int numberOfSeats9, Seat auxSeat9, int numberOfSeats10,
 	Seat auxSeat10, int numberOfSeats11, Seat auxSeat11)
 {
-
-	int initialNumberOfSeats = rowname.getNoOfSeatsForRow();
-	for (int i = initialNumberOfSeats; i < numberOfSeats1; i++)
+	for (int i = 0; i < numberOfSeats1; i++)
 	{
 		rowname.addSeats(auxSeat1);
 	}
@@ -353,9 +332,7 @@ void addSeats(Row& rowname, int numberOfSeats1, Seat auxSeat1, int numberOfSeats
 	int numberOfSeats7, Seat auxSeat7, int numberOfSeats8, Seat auxSeat8, int numberOfSeats9, Seat auxSeat9, int numberOfSeats10,
 	Seat auxSeat10, int numberOfSeats11, Seat auxSeat11, int numberOfSeats12, Seat auxSeat12)
 {
-
-	int initialNumberOfSeats = rowname.getNoOfSeatsForRow();
-	for (int i = initialNumberOfSeats; i < numberOfSeats1; i++)
+	for (int i = 0; i < numberOfSeats1; i++)
 	{
 		rowname.addSeats(auxSeat1);
 	}
@@ -415,8 +392,7 @@ void addSeats(Row& rowname, int numberOfSeats1, Seat auxSeat1, int numberOfSeats
 
 void addRows(Zone& auxName, int numberOfRows1, Row auxRow1)
 {
-	int initialNumberOfRows = auxName.getNumberOfRowsPerZone();
-	for (int i = initialNumberOfRows; i < numberOfRows1; i++)
+	for (int i = 0; i < numberOfRows1; i++)
 	{
 		auxName.addRows(auxRow1);
 	}
@@ -424,8 +400,7 @@ void addRows(Zone& auxName, int numberOfRows1, Row auxRow1)
 
 void addRows(Zone& auxName, int numberOfRows1, Row auxRow1, int numberOfRows2, Row auxRow2)
 {
-	int initialNumberOfRows = auxName.getNumberOfRowsPerZone();
-	for (int i = initialNumberOfRows; i < numberOfRows1; i++)
+	for (int i = 0; i < numberOfRows1; i++)
 	{
 		auxName.addRows(auxRow1);
 	}
@@ -437,8 +412,7 @@ void addRows(Zone& auxName, int numberOfRows1, Row auxRow1, int numberOfRows2, R
 
 void addRows(Zone& auxName, int numberOfRows1, Row auxRow1, int numberOfRows2, Row auxRow2, int numberOfRows3, Row auxRow3)
 {
-	int initialNumberOfRows = auxName.getNumberOfRowsPerZone();
-	for (int i = initialNumberOfRows; i < numberOfRows1; i++)
+	for (int i = 0; i < numberOfRows1; i++)
 	{
 		auxName.addRows(auxRow1);
 	}
@@ -454,8 +428,7 @@ void addRows(Zone& auxName, int numberOfRows1, Row auxRow1, int numberOfRows2, R
 
 void addRows(Zone& auxName, int numberOfRows1, Row auxRow1, int numberOfRows2, Row auxRow2, int numberOfRows3, Row auxRow3, int numberOfRows4, Row auxRow4)
 {
-	int initialNumberOfRows = auxName.getNumberOfRowsPerZone();
-	for (int i = initialNumberOfRows; i < numberOfRows1; i++)
+	for (int i = 0; i < numberOfRows1; i++)
 	{
 		auxName.addRows(auxRow1);
 	}
@@ -480,8 +453,7 @@ void addRows(Zone& auxName,
 	int numberOfRows4, Row auxRow4,
 	int numberOfRows5, Row auxRow5)
 {
-	int initialNumberOfRows = auxName.getNumberOfRowsPerZone();
-	for (int i = initialNumberOfRows; i < numberOfRows1; i++)
+	for (int i = 0; i < numberOfRows1; i++)
 	{
 		auxName.addRows(auxRow1);
 	}
@@ -511,8 +483,7 @@ void addRows(Zone& auxName,
 	int numberOfRows5, Row auxRow5,
 	int numberOfRows6, Row auxRow6)
 {
-	int initialNumberOfRows = auxName.getNumberOfRowsPerZone();
-	for (int i = initialNumberOfRows; i < numberOfRows1; i++)
+	for (int i = 0; i < numberOfRows1; i++)
 	{
 		auxName.addRows(auxRow1);
 	}
@@ -547,8 +518,7 @@ void addRows(Zone& auxName,
 	int numberOfRows6, Row auxRow6,
 	int numberOfRows7, Row auxRow7)
 {
-	int initialNumberOfRows = auxName.getNumberOfRowsPerZone();
-	for (int i = initialNumberOfRows; i < numberOfRows1; i++)
+	for (int i = 0; i < numberOfRows1; i++)
 	{
 		auxName.addRows(auxRow1);
 	}
@@ -667,8 +637,3 @@ void addZones(Location& auxLocation, int numberOfZones1, Zone auxZone1, int numb
 }
 
 ///**************************************************************************************************************INSERTIONS FOR ZONES IN LOCATIONS
-
-///**************************************************************************************************************INSERTIONS FOR LOCATIONS IN EVENTS
-
-
-

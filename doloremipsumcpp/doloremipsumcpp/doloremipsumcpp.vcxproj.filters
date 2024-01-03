@@ -44,5 +44,8 @@
     <ClInclude Include="elenaTickets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TicketIDGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
