@@ -159,17 +159,18 @@ int main()
 	///requested
 	Location stadiumLocation(STADIUM);
 	Location concertHallLocation(CONCERT_HALL);
-	Location theatreLocation(THEATRE);
+	Location operaHouseLocation(OPERA_HOUSE);
+
 
 	Location eventsHallLocation(EVENTS_HALL);
 	Location sportHallLocation(SPORT_HALL);
 	Location cinemaHallLocation(CINEMA_HALL);
 	Location squareLocation(SQUARE);
+	Location theatreLocation(THEATRE);
 	Location mallLocation(MALL);
 	Location publicInstitutionLocation(PUBLIC_INSTITUTION);
 	Location seaLocation(SEA);
 	Location forestLocation(FOREST);
-	Location operaHouseLocation(OPERA_HOUSE);
 	Location mountainLocation(MOUNTAIN);
 	Location parkLocation(PARK);
 	Location schoolLocation(SCHOOL);
@@ -253,7 +254,7 @@ int main()
 	char character = static_cast<char>(65);
 
 	// Print the result
-	cout << "ASCII Code: " << asciiCode << ", Character: " << character << endl;
+	//cout << "ASCII Code: " << asciiCode << ", Character: " << character << endl;
 
 
 	/*Row c;
@@ -301,11 +302,11 @@ int main()
 	cout << *r;*/
 	string as = "C9898";
 
-	Ticket ticket(as, "13/11/2024", "Filantropica", "01/04/25", 0, 0, 0, 0);
+	//Ticket ticket(as, "13/11/2024", "Filantropica", "01/04/25", 0, 0, 0, 0); ////this shall not exist. the ticket was issued AFTER THE EVENT OCCURED
 
 	//cout << ticket;   //merge
 
-	Ticket rrt("F77", "13/11/2024", Filantropica);
+	//Ticket rrt("F77", "13/11/2024", Filantropica);
 	//addLocationZoneRowSeat(rrt, 0, 2, 14, 0, Filantropica);
 	//cout << rrt;
 
@@ -314,11 +315,11 @@ int main()
 
 	//cout << numberOfSeatsPerRow;
 
-	addLocationZoneRowSeat(rrt, 0, 2, 11, 14, Filantropica, numberOfRowsPerZone, numberOfSeatsPerRow);
+	//addLocationZoneRowSeat(rrt, 0, 2, 11, 14, Filantropica, numberOfRowsPerZone, numberOfSeatsPerRow);
 
 	//cout << rrt;
 	int value = 9;
-	rrt.extendTicketIdentifier(to_string(rrt.getRowIdentifier()));
+	//rrt.extendTicketIdentifier(to_string(rrt.getRowIdentifier()));
 	//cout << rrt;
 
 	//cout<< to_string(rrt.getRowIdentifier());
@@ -339,8 +340,8 @@ int main()
 	//cout << rrt;
 
 	////////////////////////////////////////////////////////////////////////////////////////THIS IS HOW YOU PROPERLY CREATE A TICKET
-	Ticket newTicket("12/06/28", Filantropica);
-	createTicketWithDetails(newTicket, Filantropica, 0, 1, 4, 8, counter);
+	//Ticket newTicket("12/06/28", Filantropica);
+	//createTicketWithDetails(newTicket, Filantropica, 0, 1, 4, 8, counter);
 	////////////////////////////////////////////////////////////////////////////////////////THIS IS HOW YOU PROPERLY CREATE A TICKET
 
 	//cout << newTicket;
@@ -356,5 +357,53 @@ int main()
 
 	createTicketWithDetails(w, Straini_in_noapte, 0, 2, 5, 8, counter);
 
-	cout << w;
+	//cout << w;
+
+	//cout << strcmp("14/06/2024", "15/06/2024");
+	//cout << strcmp("14/06/2024", "14/07/2024");
+	//cout << strcmp("14/06/2024", "14/06/2028");
+
+	/*try
+	{
+		Ticket elenaT("15/08/2024", Filantropica);
+	}
+	catch (WrongIssueDate e)
+	{
+		cout << endl << e.what();
+	}*/  //////////////////////////////////////////////////Deci try catch NU merge cu constructorul, oricare ar fie el :(
+
+	//Ticket elenaT("15/04/2024", Filantropica);
+	//cout << strcmp("14/06/2024", "15/04/2024");                         DECI NU POT SA COMPAR ASA DOUA DATE CALENDARISTICE
+
+
+
+	/*cout << endl;
+	cout << " "<<" " << " " << " " << vipSeat.returnSeat();
+	cout << " "<<" " << " " << " " << vipSeat.returnSeat();
+	cout << " "<<" " << " " << " " << vipSeat.returnSeat();
+	cout << " "<<" " << " " << " " << vipSeat.returnSeat();
+	cout << " "<<" " << " " << " " <<standardSeat.returnSeat();
+	cout << " "<<" " << " " << " " << vipSeat.returnSeat();
+	cout << " "<<" " << " " << " " << vipSeat.returnSeat();
+	cout << " "<<" " << " " << " " << vipSeat.returnSeat();
+	cout << " "<<" " << " " << " " << vipSeat.returnSeat();
+	cout << " "<<" " << " " << " " << vipSeat.returnSeat();
+	cout << " "<<" " << " " << " " << vipSeat.returnSeat();
+	cout << " "<<" " << " " << " " << vipSeat.returnSeat();
+	cout << " "<<" " << " " << " " << vipSeat.returnSeat();
+	cout << " "<<" " << " " << " " << vipSeat.returnSeat();
+	cout << " "<<" " << " " << " " << vipSeat.returnSeat();*/
+
+
+	//normalRow.returnRow();
+
+	/*string ceva = "Elena";
+	ceva += " Eftimie";
+
+	cout << ceva;*/
+
+	//normalZone.returnZone();
+
+	cinemaHallLocation.returnLocation();
+
 }

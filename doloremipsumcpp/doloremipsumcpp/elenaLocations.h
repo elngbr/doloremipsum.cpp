@@ -178,6 +178,67 @@ public:
 			return nullptr;
 		}
 	}
+	string getStringTypeOfLocation()
+	{
+		switch (this->typeOfLocation)
+		{
+		case(0):
+			return "STADIUM";
+		case(1):
+			return "CONCERT HALL";
+		case(2):
+			return "OPERA HOUSE";
+		case(3):
+			return "EVENTS HALL";
+		case(4):
+			return "SPORT HALL";
+		case(5):
+			return "CINEMA HALL";
+		case(6):
+			return "SQUARE";
+		case(7):
+			return "THEATRE";
+		case(8):
+			return "MALL";
+		case(9):
+			return "PUBLIC INSTITUTION";
+		case(10):
+			return "SEA";
+		case(11):
+			return "FOREST";
+		case(12):
+			return "MOUNTAIN";
+		case(13):
+			return "PARK";
+		case(14):
+			return "SCHOOL";
+		case(15):
+			return "UNIVERSITY";
+		case(16):
+			return "CHURCH";
+		case(17):
+			return "lIBRARY";
+		case(18):
+			return "CEMETERY";
+		case(19):
+			return "RESTAURANT";
+		case(20):
+			return "OTHER";
+		default:
+			return "This type of zone did not exist when this structure was created. Plase redefine the switch structure";
+		}
+	}
+	void returnLocation()
+	{
+		for (int i = 0; i < numberOfZones; i++)
+		{
+
+			cout << zones[i]->getStringTypeOfZone() << " " << i; ////this                                  WILL BE MODIFIED AT SOME POINT!
+			cout << endl;
+			zones[i]->returnZone();
+			cout << endl;
+		}
+	}
 
 };
 

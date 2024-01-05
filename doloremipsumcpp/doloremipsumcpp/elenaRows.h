@@ -139,6 +139,14 @@ public:
         }
     }
     friend inline ostream& operator <<(ostream& console, const Row& auxRow);
+
+    void returnRow()
+    {
+        for (int i = 0; i < this->noOfSeatsForRow; i++)
+        {
+            cout << " " << " " << " " << " " << seats[i]->returnSeat() << i;
+        }
+    }
 };
 
 inline ostream& operator <<(ostream& console, const Row& auxRow)

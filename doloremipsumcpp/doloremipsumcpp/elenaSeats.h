@@ -62,6 +62,40 @@ public:
     //}
     //friend inline ostream& operator <<(ostream& console, const Seat& auxSeat);
 
+    string returnSeat()
+    {
+        switch (this->typeOfSeat)
+        {
+        case(0):
+            return "S";
+        case(1):
+            return "D";
+        case(2):
+            return "B";
+        case(3):
+            return "O";
+        case(4):
+            return "Y";
+        case(5):
+            return "STUD";
+        case(6):
+            return "KID";
+        case(7):
+            return "LOVE";
+        case(8):
+            return "FLEX";
+        case(9):
+            return "V";
+        case(10):
+            return "P";
+        case(11):
+            return "BB";
+        case(12):
+            return "VIR";
+        }
+
+    }
+
 };
 
 
