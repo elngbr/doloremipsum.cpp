@@ -230,11 +230,6 @@ int main()
 
 
 
-
-
-
-
-
 	///requested events
 	Event EURO2024("EURO2024", "14/06/24");
 	Event Filantropica("Filantropica", "01/04/25");
@@ -246,12 +241,16 @@ int main()
 	Filantropica.addLocations(cinemaHallLocation);
 	Straini_in_noapte.addLocations(theatreLocation);
 
+
+
+
+
 	//cout << EURO2024;
 	//cout << Filantropica;
 	//cout << Straini_in_noapte;
 
-	int asciiCode = 65;  // ASCII code for 'A'
-	char character = static_cast<char>(65);
+	//int asciiCode = 65;  // ASCII code for 'A'
+	//char character = static_cast<char>(65);
 
 	// Print the result
 	//cout << "ASCII Code: " << asciiCode << ", Character: " << character << endl;
@@ -294,13 +293,13 @@ int main()
 	cout << endl << u;*/
 
 
-	char* e = Filantropica.getDate();
+	//char* e = Filantropica.getDate();
 
 	//cout << e;  //merge
 
 	/*Location* r = Filantropica.getLocationAtIndex(0);
 	cout << *r;*/
-	string as = "C9898";
+	//string as = "C9898";
 
 	//Ticket ticket(as, "13/11/2024", "Filantropica", "01/04/25", 0, 0, 0, 0); ////this shall not exist. the ticket was issued AFTER THE EVENT OCCURED
 
@@ -318,7 +317,7 @@ int main()
 	//addLocationZoneRowSeat(rrt, 0, 2, 11, 14, Filantropica, numberOfRowsPerZone, numberOfSeatsPerRow);
 
 	//cout << rrt;
-	int value = 9;
+	//int value = 9;
 	//rrt.extendTicketIdentifier(to_string(rrt.getRowIdentifier()));
 	//cout << rrt;
 
@@ -353,9 +352,9 @@ int main()
 
 	cout << *ticketZone;*/   ///THIS THING WORKS ON MAIN STACK
 
-	Ticket w("12/08/25", Straini_in_noapte);
+	/*Ticket w("12/08/25", Straini_in_noapte);
 
-	createTicketWithDetails(w, Straini_in_noapte, 0, 2, 5, 8, counter);
+	createTicketWithDetails(w, Straini_in_noapte, 0, 2, 5, 8, counter);*/
 
 	//cout << w;
 
@@ -406,27 +405,46 @@ int main()
 
 	//cinemaHallLocation.returnLocation();
 
-	Filantropica.returnEvent();
+	/*Filantropica.returnEvent();
 	Straini_in_noapte.returnEvent();
-	EURO2024.returnEvent();
+	EURO2024.returnEvent();*/
 
 
-	cout << endl;
 
-	/*cout << "-------------------------------------------------------------------------------------------------------------------" << endl;
-	cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
-	cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
-	cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
-	cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
-	cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
-	cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
-	cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
-	cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
-	cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
-	cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
-	cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
-	cout << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
-	cout << "-------------------------------------------------------------------------------------------------------------------" << endl;*/
+
+
+
+
+
+
+
+    cout << endl << "Menu:";
+	cout << endl << "Hello! Do you want to start the app?" << endl << "If yes, write doloremipsum.cpp";
+	char response[30];
+	cout << endl << "Your response:";
+	cin >> response;
+
+	if (strcmp(response, "doloremipsum.cpp") == 0)
+	{
+		cout << endl << "You have started the app!";
+
+		cout << "Are you an user or the administrator? If user, then type 0. Otherwise, type 1";
+		int userOrAdmin = -1;
+		cout << endl << "Your answer:"; cin >> userOrAdmin;
+
+		switch (userOrAdmin)
+		{
+		case 0:
+		{
+			cout << endl << "The following events are available";
+			cout << endl << Filantropica.getEventName() << " " << "on" << " " << Filantropica.getDate();
+			cout << endl << EURO2024.getEventName() << " " << "on" << " " << EURO2024.getDate();
+			cout << endl << Straini_in_noapte.getEventName() << " " << "on" << " " << Filantropica.getDate();
+		}
+
+		}
+	}
+    
 
 
 }
