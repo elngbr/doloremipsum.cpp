@@ -9,41 +9,14 @@
 #include<fstream>
 using namespace std;
 
-//class WrongSeatIdentifier {
-//private:
-//    string message;
-//public:
-//    WrongSeatIdentifier(const string& msg) : message(msg) {}
-//
-//    string what()const
-//    {
-//        return message;
-//    }
-//};
-
 enum SeatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN, STUDENT, CHILDREN, COUPLE, FLEXIBLE, VIP, PREMIUM, BEANBAG, VIRTUAL };
 
 class Seat {
 protected:
 
     SeatType typeOfSeat = SeatType::STANDARD;
-    int seatIndentifier = 0;
 
 public:
-
-    int getSeatIdentifier() const
-    {
-        return this->seatIndentifier;
-    }
-
-    /*void setSeatIdentifier(int auxSeatIdentifier)
-    {
-        if (auxSeatIdentifier < 0)
-        {
-            throw WrongSeatIdentifier("A seat identifier cannot be less than 0!");
-            this->seatIndentifier = auxSeatIdentifier;
-        }
-    }*/
 
     SeatType getType() const {
         return typeOfSeat;
@@ -67,31 +40,31 @@ public:
         switch (this->typeOfSeat)
         {
         case(0):
-            return "S";
+            return "STDARD";
         case(1):
-            return "D";
+            return "SNEEDS";
         case(2):
-            return "B";
+            return "BROKEN";
         case(3):
-            return "O";
+            return "OCPIED";
         case(4):
-            return "Y";
+            return "**YC**";
         case(5):
-            return "STUD";
+            return "STDENT";
         case(6):
-            return "KID";
+            return "CHILDR";
         case(7):
-            return "LOVE";
+            return "COUPLE";
         case(8):
-            return "FLEX";
+            return "FLEXIB";
         case(9):
-            return "V";
+            return "VIP***";
         case(10):
-            return "P";
+            return "PRMIUM";
         case(11):
-            return "BB";
+            return "BEANBG";
         case(12):
-            return "VIR";
+            return "VRTUAL";
         }
 
     }
@@ -101,10 +74,7 @@ public:
 
 inline ostream& operator <<(ostream& console, const Seat& auxSeat)
 {
-    //console << endl << "This seats; identifier is:" << auxSeat.getSeatIdentifier();
     console << endl << "This seat's type is:" << " " << " ";
-    /*enum SeatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN };*/
-    //enum SeatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN, STUDENT, CHILDREN, COUPLE, FLEXIBLE, VIP, PREMIUM };
 
 
     switch (auxSeat.getType())

@@ -1,8 +1,9 @@
 #pragma once
+
+#include "elenaRows.h"
 #include "elenaSeats.h"
 #include "elenaZones.h"
 #include "elenaLocations.h"
-#include "elenaRows.h"
 #include "OverloadedF.h"
 #include<string>
 #include<iostream>
@@ -169,6 +170,123 @@ public:
 	}
 
 	inline friend ostream& operator<<(ostream& console, Event& auxEvent);
+
+	void returnEvent()
+	{
+		int stadiumLocationC = 0;
+		int concerthallLocationC = 0;
+		int operahouseLocationC = 0;
+		int eventshallLocationC = 0;
+		int sporthallLocationC = 0;
+		int cinemahallLocationC = 0;
+		int squareLocationC = 0;
+		int theatreLocationC = 0;
+		int mallLocationC = 0;
+		int publicinstitutionLocationC = 0;
+		int seaLocationC = 0;
+		int forestLocationC = 0;
+		int mountainLocationC = 0;
+		int parkLocationC = 0;
+		int schoolLocationC = 0;
+		int universityLocationC = 0;
+		int churchLocationC = 0;
+		int libraryLocationC = 0;
+		int cemeteryLocationC = 0;
+		int restaurantLocationC = 0;
+		cout << "This is the virtual reprezentation of the" << " " << this->eventName << "'s venues:" << endl;
+		for (int i = 0; i < this->numberOfLocations; i++)
+		{
+			/*cout << endl << endl << endl*/;
+			cout << endl << "Location UNIQUE ID:" << i;
+
+			cout << endl << "This location's name is:" << locations[i]->getStringTypeOfLocation() << " ";
+			switch (this->locations[i]->getLocationType())
+			{
+			case STADIUM:
+				cout << ++stadiumLocationC;
+				break;
+			case CONCERT_HALL:
+				cout << ++concerthallLocationC;
+				break;
+			case OPERA_HOUSE:
+				cout << ++operahouseLocationC;
+				break;
+			case EVENTS_HALL:
+				cout << ++eventshallLocationC;
+				break;
+			case SPORT_HALL:
+				cout << ++sporthallLocationC;
+				break;
+			case CINEMA_HALL:
+				cout << ++cinemahallLocationC;
+				break;
+			case SQUARE:
+				cout << ++squareLocationC;
+				break;
+			case THEATRE:
+				cout << ++theatreLocationC;
+				break;
+			case MALL:
+				cout << ++mallLocationC;
+				break;
+			case PUBLIC_INSTITUTION:
+				cout << ++publicinstitutionLocationC;
+				break;
+			case SEA:
+				cout << ++seaLocationC;
+				break;
+			case FOREST:
+				cout << ++forestLocationC;
+				break;
+			case MOUNTAIN:
+				cout << ++mountainLocationC;
+				break;
+			case PARK:
+				cout << ++parkLocationC;
+				break;
+			case SCHOOL:
+				cout << ++schoolLocationC;
+				break;
+			case UNIVERSITY:
+				cout << ++universityLocationC;
+				break;
+			case CHURCH:
+				cout << ++churchLocationC;
+				break;
+			case LIBRARY:
+				cout << ++libraryLocationC;
+				break;
+			case CEMETERY:
+				cout << ++cemeteryLocationC;
+				break;
+			case RESTAURANT:
+				cout << ++restaurantLocationC;
+				break;
+			}
+			cout << endl << endl << endl << endl << endl << endl << endl;
+			cout << " " << "The" << " " << this->locations[i]->getStringTypeOfLocation() << endl;
+			cout << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << "-------------------------------------------------------------------------------------------------------------------" << endl;
+			cout << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+			cout << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+			cout << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+			cout << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+			cout << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+			cout << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+			cout << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+			cout << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+			cout << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+			cout << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+			cout << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+			cout << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+			cout << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << "-------------------------------------------------------------------------------------------------------------------" << endl;
+
+
+			cout << endl << endl << endl;
+			cout << endl << endl << endl;
+			locations[i]->returnLocation();
+		}
+
+	}
 
 };
 

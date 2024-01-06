@@ -77,73 +77,72 @@ public:
 	{
 		this->typeOfLocation = auxType;
 	}
-	//void initializeCounterOfZoneType(Zone auxZone)
-	//{
-	//	
-	//	switch (auxZone.getType())
-	//	{
-	//	case(STAND):
-	//		this->standZoneCounter++;
-	//		break;
-	//	case(NORMAL):
-	//		this->normalZoneCounter++;
-	//		break;
-	//	case(VIPZ):
-	//		this->vipZoneCounter++;
+	void initializeCounterOfZoneType(Zone auxZone)
+	{
 
-	//		break;
-	//	case(CATEGORY):
-	//		this->categoryZoneCounter++;
+		switch (auxZone.getType())
+		{
+		case(STAND):
+			this->standZoneCounter++;
+			break;
+		case(NORMAL):
+			this->normalZoneCounter++;
+			break;
+		case(VIPZ):
+			this->vipZoneCounter++;
 
-	//		break;
-	//	case(CAMPING):
-	//		this->campingZoneCounter++;
+			break;
+		case(CATEGORY):
+			this->categoryZoneCounter++;
 
-	//		break;
-	//	case(PREMIUMZ):
-	//		this->premiumZoneCounter++;
+			break;
+		case(CAMPING):
+			this->campingZoneCounter++;
 
-	//		break;
-	//	case(FAMILY):
-	//		//enum zoneType { STAND, NORMAL, VIPZ, CATEGORY, CAMPING, PREMIUMZ, FAMILY, STUDENTZ, BACKSTAGE, GREEN, SRO, NETWORKING, GAME, FOOD, BALCONY, AMPHITHEATER, BOX };
-	//		this->familyZoneCounter++;
-	//		break;
-	//	case(STUDENTZ):
-	//		this->studentZoneCounter++;
-	//		break;
-	//	case(BACKSTAGE):
-	//		this->backstageZoneCounter++;
-	//		break;
-	//	case(GREEN):
-	//		this->greenZoneCounter++;
-	//		break;
-	//	case(SRO):
-	//		this->sroZoneCounter++;
-	//		break;
-	//	case(NETWORKING):
-	//		this->networkingZoneCounter++;
-	//		break;
-	//	case(GAME):
-	//		this->gameZoneCounter++;
-	//		break;
-	//	case(FOOD):
-	//		this->foodZoneCounter++;
-	//		break;
-	//	case(BALCONY):
-	//		this->balconyZoneCounter++;
-	//		break;
-	//	case(AMPHITHEATER):
-	//		this->amphitheaterZoneCounter++;
-	//		break;
-	//	case(BOX):
-	//		this->boxZoneCounter++;
-	//		break;
-	//	}
+			break;
+		case(PREMIUMZ):
+			this->premiumZoneCounter++;
 
-	//}
+			break;
+		case(FAMILY):
+			this->familyZoneCounter++;
+			break;
+		case(STUDENTZ):
+			this->studentZoneCounter++;
+			break;
+		case(BACKSTAGE):
+			this->backstageZoneCounter++;
+			break;
+		case(GREEN):
+			this->greenZoneCounter++;
+			break;
+		case(SRO):
+			this->sroZoneCounter++;
+			break;
+		case(NETWORKING):
+			this->networkingZoneCounter++;
+			break;
+		case(GAME):
+			this->gameZoneCounter++;
+			break;
+		case(FOOD):
+			this->foodZoneCounter++;
+			break;
+		case(BALCONY):
+			this->balconyZoneCounter++;
+			break;
+		case(AMPHITHEATER):
+			this->amphitheaterZoneCounter++;
+			break;
+		case(BOX):
+			this->boxZoneCounter++;
+			break;
+		}
+
+	}
 	void addZones(Zone auxZone)
 	{
-		//initializeCounterOfZoneType(auxZone);
+		initializeCounterOfZoneType(auxZone);
 		Zone** newZones = new Zone * [this->numberOfZones + 1];
 		for (int i = 0; i < this->numberOfZones; i++)
 		{
@@ -230,10 +229,85 @@ public:
 	}
 	void returnLocation()
 	{
+		int standZoneC = 0;
+		int normalZoneC = 0;
+		int vipZoneC = 0;
+		int categoryZoneC = 0;
+		int campingZoneC = 0;
+		int premiumZoneC = 0;
+		int familyZoneC = 0;
+		int studentZoneC = 0;
+		int backstageZoneC = 0;
+		int greenZoneC = 0;
+		int sroZoneC = 0;
+		int networkingZoneC = 0;
+		int gameZoneC = 0;
+		int foodZoneC = 0;
+		int balconyZoneC = 0;
+		int amphitheaterZoneC = 0;
+		int boxZoneC = 0;
 		for (int i = 0; i < numberOfZones; i++)
 		{
+			cout << endl << "Zone UNIQUE ID:" << i;
+			cout << endl << "Zone name:" << zones[i]->getStringTypeOfZone() << " "; ////this                                  WILL BE MODIFIED AT SOME POINT!
+			switch (this->zones[i]->getType())
+			{
+			case(0):
+			{
+				cout << ++standZoneC;
+				break;
+			}
+			case(1):
+				cout << ++normalZoneC;
+				break;
+			case(2):
+				cout << ++vipZoneC;
+				break;
+			case(3):
+				cout << ++categoryZoneC;
+				break;
+			case(4):
+				cout << ++campingZoneC;
+				break;
+			case(5):
+				cout << ++premiumZoneC;
+				break;
+			case(6):
+				cout << ++familyZoneC;
+				break;
+			case(7):
+				cout << ++studentZoneC;
+				break;
+			case(8):
+				cout << ++backstageZoneC;
+				break;
+			case(9):
+				cout << ++greenZoneC;
+				break;
+			case(10):
+				cout << ++sroZoneC;
+				break;
+			case(11):
+				cout << ++networkingZoneC;
+				break;
+			case(12):
+				cout << ++gameZoneC;
+				break;
+			case(13):
+				cout << ++foodZoneC;
+				break;
+			case(14):
+				cout << ++balconyZoneC;
+				break;
+			case(15):
+				cout << ++amphitheaterZoneC;
+				break;
+			case(16):
+				cout << ++boxZoneC;
+				break;
+			}
 
-			cout << zones[i]->getStringTypeOfZone() << " " << i; ////this                                  WILL BE MODIFIED AT SOME POINT!
+
 			cout << endl;
 			zones[i]->returnZone();
 			cout << endl;
