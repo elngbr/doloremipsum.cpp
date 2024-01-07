@@ -10,6 +10,54 @@
 #include<fstream>
 using namespace std;
 
+void serializeString(string value, ofstream& file)
+{
+	int valueSize = strlen(value.c_str()) + 1;
+	file.write((char*)&valueSize, sizeof(int));
+	file.write(value.c_str(), sizeof(char) * valueSize);
+}
+
+char* deserializeDynamicCharArray(ifstream& file) {
+	int arraySize = 0;
+	file.read((char*)&arraySize, sizeof(int));
+	char* buffer = new char[arraySize];
+	file.read(buffer, sizeof(char) * arraySize);
+
+	return buffer;
+}
+
+
+//string deserializeString(ifstream& file)
+//{
+//	int valueSize = 0;
+//
+//	file.read((char*)&valueSize, sizeof(int));
+//	char buffer[50];
+//	file.read(buffer, sizeof(char) * valueSize);
+//	return string(buffer);
+//}
+
+string deserializeString(ifstream& file)
+{
+	int valueSize = 0;
+	file.read((char*)&valueSize, sizeof(int));
+
+	// Ensure buffer has enough space for valueSize + 1 (for null terminator)
+	char* buffer = new char[valueSize + 1];
+	file.read(buffer, sizeof(char) * valueSize);
+
+	// Null-terminate the string
+	buffer[valueSize] = '\0';
+
+	string result(buffer);
+
+	// Don't forget to free the dynamically allocated memory
+	delete[] buffer;
+
+	return result;
+}
+
+
 class WrongIssueDate {
 private:
 	string message;
@@ -138,9 +186,13 @@ private:
 	zoneType typeZone = NORMAL;
 	locationType typeLocation = EVENTS_HALL;
 
+	/*string zoneName = "";
+	string locationName = "";*/
+
 
 public:
 	int static const MIN_TICKET_ID_DIMENSION = 2;
+
 
 	int getSeatIdentifier()
 	{
@@ -302,7 +354,7 @@ public:
 		if (auxRowIndex < 0 || auxRowIndex > zoneNumberOfRows - 1)
 		{
 			throw WrongRowIdentifier("The row " + std::to_string(auxRowIndex) +
-				" does not exist for event " + auxEvent.getEventName() + " in the zone " + " " + std::to_string(this->zoneIdentifier) + "!");
+				" does not exist for event " + auxEvent.getEventName() + " in zone" + " " + std::to_string(this->zoneIdentifier) + "!");
 		}
 
 		this->rowIdentifier = auxRowIndex;
@@ -312,14 +364,15 @@ public:
 
 	void setSeatIdentifier(int auxSeatId, int rowNumberOfSeats, Event& auxEvent)
 	{
-		if (auxSeatId < 0 || auxSeatId >rowNumberOfSeats - 1)
+		if (auxSeatId < 0 || auxSeatId >rowNumberOfSeats - 1 || auxEvent.getLocationAtIndex(this->locationIdentifier)->getZoneAtIndex(this->zoneIdentifier)->getRowAtIndex(this->rowIdentifier)->getSeatAtIndex(auxSeatId)->getType() == BROKEN ||
+			auxEvent.getLocationAtIndex(this->locationIdentifier)->getZoneAtIndex(this->zoneIdentifier)->getRowAtIndex(this->rowIdentifier)->getSeatAtIndex(auxSeatId)->getType() == OCCUPIED)
 		{
 			/*throw WrongLocationIdentifier("The location" + "" + to_string(auxLocationId - 1) + " does not exist for event" + " " + auxEvent.getEventName() + "!");*/
 			throw WrongSeatIdentifier
 			(
 				"The seat " + std::to_string(auxSeatId) +
 				" does not exist for event " + auxEvent.getEventName() + " " + "at zone" + std::to_string(this->zoneIdentifier) + " " + "at the row" +
-				" " + std::to_string(this->rowIdentifier) + "!"
+				" " + std::to_string(this->rowIdentifier) + " or it is BROKEN or OCCUPIED!"
 			);
 
 
@@ -504,6 +557,73 @@ public:
 		default:
 			return "This type of zone did not exist when this structure was created. Plase redefine the switch structure";
 		}
+	}
+
+	void serializeTickets(ofstream& file)
+	{
+		serializeString(this->ticketID, file);
+		int sizeChar = strlen(this->dateOfIssue) + 1;
+		file.write((char*)&sizeChar, sizeof(int));
+		file.write(this->dateOfIssue, sizeof(char) * sizeChar);
+		serializeString(this->eventName, file);
+
+		sizeChar = strlen(this->dateOfEvent) + 1;
+		file.write((char*)&sizeChar, sizeof(int));
+		file.write(this->dateOfEvent, sizeof(char) * sizeChar);
+
+		file.write((char*)&this->locationIdentifier, sizeof(int));
+		serializeString(this->getStringTypeOfLocation(), file);
+		file.write((char*)&this->identifierOfLocationBasedOnType, sizeof(int));
+
+		file.write((char*)&this->zoneIdentifier, sizeof(int));
+		serializeString(this->getStringTypeOfZone(), file);
+		file.write((char*)&this->identifierOfZoneBasedOnType, sizeof(int));
+
+		file.write((char*)&this->rowIdentifier, sizeof(int));
+		file.write((char*)&this->seatIdentifier, sizeof(int));
+		serializeString(this->getStringTypeOfSeat(), file);
+
+
+	}
+
+	void deserializeTickets(ifstream& file)
+	{
+		//serializeString(this->ticketID, file);
+		this->ticketID = deserializeString(file);
+
+
+		/*int sizeChar = strlen(this->dateOfIssue)+1;
+		file.read((char*)&sizeChar, sizeof(int));
+		file.read(this->dateOfIssue, sizeof(this->dateOfIssue));
+		this->dateOfIssue[sizeChar] = '\0';
+		*/
+		char* dynamicCharArray = deserializeDynamicCharArray(file);
+		strcpy_s(this->dateOfIssue, strlen(dynamicCharArray) + 1, dynamicCharArray);
+		delete[] dynamicCharArray;
+
+		this->eventName = deserializeString(file);
+
+		/*sizeChar = strlen(this->dateOfEvent);
+		file.read((char*)&sizeChar, sizeof(int));
+		file.read(this->dateOfEvent, sizeof(this->dateOfEvent));
+		this->dateOfEvent[sizeChar] = '\0';*/
+		char* dynamicCharArray1 = deserializeDynamicCharArray(file);
+		strcpy_s(this->dateOfIssue, strlen(dynamicCharArray1) + 1, dynamicCharArray1);
+		delete[] dynamicCharArray1;
+
+		file.read((char*)&this->locationIdentifier, sizeof(int));
+		this->getStringTypeOfLocation() = deserializeString(file);
+		file.read((char*)&this->identifierOfLocationBasedOnType, sizeof(int));
+
+		file.read((char*)&this->zoneIdentifier, sizeof(int));
+		this->getStringTypeOfZone() = deserializeString(file);
+		file.read((char*)&this->identifierOfZoneBasedOnType, sizeof(int));
+
+		file.read((char*)&this->rowIdentifier, sizeof(int));
+		file.read((char*)&this->seatIdentifier, sizeof(int));
+		this->getStringTypeOfSeat() = deserializeString(file);
+
+
 	}
 };
 

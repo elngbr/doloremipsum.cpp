@@ -132,8 +132,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="elenaEvents.h" />
+    <ClInclude Include="elenaReportGenerator.h" />
     <ClInclude Include="elenaRows.h" />
     <ClInclude Include="elenaSeats.h" />
+    <ClInclude Include="elenaTicketReport.h" />
     <ClInclude Include="elenaTickets.h" />
     <ClInclude Include="elenaZones.h" />
     <ClInclude Include="OverloadedF.h" />

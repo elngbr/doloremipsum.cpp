@@ -48,7 +48,7 @@ public:
         case(3):
             return "OCPIED";
         case(4):
-            return "**YC**";
+            return "*YOURS*";
         case(5):
             return "STDENT";
         case(6):
@@ -58,7 +58,7 @@ public:
         case(8):
             return "FLEXIB";
         case(9):
-            return "VIP***";
+            return "V.I.P.";
         case(10):
             return "PRMIUM";
         case(11):

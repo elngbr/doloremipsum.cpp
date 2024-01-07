@@ -47,5 +47,11 @@
     <ClInclude Include="TicketIDGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="elenaTicketReport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="elenaReportGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

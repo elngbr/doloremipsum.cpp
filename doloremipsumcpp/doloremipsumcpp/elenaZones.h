@@ -206,7 +206,6 @@ public:
 			return rows[givenIndex];
 		}
 		else {
-			// Handle error, return nullptr, throw an exception, or handle it according to your design
 			return nullptr;
 		}
 	}
