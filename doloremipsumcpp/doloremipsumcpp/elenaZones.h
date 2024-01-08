@@ -37,12 +37,12 @@ public:
 	}
 };
 
-class WrongZoneName
+class WrongZonePrice
 {
 private:
 	string message;
 public:
-	WrongZoneName(const string& msg) : message(msg) {}
+	WrongZonePrice(const string& msg) : message(msg) {}
 
 	string what()const
 	{
@@ -61,26 +61,14 @@ protected:
 	zoneType typeOfZone = NORMAL;
 	int numberOfRowsPerZone = 0;
 	Row** rows = nullptr;
-	string zoneName = "";
+
+	//string zoneName = "";
+
 private:
 
 public:
 	int const static MAX_ROW_IDENTIFIER_PER_ZONE = 15;
 
-	string getZoneName()
-	{
-		return this->zoneName;
-	}
-
-	void setZoneName(string auxZoneName)
-	{
-		if (auxZoneName[0] < 'A' || auxZoneName[0]>'Z')
-		{
-			throw WrongZoneName("The zone name must start in capital!");
-		}
-
-		this->zoneName = auxZoneName;
-	}
 
 	int getNumberOfRowsPerZone()
 	{
@@ -118,47 +106,45 @@ public:
 	{
 		switch (this->typeOfZone)
 		{
-		case(0):
+		case STAND:
 			return "STAND";
-		case(1):
+		case NORMAL:
 			return "NORMAL";
-		case(2):
+		case VIPZ:
 			return "VIP";
-		case(3):
+		case CATEGORY:
 			return "CATEGORY";
-		case(4):
+		case CAMPING:
 			return "CAMPING";
-		case(5):
+		case PREMIUMZ:
 			return "PREMIUM";
-			break;
-		case(6):
+		case FAMILY:
 			return "FAMILY";
-		case(7):
+		case STUDENTZ:
 			return "STUDENT";
-		case(8):
+		case BACKSTAGE:
 			return "BACKSTAGE";
-		case(9):
+		case GREEN:
 			return "GREEN";
-		case(10):
+		case SRO:
 			return "SRO";
-		case(11):
+		case NETWORKING:
 			return "NETWORKING";
-		case(12):
+		case GAME:
 			return "GAME";
-		case(13):
+		case FOOD:
 			return "FOOD";
-		case(14):
+		case BALCONY:
 			return "BALCONY";
-		case(15):
+		case AMPHITHEATER:
 			return "AMPHITHEATER";
-		case(16):
+		case BOX:
 			return "BOX";
-
 		default:
-			return "This type of zone did not exist when this structure was created. Plase redefine the switch structure";
-
+			return "This type of zone did not exist when this structure was created. Please redefine the switch structure";
 		}
 	}
+
 
 	void addRows(Row auxRow)
 	{
@@ -177,19 +163,20 @@ public:
 		//auxRow.setRowIdentifier(this->numberOfRowsPerZone);
 	}
 
-	void extendZoneName(string auxExtension)
-	{
-		if (auxExtension.size() < 0)
-		{
-			throw WrongExtensionException("An extention cannot have a nwgative size!"); ////this will never, ever happen. I just had to validate :) 
-		}
+	//void extendZoneName(string auxExtension)
+	//{
+	//	if (auxExtension.size() < 0)
+	//	{
+	//		throw WrongExtensionException("An extention cannot have a nwgative size!"); ////this will never, ever happen. I just had to validate :) 
+	//	}
 
-		this->zoneName = this->zoneName + " " + auxExtension;
-	}
+	//	this->zoneName = this->zoneName + " " + auxExtension;
+	//}
 
 	Zone(zoneType auxType)
 	{
 		this->setType(auxType);
+
 
 
 	}
@@ -213,6 +200,7 @@ public:
 
 	void returnZone()
 	{
+
 		for (int i = 0; i < this->numberOfRowsPerZone; i++)
 		{
 			if (i / 10 == 0)
@@ -242,60 +230,62 @@ inline ostream& operator<<(ostream& console, Zone& auxZone)
 
 	switch (auxZone.typeOfZone)
 	{
-	case(0):
+	case STAND:
 		console << "STAND. ";
 		break;
-	case(1):
+	case NORMAL:
 		console << "NORMAL.";
 		break;
-	case(2):
+	case VIPZ:
 		console << "VIP. ";
 		break;
-	case(3):
+	case CATEGORY:
 		console << "CATEGORY.";
 		break;
-	case(4):
+	case CAMPING:
 		console << " CAMPING. ";
 		break;
-	case(5):
+	case PREMIUMZ:
 		console << " PREMIUM. ";
 		break;
-	case(6):
+	case FAMILY:
 		console << "FAMILY. ";
 		break;
-	case(7):
+	case STUDENTZ:
 		console << " STUDENT. ";
 		break;
-	case(8):
+	case BACKSTAGE:
 		console << "BACKSTAGE. ";
 		break;
-	case(9):
+	case GREEN:
 		console << "GREEN. ";
 		break;
-	case(10):
+	case SRO:
 		console << "SRO. ";
 		break;
-	case(11):
+	case NETWORKING:
 		console << "NETWORKING.";
 		break;
-	case(12):
+	case GAME:
 		console << "GAME. ";
 		break;
-	case(13):
+	case FOOD:
 		console << "FOOD. ";
 		break;
-	case(14):
+	case BALCONY:
 		console << " BALCONY. ";
 		break;
-	case(15):
+	case AMPHITHEATER:
 		console << "AMPHITHEATER. ";
 		break;
-	case(16):
+	case BOX:
 		console << "BOX.";
 		break;
 	default:
 		console << "This type did not exist at the moment of creation. Please, redefine the switch structure.";
 	}
+
+
 
 
 	console << endl << "This zone has" << " " << auxZone.numberOfRowsPerZone << " " << "rows.";

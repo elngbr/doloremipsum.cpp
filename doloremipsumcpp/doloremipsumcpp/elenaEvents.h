@@ -61,7 +61,13 @@ public:
 	int static const MAX_IDENTIFIER_FOR_LOCATION = 3;
 	int static const MIN_EVENT_NAME_SIZE = 2;
 
-
+	virtual void printInfo()
+	{
+		cout << endl;
+		cout << "Event name:" << " " << this->eventName << endl;;
+		cout << "Event date:" << this->dateOfEvent << endl;
+		//cout<< " No. locations: " << this->numberOfLocations << " locations.";
+	}
 
 	int getNumberOfLocations()
 	{

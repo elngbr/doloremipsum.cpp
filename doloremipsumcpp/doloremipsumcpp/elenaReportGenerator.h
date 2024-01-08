@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 
 #include "elenaRows.h"
 #include "elenaSeats.h"
@@ -10,8 +9,9 @@
 #include "OverloadedF.h"
 #include "OverloadedF1.h"
 #include "TicketIDGenerator.h"
-
-#include"elenaTicketReport.h"
+#include "elenaTickets.h"
+#include "elenaReportGenerator.h"
+#include "elenaTicketReport.h"
 
 #include<string>
 #include<iostream>
@@ -36,6 +36,19 @@ public:
 		report.close();
 	}
 
+	static void generateReport(Ticket& auxTicket, string fileName)
+	{
+		ofstream report(fileName, ios::ate);
+
+		if (!report.is_open())
+		{
+			cout << endl << "The file does NOT open for the raport generator!";
+		}
+
+		auxTicket.generateTicketReport(report);
+
+		report.close();
+	}
 
 	static void backup(TicketReport& auxTicketReport, string fileName)
 	{

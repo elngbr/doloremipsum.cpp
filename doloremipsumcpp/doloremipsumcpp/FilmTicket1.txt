@@ -1,0 +1,16 @@
+	 	 	 	 			 Your ticket
+
+Name of the client:Elena Eftimie
+This ticket's unique identifier is: TICK187711248410
+
+This tickt's price is: 90 RON.
+This ticket's was issued on the date: 09/01/2024
+Event name: Filantropica 
+Event date: 01/04/25
+Location identifier: 0 
+Location name: CINEMA HALL 1
+Zone identifier: 1
+Zone name: VIP 1
+Row identifier: 2
+Seat identifier:8
+Seat type: VIP

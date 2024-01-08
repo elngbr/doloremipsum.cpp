@@ -128,8 +128,29 @@ public:
 };
 
 
+class WrongFirstNameInput {
+private:
+	string message;
+public:
+	WrongFirstNameInput(const string& msg) : message(msg) {}
 
+	string what()const
+	{
+		return message;
+	}
+};
 
+class WrongLastNameInput {
+private:
+	string message;
+public:
+	WrongLastNameInput(const string& msg) : message(msg) {}
+
+	string what()const
+	{
+		return message;
+	}
+};
 
 
 
@@ -180,6 +201,9 @@ private:
 	int rowIdentifier = -1;
 	int zoneIdentifier = -1;
 	int locationIdentifier = -1;
+	string clinetFirstName = "";
+	string clientLastName = "";
+	int ticketPrice = -1;
 
 	int identifierOfZoneBasedOnType = -1;
 	int identifierOfLocationBasedOnType = -1;
@@ -192,7 +216,54 @@ private:
 
 public:
 	int static const MIN_TICKET_ID_DIMENSION = 2;
+	int static const MIN_NAME_DIMENSION = 2;
 
+	void printInfo()
+	{
+		cout << endl << "Name of the client:" << this->clinetFirstName << " " << this->clientLastName;
+		cout << endl << "This ticket's unique identifier is:" << " " << this->ticketID << endl;
+		cout << endl << "This tickt's price is:" << " " << this->typeSeat << " RON." << endl;
+		cout << "This ticket's was issued on the date:" << " " << this->dateOfIssue << endl;
+		Ticket::printInfo();
+		cout << "Location identifier:" << " " << this->locationIdentifier << " " << endl;
+		cout << "Location name:" << " " << this->getStringTypeOfLocation() << " " << this->identifierOfLocationBasedOnType << endl;
+		cout << "Zone identifier:" << " " << this->zoneIdentifier << endl;
+		cout << "Zone name:" << " " << this->getStringTypeOfZone() << " " << this->identifierOfZoneBasedOnType << endl;
+		cout << "Row identifier:" << " " << this->rowIdentifier << endl;
+		cout << "Seat identifier:" << this->seatIdentifier << endl;
+		cout << "Seat type:" << " " << this->getStringTypeOfSeat() << endl;
+
+	}
+
+	void setClientFirstName(string auxFirstName)
+	{
+		if (auxFirstName.size() < Ticket::MIN_NAME_DIMENSION)
+		{
+			throw WrongFirstNameInput("The first name is too short! Try to insert your actual name :)");
+		}
+
+		this->clinetFirstName = auxFirstName;
+	}
+
+	string getClientFristName()
+	{
+		return this->clinetFirstName;
+	}
+
+	void setClientLastName(string auxLastName)
+	{
+		if (auxLastName.size() < Ticket::MIN_NAME_DIMENSION)
+		{
+			throw WrongLastNameInput("The last name is too short! Try to insert your actual name :)");
+		}
+
+		this->clientLastName = auxLastName;
+	}
+
+	string getClientLastName()
+	{
+		return this->clientLastName;
+	}
 
 	int getSeatIdentifier()
 	{
@@ -426,35 +497,36 @@ public:
 	inline friend ostream& operator<<(ostream& console, Ticket& auxTicket);
 
 
+
 	string getStringTypeOfSeat()
 	{
 		switch (this->typeSeat)
 		{
-		case(0):
+		case(STANDARD):
 			return "STANDARD";
-		case(1):
+		case(WHEELCHAIR):
 			return "WHEELCHAIR";
-		case(2):
+		case(BROKEN):
 			return "BROKEN";
-		case(3):
+		case(OCCUPIED):
 			return "OCCUPIED";
-		case(4):
+		case(CHOSEN):
 			return "YOUR CHOICE";
-		case(5):
+		case(STUDENT):
 			return "STUDENT";
-		case(6):
+		case(CHILDREN):
 			return "CHILDREN";
-		case(7):
+		case(COUPLE):
 			return "COUPLES";
-		case(8):
+		case(FLEXIBLE):
 			return "FLEXIBLE";
-		case(9):
+		case(VIP):
 			return "VIP";
-		case(10):
+		case(PREMIUM):
 			return "PREMIUM";
-		case(11):
+		case(BEANBAG):
 			return "BEAN BAG";
-		case(12):
+		case(VIRTUAL):
 			return "VIRTUAL";
 		default:
 			return "This type of seat did not exist when this structure was created. Plase redefine the switch structure";
@@ -506,6 +578,52 @@ public:
 
 		}
 	}
+
+	/*void setTicketPrice(int auxPrice)
+	{
+		switch (this->typeZone)
+		{
+		case(0):
+			this->ticketPrice=;
+		case(1):
+			return "NORMAL";
+		case(2):
+			return "VIP";
+		case(3):
+			return "CATEGORY";
+		case(4):
+			return "CAMPING";
+		case(5):
+			return "PREMIUM";
+			break;
+		case(6):
+			return "FAMILY";
+		case(7):
+			return "STUDENT";
+		case(8):
+			return "BACKSTAGE";
+		case(9):
+			return "GREEN";
+		case(10):
+			return "SRO";
+		case(11):
+			return "NETWORKING";
+		case(12):
+			return "GAME";
+		case(13):
+			return "FOOD";
+		case(14):
+			return "BALCONY";
+		case(15):
+			return "AMPHITHEATER";
+		case(16):
+			return "BOX";
+
+		default:
+			return "This type of zone did not exist when this structure was created. Plase redefine the switch structure";
+
+		}
+	}*/
 
 
 	string getStringTypeOfLocation()
@@ -559,8 +677,10 @@ public:
 		}
 	}
 
-	void serializeTickets(ofstream& file)
+	void serializeTickets(ofstream& file)   ///MODIFICA AICI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	{
+		serializeString(this->clinetFirstName, file);
+		serializeString(this->clientLastName, file);
 		serializeString(this->ticketID, file);
 		int sizeChar = strlen(this->dateOfIssue) + 1;
 		file.write((char*)&sizeChar, sizeof(int));
@@ -583,12 +703,13 @@ public:
 		file.write((char*)&this->seatIdentifier, sizeof(int));
 		serializeString(this->getStringTypeOfSeat(), file);
 
-
 	}
 
 	void deserializeTickets(ifstream& file)
 	{
 		//serializeString(this->ticketID, file);
+		this->clinetFirstName = deserializeString(file);
+		this->clientLastName = deserializeString(file);
 		this->ticketID = deserializeString(file);
 
 
@@ -625,21 +746,52 @@ public:
 
 
 	}
+
+	void generateTicketReport(ofstream& report)
+	{
+		if (!report.is_open())
+		{
+			cout << endl << "The ticket report does not open!";
+		}
+
+		report << "\t \t \t \t \t\t\t Your ticket" << endl;
+		report << endl << "Name of the client:" << this->clinetFirstName << " " << this->clientLastName;
+		report << endl << "This ticket's unique identifier is:" << " " << this->ticketID << endl;
+		report << endl << "This ticket's price is:" << " " << this->typeSeat << " RON." << endl;
+		report << "This ticket's was issued on the date:" << " " << this->dateOfIssue << endl;
+		report << "Event name:" << " " << this->eventName << " " << endl;
+		report << "Event date: " << this->dateOfEvent << endl;
+		report << "Location identifier:" << " " << this->locationIdentifier << " " << endl;
+		//report << "Location identifier based on type:" << " " << this->identifierOfLocationBasedOnType << " " << endl;
+		report << "Location name:" << " " << this->getStringTypeOfLocation() << " " << this->identifierOfLocationBasedOnType << endl;
+		report << "Zone identifier:" << " " << this->zoneIdentifier << endl;
+		//report << "Zone identifier based on type:" << this->identifierOfZoneBasedOnType << endl;
+		report << "Zone name:" << " " << this->getStringTypeOfZone() << " " << this->identifierOfZoneBasedOnType << endl;
+		report << "Row identifier:" << " " << this->rowIdentifier << endl;
+		report << "Seat identifier:" << this->seatIdentifier << endl;
+		report << "Seat type:" << " " << this->getStringTypeOfSeat() << endl;
+	}
 };
 
 
 inline ostream& operator<<(ostream& console, Ticket& auxTicket)
 {
-	console << endl << "This ticket's unique identifier is:" << " " << auxTicket.ticketID << endl;
-	console << "This ticket's was issued on the date:" << " " << auxTicket.dateOfIssue << endl;
+	console << endl << "Name of the client:" << auxTicket.clinetFirstName << " " << auxTicket.clientLastName;
+	console << endl << "The ticket's unique identifier is:" << " " << auxTicket.ticketID << endl;
+	console << endl << "The ticket's price is:" << " " << auxTicket.typeSeat << " RON." << endl;
+
+	console << "This ticket was issued on the date:" << " " << auxTicket.dateOfIssue << endl;
 	console << "Event name:" << " " << auxTicket.eventName << " " << endl;
 	console << "Event date: " << auxTicket.dateOfEvent << endl;
 	console << "Location identifier:" << " " << auxTicket.locationIdentifier << " " << endl;
-	console << "Location identifier based on type:" << " " << auxTicket.identifierOfLocationBasedOnType << " " << endl;
-	console << "Location type:" << " " << auxTicket.getStringTypeOfLocation() << endl;
+	//console << "Location identifier based on type:" << " " << auxTicket.identifierOfLocationBasedOnType << " " << endl;
+	console << "Location name:" << " " << auxTicket.getStringTypeOfLocation() << " " << auxTicket.identifierOfLocationBasedOnType << endl;
+	//console << "Location type:" << " " << auxTicket.getStringTypeOfLocation() << endl;
 	console << "Zone identifier:" << " " << auxTicket.zoneIdentifier << endl;
-	console << "Zone identifier based on type:" << auxTicket.identifierOfZoneBasedOnType << endl;
-	console << "Zone type:" << " " << auxTicket.getStringTypeOfZone() << endl;
+	//console << "Zone identifier based on type:" << auxTicket.identifierOfZoneBasedOnType << endl;
+	//console << "Zone type:" << " " << auxTicket.getStringTypeOfZone() << endl;
+	console << "Zone name:" << " " << auxTicket.getStringTypeOfZone() << " " << auxTicket.identifierOfZoneBasedOnType << endl;
+
 	console << "Row identifier:" << " " << auxTicket.rowIdentifier << endl;
 	console << "Seat identifier:" << auxTicket.seatIdentifier << endl;
 	console << "Seat type:" << " " << auxTicket.getStringTypeOfSeat() << endl;

@@ -9,7 +9,7 @@
 #include<fstream>
 using namespace std;
 
-enum SeatType { STANDARD, WHEELCHAIR, BROKEN, OCCUPIED, CHOSEN, STUDENT, CHILDREN, COUPLE, FLEXIBLE, VIP, PREMIUM, BEANBAG, VIRTUAL };
+enum SeatType { STANDARD = 50, WHEELCHAIR = 45, BROKEN = -2, OCCUPIED, CHOSEN = 0, STUDENT = 35, CHILDREN = 44, COUPLE = 75, FLEXIBLE = 70, VIP = 90, PREMIUM = 85, BEANBAG = 87, VIRTUAL = 48 };
 
 class Seat {
 protected:
@@ -39,31 +39,31 @@ public:
     {
         switch (this->typeOfSeat)
         {
-        case(0):
+        case(STANDARD):
             return "STDARD";
-        case(1):
+        case(WHEELCHAIR):
             return "SNEEDS";
-        case(2):
+        case(BROKEN):
             return "BROKEN";
-        case(3):
+        case(OCCUPIED):
             return "OCPIED";
-        case(4):
+        case(CHOSEN):
             return "*YOURS*";
-        case(5):
+        case(STUDENT):
             return "STDENT";
-        case(6):
+        case(CHILDREN):
             return "CHILDR";
-        case(7):
+        case(COUPLE):
             return "COUPLE";
-        case(8):
+        case(FLEXIBLE):
             return "FLEXIB";
-        case(9):
+        case(VIP):
             return "V.I.P.";
-        case(10):
+        case(PREMIUM):
             return "PRMIUM";
-        case(11):
+        case(BEANBAG):
             return "BEANBG";
-        case(12):
+        case(VIRTUAL):
             return "VRTUAL";
         }
 
@@ -74,55 +74,57 @@ public:
 
 inline ostream& operator <<(ostream& console, const Seat& auxSeat)
 {
+    console << endl << "This seat's price is" << " " << auxSeat.getType();
     console << endl << "This seat's type is:" << " " << " ";
+
 
 
     switch (auxSeat.getType())
     {
-    case(0):
+    case(STANDARD):
         console << "standard.";
         break;
-    case(1):
+    case(WHEELCHAIR):
         console << "for people with disabilities.";
         break;
-    case(2):
+    case(BROKEN):
         console << "broken. It cannot be reserved.";
         break;
-    case(3):
+    case(OCCUPIED):
         console << "occupied. Please choose another seat.";
         break;
-    case(4):
+    case(CHOSEN):
         console << "the seat you have already chosen. Please go to the cart.";
         break;
-    case(5):
+    case(STUDENT):
         console << "Student";
         break;
-    case(6):
+    case(CHILDREN):
         console << "this seat was specially designed for children.";
         break;
-    case(7):
+    case(COUPLE):
         console << "this seat was specially designed for couples. It has larger space";
         break;
-    case(8):
+    case(FLEXIBLE):
         console << "this seat was specially designed to be easily folded or stacked";
         break;
-    case(9):
+    case(VIP):
         console << "VIP seat";
         break;
-    case(10):
+    case(PREMIUM):
         console << "PREMIUM seat";
         break;
-    case(11):
+    case(BEANBAG):
         console << "BEAN-BAG seat.very comfortable";
         break;
-    case(12):
+    case(VIRTUAL):
         console << "VIRTUAL seat. It means the zone with such a seat does not have seats, it has a capacity of persons.";
         break;
     default:
         console << "This type of seat has been added subsequently. Plase redefine the switch function";
     }
 
-
+    console << endl;
 
     return console;
 }

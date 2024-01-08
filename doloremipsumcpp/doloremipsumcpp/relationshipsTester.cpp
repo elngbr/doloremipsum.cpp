@@ -11,11 +11,11 @@
 #include "OverloadedF.h"
 #include "OverloadedF1.h"
 #include "TicketIDGenerator.h"
+
 #include<string>
 #include<iostream>
 #include<fstream>
 using namespace std;
-
 
 
 
@@ -417,6 +417,20 @@ int main()
 	cout << endl << "Your response:";
 	cin >> response;
 
+	/*while (true)
+	{
+		try
+		{
+			cin >> response;
+			break;
+		}
+		catch (...)
+		{
+			cout << endl << "Your response:";
+
+		}
+	}*/
+
 	if (strcmp(response, "doloremipsum.cpp") == 0)
 	{
 		cout << endl << "You have started the app!";
@@ -479,20 +493,37 @@ int main()
 						cin >> seatId;
 						testTicket.setSeatIdentifier(seatId, Filantropica.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getRowAtIndex(rowId)->getNoOfSeatsForRow(), Filantropica);
 						/*Filantropica.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getRowAtIndex(rowId)->getSeatAtIndex(seatId)->setType(CHOSEN);*/
+
+						cout << endl << "Please insert your first name:";
+						string firstName = "";
+						cin >> firstName;
+						testTicket.setClientFirstName(firstName);
+
+						cout << endl << "Please insert your last name:";
+						string lastName = "";
+						cin >> lastName;
+						testTicket.setClientLastName(lastName);
+
 						createTicketWithDetails(testTicket, Filantropica, locationId, zoneId, rowId, seatId, counter);
 						Filantropica.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getRowAtIndex(rowId)->getSeatAtIndex(seatId)->setType(CHOSEN);
 						mainReport.addTickets(testTicket);
-						cout << endl << "Your ticket has been created. Please give us a name for the file that will contain the virtual ticket. It MUST end in .txt :).";
-						char fileName[50];
+						cout << endl << "Your ticket has been created. Please go to File Explorer and find it as FilmTicket1.txt:).";
+						/*char fileName[50];
 						cout << endl << "Your response:";
-						cin >> fileName;
+						cin >> fileName;*/
 
-						ofstream file(fileName, ios::ate);
+						/*ofstream file(fileName, ios::ate);
 						testTicket.serializeTickets(file);
-						file.close();
+						file.close();*/
+
+						//testTicket.generateTicketReport("FilmTicket1.txt");
 
 						/*cout << endl << "Here is the updated map of the event:";
 						cout << endl;  Filantropica.returnEvent();*/
+
+						TicketReport testTicketReport;
+
+						FileUtils::generateReport(testTicket, "FilmTicket1.txt");
 
 						cout << endl << "This is your ticket:" << endl;
 						cout << testTicket;
@@ -516,7 +547,14 @@ int main()
 					{
 						cout << endl << e.what();
 					}
-
+					catch (WrongFirstNameInput e)
+					{
+						cout << endl << e.what();
+					}
+					catch (WrongLastNameInput e)
+					{
+						cout << endl << e.what();
+					}
 
 				}
 
@@ -555,20 +593,34 @@ int main()
 						cin >> seatId;
 						testTicket1.setSeatIdentifier(seatId, EURO2024.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getRowAtIndex(rowId)->getNoOfSeatsForRow(), EURO2024);
 
+						cout << endl << "Please insert your first name:";
+						string firstName = "";
+						cin >> firstName;
+						testTicket1.setClientFirstName(firstName);
+
+						cout << endl << "Please insert your last name:";
+						string lastName = "";
+						cin >> lastName;
+						testTicket1.setClientLastName(lastName);
+
 						createTicketWithDetails(testTicket1, EURO2024, locationId, zoneId, rowId, seatId, counter);
 						//EURO2024.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getRowAtIndex(rowId)->getSeatAtIndex(seatId)->setType(CHOSEN);
 						mainReport.addTickets(testTicket1);
-						cout << endl << "Your ticket has been created. Please give us a name for the file that will contain the virtual ticket. It MUST end in .txt :).";
-						char fileName[50];
+						cout << endl << "Your ticket has been created. Please go to File Explorer and find it as FootbalTicket1.txt. :).";
+						/*char fileName[50];
 						cout << endl << "Your response:";
 						cin >> fileName;
 
 						ofstream file(fileName, ios::ate);
 						testTicket1.serializeTickets(file);
-						file.close();
+						file.close();*/
 
 						/*cout << endl << "Here is the updated map of the event:";
 						cout << endl;  EURO2024.returnEvent();*/
+
+						TicketReport testTicket1Report;
+
+						FileUtils::generateReport(testTicket1, "FootbalTicket1.txt");
 
 						cout << endl << "This is your ticket:" << endl;
 						cout << testTicket1;
@@ -592,6 +644,15 @@ int main()
 					{
 						cout << endl << e.what();
 					}
+					catch (WrongFirstNameInput e)
+					{
+						cout << endl << e.what();
+					}
+					catch (WrongLastNameInput e)
+					{
+						cout << endl << e.what();
+					}
+
 
 
 				}
@@ -633,24 +694,41 @@ int main()
 						cin >> seatId;
 						testTicket2.setSeatIdentifier(seatId, Straini_in_noapte.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getRowAtIndex(rowId)->getNoOfSeatsForRow(), Straini_in_noapte);
 
+						cout << endl << "Please insert your first name:";
+						string firstName = "";
+						cin >> firstName;
+						testTicket2.setClientFirstName(firstName);
+
+						cout << endl << "Please insert your last name:";
+						string lastName = "";
+						cin >> lastName;
+						testTicket2.setClientLastName(lastName);
+
+
 						createTicketWithDetails(testTicket2, Straini_in_noapte, locationId, zoneId, rowId, seatId, counter);
 						//Straini_in_noapte.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getRowAtIndex(rowId)->getSeatAtIndex(seatId)->setType(CHOSEN);
 						mainReport.addTickets(testTicket2);
-						cout << endl << "Your ticket has been created. Please give us a name for the file that will contain the virtual ticket. It MUST end in .txt :).";
-						char fileName[50];
+						cout << endl << "Your ticket has been created. Please go to File Explorer and find it as TheatreTicket1.txt.";
+						/*char fileName[50];
 						cout << endl << "Your response:";
 						cin >> fileName;
 
 						ofstream file(fileName, ios::ate);
 						testTicket2.serializeTickets(file);
-						file.close();
+						file.close();*/
 
 
 						/*cout << endl << "Here is the updated map of the event:";
 						cout << endl;  Straini_in_noapte.returnEvent();*/
 
+
+						TicketReport testTicket2Report;
+
+						FileUtils::generateReport(testTicket2, "TheatreTicket1.txt");
+
+
 						cout << endl << "This is your ticket:" << endl;
-						cout << testTicket2;
+						testTicket2.printInfo();
 
 						cout << endl << "Now, go to File Explorer and get your ticket";
 						break;
@@ -671,13 +749,23 @@ int main()
 					{
 						cout << endl << e.what();
 					}
+					catch (WrongFirstNameInput e)
+					{
+						cout << endl << e.what();
+					}
+					catch (WrongLastNameInput e)
+					{
+						cout << endl << e.what();
+					}
 
 
 				}
 			}
 			break;
+			default:cout << endl << "This event does not exist!";
 			}
 
+			
 			break;
 		}
 		case 1:
@@ -689,16 +777,16 @@ int main()
 			cout << endl << "You can also find the .txt report in the File Explorer. It's called ADMIN_REPORT.txt" << endl << endl << endl << endl << endl << endl;
 			break;
 		}
+		default:
+			cout << endl << "Hmmmm...are you a robot? :) :) :) :)";
 
-
-		break;
+			break;
 		}
 	}
 	else
 	{
 		cout << endl << "The app has not been started";
 	}
-
 
 
 
