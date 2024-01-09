@@ -19,6 +19,7 @@ using namespace std;
 
 
 
+
 int main()
 
 {
@@ -366,24 +367,44 @@ int main()
 
 	Ticket t("13/02/2024", Filantropica);
 	createTicketWithDetails(t, Filantropica, 0, 1, 3, 5, counter);
+	t.setClientFirstName("Nae");
+	t.setClientLastName("Carafil");
 	Ticket newTicket("12/06/24", Filantropica);
 	createTicketWithDetails(newTicket, Filantropica, 0, 1, 4, 8, counter);
+	newTicket.setClientFirstName("Gheorghe");
+	newTicket.setClientLastName("Dinica");
 	Ticket w("12/08/25", Straini_in_noapte);
 	createTicketWithDetails(w, Straini_in_noapte, 0, 2, 5, 8, counter);
+	w.setClientFirstName("Florin");
+	w.setClientLastName("Piersic");
 	Ticket v("12/08/24", Straini_in_noapte);
 	createTicketWithDetails(v, Straini_in_noapte, 0, 2, 9, 8, counter);
+	v.setClientFirstName("Medeea");
+	v.setClientLastName("Marinescu");
 	Ticket ticket1("12/01/24", EURO2024);
 	createTicketWithDetails(ticket1, EURO2024, 0, 1, 9, 8, counter);
+	ticket1.setClientFirstName("Dorinel");
+	ticket1.setClientLastName("Munteanu");
 	Ticket ticket2("12/01/24", EURO2024);
 	createTicketWithDetails(ticket2, EURO2024, 0, 1, 7, 5, counter);
+	ticket2.setClientFirstName("Gheorghe");
+	ticket2.setClientLastName("Hagi");
 	Ticket ticket3("12/01/24", EURO2024);
 	createTicketWithDetails(ticket3, EURO2024, 0, 1, 4, 2, counter);
+	ticket3.setClientFirstName("Ilie");
+	ticket3.setClientLastName("Dumitrescu");
 	Ticket ticket4("12/01/24", EURO2024);
 	createTicketWithDetails(ticket4, EURO2024, 0, 1, 1, 2, counter);
+	ticket4.setClientFirstName("Gica");
+	ticket4.setClientLastName("Popescu");
 	Ticket ticket5("12/01/24", EURO2024);
 	createTicketWithDetails(ticket5, EURO2024, 0, 1, 4, 9, counter);
+	ticket5.setClientFirstName("Viorel");
+	ticket5.setClientLastName("Moldovan");
 	Ticket ticket6("12/01/24", Filantropica);
 	createTicketWithDetails(ticket6, Filantropica, 0, 1, 4, 9, counter);
+	ticket6.setClientFirstName("Olga");
+	ticket6.setClientLastName("Tudorache");
 
 	TicketReport mainReport;
 
@@ -417,20 +438,6 @@ int main()
 	cout << endl << "Your response:";
 	cin >> response;
 
-	/*while (true)
-	{
-		try
-		{
-			cin >> response;
-			break;
-		}
-		catch (...)
-		{
-			cout << endl << "Your response:";
-
-		}
-	}*/
-
 	if (strcmp(response, "doloremipsum.cpp") == 0)
 	{
 		cout << endl << "You have started the app!";
@@ -463,98 +470,146 @@ int main()
 			{
 				Filantropica.returnEvent();
 				Ticket testTicket("09/01/2024", Filantropica);
+				Seat::givePricesOfSeats();
 
+				int locationId = -1;
+				int zoneId = -1;
+				int rowId = -1;
+				int seatId = -1;
 				while (true)
 				{
 					try
 					{
-						cout << endl << " Customize your ticket! Please insert the location UNIQUE identifier from the map: ";
-						int locationId = -1;
+						cout << endl << " Customize your ticket! Please insert the location UNIQUE identifier from the map. ";
+						cout << endl;
+						cout << endl;
+						cout << endl;
+						cout << endl;
+						//Seat::givePricesOfSeats();
+						//int locationId = -1;
 						cout << endl << "Your response:";
 						cin >> locationId;
 						testTicket.setLocationIdentifier(locationId, Filantropica);
-
-						cout << endl << "Please insert the UNIQUE zone identifier from the map";
-						int zoneId = -1;
-						cout << endl << "Your response:";
-						cin >> zoneId;
-						testTicket.setZoneIdentifier(zoneId, Filantropica);
-
-
-						cout << endl << "Please insert the UNIQUE row identifier from the map";
-						int rowId = -1;
-						cout << endl << "Your response:";
-						cin >> rowId;
-						testTicket.setRowIdentifier(rowId, Filantropica.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getNumberOfRowsPerZone(), Filantropica);
-
-						cout << endl << "Please insert the UNIQUE seat identifier from the map";
-						int seatId = -1;
-						cout << endl << "Your response:";
-						cin >> seatId;
-						testTicket.setSeatIdentifier(seatId, Filantropica.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getRowAtIndex(rowId)->getNoOfSeatsForRow(), Filantropica);
-						/*Filantropica.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getRowAtIndex(rowId)->getSeatAtIndex(seatId)->setType(CHOSEN);*/
-
-						cout << endl << "Please insert your first name:";
-						string firstName = "";
-						cin >> firstName;
-						testTicket.setClientFirstName(firstName);
-
-						cout << endl << "Please insert your last name:";
-						string lastName = "";
-						cin >> lastName;
-						testTicket.setClientLastName(lastName);
-
-						createTicketWithDetails(testTicket, Filantropica, locationId, zoneId, rowId, seatId, counter);
-						Filantropica.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getRowAtIndex(rowId)->getSeatAtIndex(seatId)->setType(CHOSEN);
-						mainReport.addTickets(testTicket);
-						cout << endl << "Your ticket has been created. Please go to File Explorer and find it as FilmTicket1.txt:).";
-						/*char fileName[50];
-						cout << endl << "Your response:";
-						cin >> fileName;*/
-
-						/*ofstream file(fileName, ios::ate);
-						testTicket.serializeTickets(file);
-						file.close();*/
-
-						//testTicket.generateTicketReport("FilmTicket1.txt");
-
-						/*cout << endl << "Here is the updated map of the event:";
-						cout << endl;  Filantropica.returnEvent();*/
-
-						TicketReport testTicketReport;
-
-						FileUtils::generateReport(testTicket, "FilmTicket1.txt");
-
-						cout << endl << "This is your ticket:" << endl;
-						cout << testTicket;
-
-						cout << endl << "Now, go to File Explorer and get your ticket";
 						break;
 					}
 					catch (WrongLocationIdentifier e)
 					{
 						cout << endl << e.what();
 					}
+
+				}
+
+				while (true)
+				{
+					try {
+
+						cout << endl << "Please insert the UNIQUE zone identifier from the map";
+						//int zoneId = -1;
+						cout << endl << "Your response:";
+						cin >> zoneId;
+						testTicket.setZoneIdentifier(zoneId, Filantropica);
+						break;
+					}
 					catch (WrongZoneIdentifier e)
 					{
 						cout << endl << e.what();
+					}
+				}
+
+				while (true)
+				{
+					try {
+						cout << endl << "Please insert the UNIQUE row identifier from the map";
+						//int rowId = -1;
+						cout << endl << "Your response:";
+						cin >> rowId;
+						testTicket.setRowIdentifier(rowId, Filantropica.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getNumberOfRowsPerZone(), Filantropica);
+						break;
 					}
 					catch (WrongRowIdentifier e)
 					{
 						cout << endl << e.what();
 					}
+				}
+				while (true)
+				{
+					try
+					{
+						cout << endl << "Please insert the UNIQUE seat identifier from the map" << endl;
+						//int seatId = -1;
+						cout << endl << "Your response:";
+						cin >> seatId;
+						testTicket.setSeatIdentifier(seatId, Filantropica.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getRowAtIndex(rowId)->getNoOfSeatsForRow(), Filantropica);
+						break;
+					}
 					catch (WrongSeatIdentifier e)
 					{
 						cout << endl << e.what();
+					}
+				}
+
+				while (true)
+				{
+					try
+					{
+						cout << endl << "Please insert your first name:";
+						string firstName = "";
+						cin >> firstName;
+						testTicket.setClientFirstName(firstName);
+						break;
 					}
 					catch (WrongFirstNameInput e)
 					{
 						cout << endl << e.what();
 					}
+				}
+
+				while (true)
+				{
+					try
+					{
+						cout << endl << "Please insert your last name:";
+						string lastName = "";
+						cin >> lastName;
+						testTicket.setClientLastName(lastName);
+
+
+						createTicketWithDetails(testTicket, Filantropica, locationId, zoneId, rowId, seatId, counter);
+						//Straini_in_noapte.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getRowAtIndex(rowId)->getSeatAtIndex(seatId)->setType(CHOSEN);
+						mainReport.addTickets(testTicket);
+						cout << endl << "Your ticket has been created. Then go to File Explorer and find it as FilmTicket1.txt.";
+						/*char fileName[50];
+						cout << endl << "Your response:";
+						cin >> fileName;
+
+						ofstream file(fileName, ios::ate);
+						testTicket.serializeTickets(file);
+						file.close();*/
+
+
+						/*cout << endl << "Here is the updated map of the event:";
+						cout << endl;  Straini_in_noapte.returnEvent();*/
+
+
+						TicketReport testTicketReport;
+
+						FileUtils::generateReport(testTicket, "FilmTicket1.txt");
+
+
+						cout << endl << "This is your ticket:" << endl;
+					    cout<<testTicket;
+
+						cout << endl << "Now, go to File Explorer and get your ticket";
+						break;
+					}
+
 					catch (WrongLastNameInput e)
 					{
 						cout << endl << e.what();
 					}
+
+
+
 
 				}
 
@@ -564,95 +619,143 @@ int main()
 			{
 				EURO2024.returnEvent();
 				Ticket testTicket1("09/01/2024", EURO2024);
+				Seat::givePricesOfSeats();
+
+				int locationId = -1;
+				int zoneId = -1;
+				int rowId = -1;
+				int seatId = -1;
 				while (true)
 				{
 					try
 					{
-						cout << endl << " Customize your ticket! Please insert the location UNIQUE identifier from the map: ";
-						int locationId = -1;
+						//cout << endl << " Customize your ticket! Please insert the location UNIQUE identifier from the map. ";
+						cout << endl;
+						cout << endl;
+						cout << endl;
+						cout << endl;
+						//Seat::givePricesOfSeats();
+						//int locationId = -1;
 						cout << endl << "Your response:";
 						cin >> locationId;
 						testTicket1.setLocationIdentifier(locationId, EURO2024);
-
-						cout << endl << "Please insert the UNIQUE zone identifier from the map";
-						int zoneId = -1;
-						cout << endl << "Your response:";
-						cin >> zoneId;
-						testTicket1.setZoneIdentifier(zoneId, EURO2024);
-
-
-						cout << endl << "Please insert the UNIQUE row identifier from the map";
-						int rowId = -1;
-						cout << endl << "Your response:";
-						cin >> rowId;
-						testTicket1.setRowIdentifier(rowId, EURO2024.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getNumberOfRowsPerZone(), EURO2024);
-
-						cout << endl << "Please insert the UNIQUE seat identifier from the map";
-						int seatId = -1;
-						cout << endl << "Your response:";
-						cin >> seatId;
-						testTicket1.setSeatIdentifier(seatId, EURO2024.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getRowAtIndex(rowId)->getNoOfSeatsForRow(), EURO2024);
-
-						cout << endl << "Please insert your first name:";
-						string firstName = "";
-						cin >> firstName;
-						testTicket1.setClientFirstName(firstName);
-
-						cout << endl << "Please insert your last name:";
-						string lastName = "";
-						cin >> lastName;
-						testTicket1.setClientLastName(lastName);
-
-						createTicketWithDetails(testTicket1, EURO2024, locationId, zoneId, rowId, seatId, counter);
-						//EURO2024.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getRowAtIndex(rowId)->getSeatAtIndex(seatId)->setType(CHOSEN);
-						mainReport.addTickets(testTicket1);
-						cout << endl << "Your ticket has been created. Please go to File Explorer and find it as FootbalTicket1.txt. :).";
-						/*char fileName[50];
-						cout << endl << "Your response:";
-						cin >> fileName;
-
-						ofstream file(fileName, ios::ate);
-						testTicket1.serializeTickets(file);
-						file.close();*/
-
-						/*cout << endl << "Here is the updated map of the event:";
-						cout << endl;  EURO2024.returnEvent();*/
-
-						TicketReport testTicket1Report;
-
-						FileUtils::generateReport(testTicket1, "FootbalTicket1.txt");
-
-						cout << endl << "This is your ticket:" << endl;
-						cout << testTicket1;
-
-						cout << endl << "Now, go to File Explorer and get your ticket";
 						break;
 					}
 					catch (WrongLocationIdentifier e)
 					{
 						cout << endl << e.what();
 					}
+
+				}
+
+				while (true)
+				{
+					try {
+
+						cout << endl << "Please insert the UNIQUE zone identifier from the map";
+						//int zoneId = -1;
+						cout << endl << "Your response:";
+						cin >> zoneId;
+						testTicket1.setZoneIdentifier(zoneId, EURO2024);
+						break;
+					}
 					catch (WrongZoneIdentifier e)
 					{
 						cout << endl << e.what();
+					}
+				}
+
+				while (true)
+				{
+					try {
+						cout << endl << "Please insert the UNIQUE row identifier from the map";
+						//int rowId = -1;
+						cout << endl << "Your response:";
+						cin >> rowId;
+						testTicket1.setRowIdentifier(rowId, EURO2024.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getNumberOfRowsPerZone(), EURO2024);
+						break;
 					}
 					catch (WrongRowIdentifier e)
 					{
 						cout << endl << e.what();
 					}
+				}
+				while (true)
+				{
+					try
+					{
+						cout << endl << "Please insert the UNIQUE seat identifier from the map";
+						//int seatId = -1;
+						cout << endl << "Your response:";
+						cin >> seatId;
+						testTicket1.setSeatIdentifier(seatId, EURO2024.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getRowAtIndex(rowId)->getNoOfSeatsForRow(), EURO2024);
+						break;
+					}
 					catch (WrongSeatIdentifier e)
 					{
 						cout << endl << e.what();
+					}
+				}
+
+				while (true)
+				{
+					try
+					{
+						cout << endl << "Please insert your first name:";
+						string firstName = "";
+						cin >> firstName;
+						testTicket1.setClientFirstName(firstName);
+						break;
 					}
 					catch (WrongFirstNameInput e)
 					{
 						cout << endl << e.what();
 					}
+				}
+
+				while (true)
+				{
+					try
+					{
+						cout << endl << "Please insert your last name:";
+						string lastName = "";
+						cin >> lastName;
+						testTicket1.setClientLastName(lastName);
+
+
+						createTicketWithDetails(testTicket1, EURO2024, locationId, zoneId, rowId, seatId, counter);
+						//Straini_in_noapte.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getRowAtIndex(rowId)->getSeatAtIndex(seatId)->setType(CHOSEN);
+						mainReport.addTickets(testTicket1);
+						cout << endl << "Your ticket has been created. Then go to File Explorer and find it as FootballTicket1.txt.";
+						/*char fileName[50];
+						cout << endl << "Your response:";
+						cin >> fileName;
+
+						ofstream file(fileName, ios::ate);
+						testTicket2.serializeTickets(file);
+						file.close();*/
+
+
+						/*cout << endl << "Here is the updated map of the event:";
+						cout << endl;  Straini_in_noapte.returnEvent();*/
+
+
+						TicketReport testTicket1Report;
+
+						FileUtils::generateReport(testTicket1, "FootballTicket1.txt");
+
+
+						cout << endl << "This is your ticket:" << endl;
+						cout<<testTicket1;
+
+						cout << endl << "Now, go to File Explorer and get your ticket";
+						break;
+					}
+
 					catch (WrongLastNameInput e)
 					{
 						cout << endl << e.what();
 					}
-
 
 
 				}
@@ -662,43 +765,106 @@ int main()
 			break;
 			case 3:
 			{
-
+				int locationId = -1;
+				int zoneId = -1;
+				int rowId = -1;
+				int seatId = -1;
 				Straini_in_noapte.returnEvent();
 				Ticket testTicket2("09/01/2024", Straini_in_noapte);
+				Seat::givePricesOfSeats();
+
 				while (true)
 				{
 					try
 					{
-						cout << endl << " Customize your ticket! Please insert the location UNIQUE identifier from the map: ";
-						int locationId = -1;
+						cout << endl << " Customize your ticket! Please insert the location UNIQUE identifier from the map. ";
+						cout << endl;
+						cout << endl;
+						cout << endl;
+						cout << endl;
+						//Seat::givePricesOfSeats();
+						//int locationId = -1;
 						cout << endl << "Your response:";
 						cin >> locationId;
 						testTicket2.setLocationIdentifier(locationId, Straini_in_noapte);
+						break;
+					}
+					catch (WrongLocationIdentifier e)
+					{
+						cout << endl << e.what();
+					}
+
+				}
+
+				while (true)
+				{
+					try {
 
 						cout << endl << "Please insert the UNIQUE zone identifier from the map";
-						int zoneId = -1;
+						//int zoneId = -1;
 						cout << endl << "Your response:";
 						cin >> zoneId;
 						testTicket2.setZoneIdentifier(zoneId, Straini_in_noapte);
+						break;
+					}
+					catch (WrongZoneIdentifier e)
+					{
+						cout << endl << e.what();
+					}
+				}
 
-
+				while (true)
+				{
+					try {
 						cout << endl << "Please insert the UNIQUE row identifier from the map";
-						int rowId = -1;
+						//int rowId = -1;
 						cout << endl << "Your response:";
 						cin >> rowId;
 						testTicket2.setRowIdentifier(rowId, Straini_in_noapte.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getNumberOfRowsPerZone(), Straini_in_noapte);
-
+						break;
+					}
+					catch (WrongRowIdentifier e)
+					{
+						cout << endl << e.what();
+					}
+				}
+				while (true)
+				{
+					try
+					{
 						cout << endl << "Please insert the UNIQUE seat identifier from the map";
-						int seatId = -1;
+						//int seatId = -1;
 						cout << endl << "Your response:";
 						cin >> seatId;
 						testTicket2.setSeatIdentifier(seatId, Straini_in_noapte.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getRowAtIndex(rowId)->getNoOfSeatsForRow(), Straini_in_noapte);
+						break;
+					}
+					catch (WrongSeatIdentifier e)
+					{
+						cout << endl << e.what();
+					}
+				}
 
+				while (true)
+				{
+					try
+					{
 						cout << endl << "Please insert your first name:";
 						string firstName = "";
 						cin >> firstName;
 						testTicket2.setClientFirstName(firstName);
+						break;
+					}
+					catch (WrongFirstNameInput e)
+					{
+						cout << endl << e.what();
+					}
+				}
 
+				while (true)
+				{
+					try
+					{
 						cout << endl << "Please insert your last name:";
 						string lastName = "";
 						cin >> lastName;
@@ -708,7 +874,7 @@ int main()
 						createTicketWithDetails(testTicket2, Straini_in_noapte, locationId, zoneId, rowId, seatId, counter);
 						//Straini_in_noapte.getLocationAtIndex(locationId)->getZoneAtIndex(zoneId)->getRowAtIndex(rowId)->getSeatAtIndex(seatId)->setType(CHOSEN);
 						mainReport.addTickets(testTicket2);
-						cout << endl << "Your ticket has been created. Please go to File Explorer and find it as TheatreTicket1.txt.";
+						cout << endl << "Your ticket has been created. Then go to File Explorer and find it as TheatreTicket1.txt.";
 						/*char fileName[50];
 						cout << endl << "Your response:";
 						cin >> fileName;
@@ -728,44 +894,23 @@ int main()
 
 
 						cout << endl << "This is your ticket:" << endl;
-						testTicket2.printInfo();
+						cout<<testTicket2;
 
 						cout << endl << "Now, go to File Explorer and get your ticket";
 						break;
 					}
-					catch (WrongLocationIdentifier e)
-					{
-						cout << endl << e.what();
-					}
-					catch (WrongZoneIdentifier e)
-					{
-						cout << endl << e.what();
-					}
-					catch (WrongRowIdentifier e)
-					{
-						cout << endl << e.what();
-					}
-					catch (WrongSeatIdentifier e)
-					{
-						cout << endl << e.what();
-					}
-					catch (WrongFirstNameInput e)
-					{
-						cout << endl << e.what();
-					}
+
 					catch (WrongLastNameInput e)
 					{
 						cout << endl << e.what();
 					}
-
-
 				}
-			}
-			break;
-			default:cout << endl << "This event does not exist!";
+				break;
 			}
 
-			
+
+			}
+
 			break;
 		}
 		case 1:
@@ -778,7 +923,7 @@ int main()
 			break;
 		}
 		default:
-			cout << endl << "Hmmmm...are you a robot? :) :) :) :)";
+			cout << endl << "Hmmmm...even a robot would type the correct number. Retry. Choose between 0 and 1 :) :) :) :)";
 
 			break;
 		}

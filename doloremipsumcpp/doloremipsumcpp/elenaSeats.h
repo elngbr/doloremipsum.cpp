@@ -69,6 +69,30 @@ public:
 
     }
 
+    static void givePricesOfSeats()
+    {
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        cout << endl << "Here you can see the prices for each type of seat:" << endl;
+        cout << endl << "STDARD (Standard seat):" << STANDARD << " RON";
+        cout << endl << "SNEEDS (Special Needs seat):" << WHEELCHAIR << " RON";
+        cout << endl << "STDENT (Student seat):" << STUDENT << " RON";
+        cout << endl << "CHILDR (Children seat):" << CHILDREN << " RON";
+        cout << endl << "Couple seat:" << COUPLE << " RON";
+        cout << endl << "Flexile seat:" << FLEXIBLE << " RON";
+        cout << endl << "V.I.P (VIP seat):" << VIP << " RON";
+        cout << endl << "PRMIUM (Premium seat):" << PREMIUM << " RON";
+        cout << endl << "Beanbag seat:" << BEANBAG << " RON";
+        cout << endl << "VRTUAL (Virtual seat):" << VIRTUAL << " RON";
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        cout << endl;
+
+    }
+
 };
 
 

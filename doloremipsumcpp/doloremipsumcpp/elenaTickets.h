@@ -222,7 +222,7 @@ public:
 	{
 		cout << endl << "Name of the client:" << this->clinetFirstName << " " << this->clientLastName;
 		cout << endl << "This ticket's unique identifier is:" << " " << this->ticketID << endl;
-		cout << endl << "This tickt's price is:" << " " << this->typeSeat << " RON." << endl;
+		cout << endl << "This ticket's price is:" << " " << this->typeSeat << " RON." << endl;
 		cout << "This ticket's was issued on the date:" << " " << this->dateOfIssue << endl;
 		Ticket::printInfo();
 		cout << "Location identifier:" << " " << this->locationIdentifier << " " << endl;
@@ -777,10 +777,10 @@ public:
 inline ostream& operator<<(ostream& console, Ticket& auxTicket)
 {
 	console << endl << "Name of the client:" << auxTicket.clinetFirstName << " " << auxTicket.clientLastName;
-	console << endl << "The ticket's unique identifier is:" << " " << auxTicket.ticketID << endl;
-	console << endl << "The ticket's price is:" << " " << auxTicket.typeSeat << " RON." << endl;
+	console << endl << "This ticket's unique identifier is:" << " " << auxTicket.ticketID << endl;
+	console << endl << "This ticket's price is:" << " " << auxTicket.typeSeat << " RON." << endl;
 
-	console << "This ticket was issued on the date:" << " " << auxTicket.dateOfIssue << endl;
+	console << "This ticket's was issued on the date:" << " " << auxTicket.dateOfIssue << endl;
 	console << "Event name:" << " " << auxTicket.eventName << " " << endl;
 	console << "Event date: " << auxTicket.dateOfEvent << endl;
 	console << "Location identifier:" << " " << auxTicket.locationIdentifier << " " << endl;

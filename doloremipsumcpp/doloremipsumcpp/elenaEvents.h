@@ -170,7 +170,6 @@ public:
 			return locations[givenIndex];
 		}
 		else {
-			// Handle error, return nullptr, throw an exception, or handle it according to your design
 			return nullptr;
 		}
 	}
@@ -203,7 +202,7 @@ public:
 		for (int i = 0; i < this->numberOfLocations; i++)
 		{
 			/*cout << endl << endl << endl*/;
-			cout << endl << "Location UNIQUE ID:" << i;
+			//cout << endl << "Location UNIQUE ID:" << i;
 
 			cout << endl << "This location's name is:" << locations[i]->getStringTypeOfLocation() << " ";
 			switch (this->locations[i]->getLocationType())
@@ -286,7 +285,7 @@ public:
 			cout << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
 			cout << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << " " << "-------------------------------------------------------------------------------------------------------------------" << endl;
 
-
+			cout << endl << "LOCATION unique ID:" << i;
 			cout << endl << endl << endl;
 			cout << endl << endl << endl;
 			locations[i]->returnLocation();

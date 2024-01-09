@@ -248,7 +248,7 @@ public:
 		int boxZoneC = 0;
 		for (int i = 0; i < numberOfZones; i++)
 		{
-			cout << endl << "Zone UNIQUE ID:" << i;
+			cout << endl << "ZONE unique id:" << i;
 			cout << endl << "Zone name:" << zones[i]->getStringTypeOfZone() << " "; ////this                                  WILL BE MODIFIED AT SOME POINT!
 			switch (this->zones[i]->getType())
 			{
