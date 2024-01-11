@@ -3,7 +3,7 @@ No of tickets:10
 
 Ticket 1
 Name of the client:Nae Carafil
-This ticket's unique identifier is: TICK171330615
+This ticket unique identifier is: TICK171330615
 
 This ticket's price is: 90 RON.
 This ticket's was issued on the date: 13/02/202
@@ -19,7 +19,7 @@ Seat type: VIP
 
 Ticket 2
 Name of the client:Gheorghe Dinica
-This ticket's unique identifier is: TICK3142448820
+This ticket unique identifier is: TICK3142448820
 
 This ticket's price is: 90 RON.
 This ticket's was issued on the date: 12/06/24
@@ -35,7 +35,7 @@ Seat type: VIP
 
 Ticket 3
 Name of the client:Medeea Marinescu
-This ticket's unique identifier is: TICK62849481845
+This ticket unique identifier is: TICK62849481845
 
 This ticket's price is: 35 RON.
 This ticket's was issued on the date: 12/08/24
@@ -51,7 +51,7 @@ Seat type: STUDENT
 
 Ticket 4
 Name of the client:Florin Piersic
-This ticket's unique identifier is: TICK52135481025
+This ticket unique identifier is: TICK52135481025
 
 This ticket's price is: 35 RON.
 This ticket's was issued on the date: 12/08/25
@@ -67,7 +67,7 @@ Seat type: STUDENT
 
 Ticket 5
 Name of the client:Dorinel Munteanu
-This ticket's unique identifier is: TICK83559481845
+This ticket unique identifier is: TICK83559481845
 
 This ticket's price is: 50 RON.
 This ticket's was issued on the date: 12/01/24
@@ -83,7 +83,7 @@ Seat type: STANDARD
 
 Ticket 6
 Name of the client:Gheorghe Hagi
-This ticket's unique identifier is: TICK104267301435
+This ticket unique identifier is: TICK104267301435
 
 This ticket's price is: 50 RON.
 This ticket's was issued on the date: 12/01/24
@@ -99,7 +99,7 @@ Seat type: STANDARD
 
 Ticket 7
 Name of the client:Ilie Dumitrescu
-This ticket's unique identifier is: TICK11497412820
+This ticket unique identifier is: TICK11497412820
 
 This ticket's price is: 50 RON.
 This ticket's was issued on the date: 12/01/24
@@ -115,7 +115,7 @@ Seat type: STANDARD
 
 Ticket 8
 Name of the client:Gica Popescu
-This ticket's unique identifier is: TICK1356811225
+This ticket unique identifier is: TICK1356811225
 
 This ticket's price is: 50 RON.
 This ticket's was issued on the date: 12/01/24
@@ -131,7 +131,7 @@ Seat type: STANDARD
 
 Ticket 9
 Name of the client:Viorel Moldovan
-This ticket's unique identifier is: TICK15639454820
+This ticket unique identifier is: TICK15639454820
 
 This ticket's price is: 35 RON.
 This ticket's was issued on the date: 12/01/24
@@ -147,7 +147,7 @@ Seat type: STUDENT
 
 Ticket 10
 Name of the client:Olga Tudorache
-This ticket's unique identifier is: TICK167010454820
+This ticket unique identifier is: TICK167010454820
 
 This ticket's price is: 90 RON.
 This ticket's was issued on the date: 12/01/24

@@ -440,7 +440,7 @@ int main()
 
 	if (strcmp(response, "doloremipsum.cpp") == 0)
 	{
-		cout << endl << "You have started the app!";
+		cout << endl << "You have started the app! Please, open the console in FULL SCREEN mode!";
 
 		cout << "Are you an user or the administrator? If user, then type 0. Otherwise, type 1";
 		int userOrAdmin = -1;
@@ -519,7 +519,7 @@ int main()
 				while (true)
 				{
 					try {
-						cout << endl << "Please insert the UNIQUE row identifier from the map";
+						cout << endl << "Please insert the UNIQUE row identifier from the map. Plase have in mind that the row identifier is a numerical value.";
 						//int rowId = -1;
 						cout << endl << "Your response:";
 						cin >> rowId;
@@ -535,7 +535,7 @@ int main()
 				{
 					try
 					{
-						cout << endl << "Please insert the UNIQUE seat identifier from the map" << endl;
+						cout << endl << "Please insert the UNIQUE seat identifier from the map. Plase have in mind that the seat identifier is a numerical value!" << endl;
 						//int seatId = -1;
 						cout << endl << "Your response:";
 						cin >> seatId;
@@ -636,6 +636,7 @@ int main()
 						cout << endl;
 						//Seat::givePricesOfSeats();
 						//int locationId = -1;
+						cout << endl << " Customize your ticket! Please insert the location UNIQUE identifier from the map. ";
 						cout << endl << "Your response:";
 						cin >> locationId;
 						testTicket1.setLocationIdentifier(locationId, EURO2024);
@@ -668,7 +669,7 @@ int main()
 				while (true)
 				{
 					try {
-						cout << endl << "Please insert the UNIQUE row identifier from the map";
+						cout << endl << "Please insert the UNIQUE row identifier from the map. Plase have in mind that the row identifier is a numerical value.";
 						//int rowId = -1;
 						cout << endl << "Your response:";
 						cin >> rowId;
@@ -684,7 +685,7 @@ int main()
 				{
 					try
 					{
-						cout << endl << "Please insert the UNIQUE seat identifier from the map";
+						cout << endl << "Please insert the UNIQUE seat identifier from the map. Plase have in mind that the seat identifier is a numerical value.";
 						//int seatId = -1;
 						cout << endl << "Your response:";
 						cin >> seatId;
@@ -816,7 +817,7 @@ int main()
 				while (true)
 				{
 					try {
-						cout << endl << "Please insert the UNIQUE row identifier from the map";
+						cout << endl << "Please insert the UNIQUE row identifier from the map. Plase have in mind that the row identifier is a numerical value.";
 						//int rowId = -1;
 						cout << endl << "Your response:";
 						cin >> rowId;
@@ -832,7 +833,7 @@ int main()
 				{
 					try
 					{
-						cout << endl << "Please insert the UNIQUE seat identifier from the map";
+						cout << endl << "Please insert the UNIQUE seat identifier from the map. Plase have in mind that the seat identifier is a numerical value.";
 						//int seatId = -1;
 						cout << endl << "Your response:";
 						cin >> seatId;

@@ -1,16 +1,16 @@
 	 	 	 	 			 Your ticket
 
 Name of the client:Elena Eftimie
-This ticket's unique identifier is: TICK1877115541025
+This ticket's unique identifier is: TICK187711348615
 
 This ticket's price is: 35 RON.
-This ticket's was issued on the date: 09/01/2024
+This ticket was issued on the date: 09/01/2024
 Event name: EURO2024 
 Event date: 14/06/24
 Location identifier: 0 
 Location name: STADIUM 1
 Zone identifier: 1
 Zone name: STAND 2
-Row identifier: 5
-Seat identifier:9
+Row identifier: 3
+Seat identifier:8
 Seat type: STUDENT
